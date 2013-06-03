@@ -26,6 +26,17 @@ Completed Tasks
 Incomplete Tasks
 ----------------
 
+- basic viewer page design
+- control panel opens and closes (with jasmine tests)
+- assertions in jasmine tests for stories
+- view page (with jasmine tests and mock data)
+- next/prev page (with jasmine tests and mock data)
+- goto page (with jasmine tests and mock data)
+- search scenarios (with jasmine tests and mock data)
+- translation scenarios (with jasmine tests and mock data)
+
+- restructure project for ruby on rails
+
 - PostgreSQL setup
 - basic document creation/destruction (REST) with test
 - basic REST with tests for
