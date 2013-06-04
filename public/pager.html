@@ -4,7 +4,7 @@
     <link type="text/css" rel="stylesheet" href="stylesheets/pager/css/pager.css" />
 
     <!-- libs! -->
-    <script type='text/javascript' src='javascripts/libs/require/require-jquery.js'></script>
+    <script type='text/javascript' src='javascripts/libs/jquery/jquery.js'></script>
 
 </head>
 <body>
@@ -12,11 +12,15 @@
 <div id="header">Hello world!</div>
 
 <div id="page_container">
-    <div id="pager_header">This is stuff in the pager header</div>
+    <div id="pager_header">
+        This is stuff in the pager header
+        <a id="panel_toggle">&darr;</a>
+    </div>
+    <div id="control_panel">Control Panel</div>
     <div id="page_row">
-        <a id="prev_page_arrow">&larr;</a>
+        <a id="prev_page_arrow" class="nav_arrow">&larr;</a>
         <div id="page_panel">yadda yadda</div>
-        <a id="next_page_arrow">&rarr;</a>
+        <a id="next_page_arrow" class="nav_arrow">&rarr;</a>
     </div>
 
     <div id="pager_footer">This is stuff in the pager footer</div>

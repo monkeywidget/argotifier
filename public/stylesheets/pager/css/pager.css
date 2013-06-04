@@ -12,7 +12,7 @@ a:hover {text-decoration:underline;}
 a:active {text-decoration:underline;}
 
 #page_container {
-    background-color:plum;
+    background-color:darkkhaki;
     border-radius: 15px;
     text-align: center;
     width: 800px;
@@ -21,6 +21,18 @@ a:active {text-decoration:underline;}
     margin-left: auto ;
     margin-right: auto ;
     margin-top: 30px;
+}
+
+
+#panel_toggle {
+    float: right;
+    font-size: 200%;
+}
+
+#control_panel {
+    background-color:khaki;
+    display: none;
+
 }
 
 #page_row {
@@ -38,6 +50,9 @@ a:active {text-decoration:underline;}
     padding: 50px;
 }
 
+.nav_arrow {
+    font-size: 200%;
+}
 #prev_page_arrow {
     margin-right: 20px;
 }
