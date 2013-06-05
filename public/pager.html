@@ -21,9 +21,17 @@
     </div>
 
     <div id="control_panel">Control Panel
+        <div class="inline-widgets">
+            <div id="goto_panel">
+                Go to page: <input id="goto_page_number" type='text' size='3' value='1'/>
+            </div>
+            <div id="translate_panel">
+                <input id="plain_word" type='text' size='15'/> will be replaced with <input id="code_word" type='text' size='15'/>
+            </div>
+        </div>
     </div>
 
-    <div id="page_row">
+    <div id="page_row" class="inline-widgets">
         <a id="prev_page_arrow" class="nav_arrow">&larr;</a>
         <div id="page_panel">yadda yadda</div>
         <a id="next_page_arrow" class="nav_arrow">&rarr;</a>
