@@ -26,12 +26,14 @@ a:active {text-decoration:underline;}
 
 #panel_toggle {
     float: right;
-    font-size: 200%;
+    /* font-size: 200%;   */
 }
 
 #control_panel {
     background-color:khaki;
     display: none;
+    padding: 50px;
+    margin: 20px;
 
 }
 
