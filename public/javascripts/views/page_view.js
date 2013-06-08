@@ -2,7 +2,8 @@
 
 // basic without jquery
 $(document).ready(function() {
-    // DEBUG: $('#header').fadeOut('slow');
+    // DEBUG:
+    $('#header').fadeOut('slow');
 
     // open and close the control panel without DOM
     /* $('#panel_toggle').click( function() {
@@ -55,6 +56,4 @@ $(document).ready(function() {
         }
 
     }); // end PageView
-
-    var pageView = new PageView();
-});// (jquery);
+})(jquery);

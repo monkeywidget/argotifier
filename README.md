@@ -13,8 +13,13 @@ Tech Notes
 ----------
 
 - PostgreSQL
-- Ruby on rails
-- jQuery, backbone.js (JavaScript)
+- Server side:
+   - Ruby on rails
+   - RESTful interface
+- JavaScript
+   - jQuery
+   - backbone.js / underscore.js
+   - require.js
 
 
 Development Order
