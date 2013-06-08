@@ -6,13 +6,18 @@
     <!-- libs! -->
     <script type='text/javascript' src='javascripts/libs/jquery/jquery.js'></script>
 
+    <!-- TODO: move into project -->
+    <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+    <script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.6/underscore-min.js"></script>
+    <script src="http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js"></script>
+
     <!-- the main event -->
     <script type='text/javascript' src='javascripts/views/pager.js'></script>
 
 </head>
 <body>
 
-<div id="header">Hello world!</div>
+<div id="header">Ergotifier</div>
 
 <div id="page_container">
     <div id="pager_header">
@@ -26,7 +31,7 @@
                 Go to page: <input id="goto_page_number" type='text' size='3' value='1'/>
             </div>
             <div id="translate_panel">
-                <input id="plain_word" type='text' size='15'/> will be replaced with <input id="code_word" type='text' size='15'/>
+                <input id="plain_word" type='text' size='25'/> will be replaced with <input id="code_word" type='text' size='25'/>
             </div>
         </div>
     </div>

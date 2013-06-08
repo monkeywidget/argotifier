@@ -22,12 +22,14 @@ Development Order
 
 Completed Tasks
 ---------------
+- basic viewer page design
+- control panel opens and closes
+
 
 Incomplete Tasks
 ----------------
 
-- basic viewer page design
-- control panel opens and closes (with jasmine tests)
+- Backbone, Require installation
 - assertions in jasmine tests for stories
 - view page (with jasmine tests and mock data)
 - next/prev page (with jasmine tests and mock data)
