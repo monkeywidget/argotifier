@@ -1,7 +1,14 @@
-// import jquery
+define ([
+    'underscore',
+    'backbone'
+], function(_, Backbone){
 
-// basic without jquery
-$(document).ready(function() {
+    'use strict';
+
+    Backbone.sync = function(method, model, success, error){
+        success();
+    }
+
     // DEBUG:
     $('#header').fadeOut('slow');
 
@@ -55,5 +62,7 @@ $(document).ready(function() {
             $('#page_panel').append("<ul> <li>interior content here</li> </ul>");
         }
 
-    }); // end PageView
-})(jquery);
+    });
+
+});
+

@@ -4,8 +4,8 @@ $(document).ready(function(){
 
         require.config({
             paths: {
-                underscore: 'libs/underscore/underscore-min.js',
-                backbone: 'libs/backbone/backbone-min.js'
+                underscore: 'libs/underscore/underscore-min',
+                backbone: 'libs/backbone/backbone-min'
                 // jquery ?
             },
 
