@@ -4,12 +4,15 @@ $(document).ready(function(){
 
         require.config({
             paths: {
-                underscore: 'libs/underscore/underscore-min',
+                underscore: 'libs/underscore/underscore',
                 backbone: 'libs/backbone/backbone-min'
                 // jquery ?
             },
 
             shim: {
+                'underscore': {
+                    exports: '_'
+                },
 
                 'backbone': {
                     deps: ['underscore', 'jquery'],

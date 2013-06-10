@@ -1,7 +1,10 @@
 define ([
     'underscore',
-    'backbone'
-], function(_, Backbone){
+    'backbone',
+    'models/page_model'
+], function(_, Backbone, Page){
+
+    // console.log('hola 2!');
 
     'use strict';
 
@@ -24,7 +27,8 @@ define ([
         events: {
             'click div#panel_toggle': 'toggleControlDrawer',
             'click a#prev_page_arrow': 'loadPrevPage',
-            'click a#next_page_arrow': 'loadNextPage'
+            'click a#next_page_arrow': 'loadNextPage',
+            'keypress input#goto_page_number': 'gotoHandler'
         },
 
         toggleControlDrawer: function() {
@@ -32,37 +36,74 @@ define ([
         },
 
         displayPage: function(new_index){
-            this.page = new Page({'index': new_index});
+            console.log('trying to display page ' + new_index)
+            this.page = new Page({'index': parseInt(new_index)});
             this.render();
         },
 
+        gotoHandler: function (event) {
+            // only does somethjing on "enter" key
+            if (event.which == 13) {
+                this.gotoPage(parseInt($('input#goto_page_number').val()));
+            }
+            /* else {
+                console.log('DEBUG: non-enter was pressed');
+            }  */
+        },
+
+        gotoPage: function(page_number) {
+            this.displayPage( page_number );
+        },
+
+
         loadPrevPage: function() {
-            displayPage(this.page.index -1);
+            // console.log('called load Prev page')
+            var newPage = this.page.index() -1;
+            if ( newPage < 1 ) {
+                newPage = 1;
+            }
+            this.displayPage(newPage);
         },
 
         loadNextPage: function() {
-            displayPage(this.page.index +1);
+            console.log('called load Next page')
+            var newPage = this.page.index() +1;
+
+            /* var last_page =
+            if ( newPage > last_page ) {
+                newPage = last_page;
+            }  */
+
+            this.displayPage(newPage);
         },
 
 
         initialize: function(){
+
             // fixes loss of context for 'this' within methods
             _.bindAll(this, 'render',
                 'toggleControlDrawer',
-                'loadPrevPage', 'loadNextPage'
+                'gotoHandler', 'gotoPage',
+                'loadPrevPage', 'loadNextPage', 'displayPage'
+
             );
 
             // the first time we'll load in page 1
-            this.page = new Page({'index': '1'});
+
+            this.page = new Page({'index': 1});
+            // console.log("PageView init: page.index is " + this.page.index());
 
             this.render(); // not all views are self-rendering. This one is.
         },
 
         render: function(){
-            $('#page_panel').append("<ul> <li>interior content here</li> </ul>");
+            $('#page_panel').html("<ul> <li>would show page " + this.page.index() +
+                                  " </li> </ul>");
         }
 
     });
+
+    return PageView;
 
 });
 
