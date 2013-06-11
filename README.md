@@ -29,16 +29,17 @@ Completed Tasks
 ---------------
 - basic viewer page design
 - control panel opens and closes
+- Backbone, Require installation
 
 
 Incomplete Tasks
 ----------------
 
-- Backbone, Require installation
 - assertions in jasmine tests for stories
 - view page (with jasmine tests and mock data)
 - next/prev page (with jasmine tests and mock data)
 - goto page (with jasmine tests and mock data)
+
 - search scenarios (with jasmine tests and mock data)
 - translation scenarios (with jasmine tests and mock data)
 
