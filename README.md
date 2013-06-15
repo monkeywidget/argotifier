@@ -30,10 +30,21 @@ Completed Tasks
 - basic viewer page design
 - control panel opens and closes
 - Backbone, Require installation
+- restructure project for ruby on rails
+- PostgreSQL setup
+- basic REST with controller and model tests
 
 
 Incomplete Tasks
 ----------------
+
+- basic REST with tests for
+	- words
+	- sentences
+	- translations
+	- paragraphs
+	- documents
+
 
 - assertions in jasmine tests for stories
 - view page (with jasmine tests and mock data)
@@ -43,16 +54,7 @@ Incomplete Tasks
 - search scenarios (with jasmine tests and mock data)
 - translation scenarios (with jasmine tests and mock data)
 
-- restructure project for ruby on rails
-
-- PostgreSQL setup
 - basic document creation/destruction (REST) with test
-- basic REST with tests for
-	- words
-	- sentences
-	- translations
-	- paragraphs
-	- documents
 - CSV input / output with tests
 - CLI script for document creation
 - CLI script for document delete

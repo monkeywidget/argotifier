@@ -1,4 +1,26 @@
-javscript/jquery interface working
+Development Log
+===============
+
+https://github.com/monkeywidget/argotifier/
+
+- Log is in "blog order" - Most recent first!
+- Intended to record the rails- rspec- and other framework steps
+
+
+commit TBD
+----------
+
+more model tests
+
+first controller tests, with routing (still rspec)
+
+manual controller tests with curl
+
+
+
+
+commit 99a670210782165fd4da1d091988474436ee84f5
+-----------------------------------------------
 
 created rails app
 
@@ -17,3 +39,11 @@ migrate test db (dev ide the default and was initialized with previous command)
 
 create and run initial test
     bundle exec rspec
+
+
+
+commit f97725bdfa8955cbcc53159026debcafb3a4132a
+-----------------------------------------------
+
+javscript/jquery interface working
+

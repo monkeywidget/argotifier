@@ -19,3 +19,13 @@ Set up the database
     $ createdb -O argotifier argotifier_prod
 
 
+
+Configuration
+=============
+
+Verification
+============
+
+Test (manually) the JSON interface
+- TBD: see in words_controller.rb
+
