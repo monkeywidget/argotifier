@@ -27,5 +27,5 @@ Verification
 ============
 
 Test (manually) the JSON interface
-- TBD: see in words_controller.rb
+- see: manual-api-commands.md
 

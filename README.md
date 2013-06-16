@@ -33,18 +33,16 @@ Completed Tasks
 - restructure project for ruby on rails
 - PostgreSQL setup
 - basic REST with controller and model tests
+- REST with tests for words model and controller
 
 
 Incomplete Tasks
 ----------------
 
-- basic REST with tests for
-	- words
-	- sentences
-	- translations
-	- paragraphs
-	- documents
-
+- REST with tests for translations model and controller
+- REST with tests for sentences model and controller
+- REST with tests for paragraphs model and controller
+- REST with tests for documents model and controller
 
 - assertions in jasmine tests for stories
 - view page (with jasmine tests and mock data)

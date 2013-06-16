@@ -64,18 +64,19 @@ class WordsController < ApplicationController
     @word = Word.find(params[:id])
 
     respond_to do |format|
-      if @word.update_attributes(params[:text])
+
+      if @word.update_attributes(params[:word])
         format.json  { head :no_content }
       else
         format.json  { render :json => @word.errors,
                               :status => :unprocessable_entity }
       end
-      end
+
+    end
   end
-  # TODO: broken in some way
   # test manually with:
   #   curl -v -H "Accept: application/json" -H "Content-type: application/json" \
-  #       -X PUT -d '{"text":"garply"}' http://localhost:3000/words/2.json
+  #       -X PUT -d '{"word":{"text":"garply"}}' http://localhost:3000/words/2.json
 
   # DELETE a record
   def destroy
@@ -89,5 +90,6 @@ class WordsController < ApplicationController
   # test manually with:
   #  curl -i -H "Accept: application/json" -X DELETE  http://localhost:3000/words/2.json
 
+  # TODO: find by name
 
 end
