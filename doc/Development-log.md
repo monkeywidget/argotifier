@@ -6,6 +6,16 @@ https://github.com/monkeywidget/argotifier/
 - Log is in "blog order" - Most recent first!
 - Intended to record the rails- rspec- and other framework steps
 
+commit TBD
+----------
+
+- TBI: translated word "create!" takes the word not its index
+
+- created translated_word
+    bundle exec rails generate model translated_word translation:string word:belongs_to
+    rake db:migrate
+    rake db:migrate RAILS_ENV="test"
+
 
 commit 799f860d4beb8f990853590fda1eec488a36efad
 -----------------------------------------------

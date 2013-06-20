@@ -7,10 +7,13 @@ Argotifier::Application.routes.draw do
 
   # default: does the other RESTful routes
   resources :words
+  resources :translated_words
+
+  resources :pages, :only => [:show]
 
 end
 
-
+# http://pivotallabs.com/single-resource-rest-rails-routes/
 
 #### MORE AUTO-GENERATED INSTRUCTIONS
 
