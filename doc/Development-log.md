@@ -6,12 +6,26 @@ https://github.com/monkeywidget/argotifier/
 - Log is in "blog order" - Most recent first!
 - Intended to record the rails- rspec- and other framework steps
 
+
+commit TBD
+----------
+- TBI: translated_word controller and tests
+- TBI: translated_word create REST takes the word not its index, unique translation per word
+
+
 commit TBD
 ----------
 
-- TBI: translated word "create!" takes the word not its index
+- JavaScript: Backbone sync of Page uses REST API
+- static location for html/jquery pages
+    http://localhost:3000/pager
 
-- created translated_word
+commit a26db07c2eb05dde68cf8e2a88bde279bb9196d0
+-----------------------------------------------
+
+- Page interface/controller and route but no model
+
+- created translated_word model
     bundle exec rails generate model translated_word translation:string word:belongs_to
     rake db:migrate
     rake db:migrate RAILS_ENV="test"

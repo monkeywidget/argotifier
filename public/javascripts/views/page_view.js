@@ -8,9 +8,10 @@ define ([
 
     'use strict';
 
-    Backbone.sync = function(method, model, success, error){
+    // intercept the outgoing calls
+    /* Backbone.sync = function(method, model, success, error){
         success();
-    }
+    }  */
 
     // DEBUG:
     $('#header').fadeOut('slow');
@@ -37,7 +38,8 @@ define ([
 
         displayPage: function(new_index){
             console.log('trying to display page ' + new_index)
-            this.page = new Page({'index': parseInt(new_index)});
+            this.page = new Page({'id': parseInt(new_index)});
+            this.page.fetch();
             this.render();
         },
 
@@ -58,7 +60,7 @@ define ([
 
         loadPrevPage: function() {
             // console.log('called load Prev page')
-            var newPage = this.page.index() -1;
+            var newPage = parseInt(this.page.index()) -1;
             if ( newPage < 1 ) {
                 newPage = 1;
             }
@@ -67,7 +69,7 @@ define ([
 
         loadNextPage: function() {
             console.log('called load Next page')
-            var newPage = this.page.index() +1;
+            var newPage = parseInt(this.page.index()) +1;
 
             /* var last_page =
             if ( newPage > last_page ) {
@@ -90,7 +92,7 @@ define ([
 
             // the first time we'll load in page 1
 
-            this.page = new Page({'index': 1});
+            this.page = new Page({'id': 1});
             // console.log("PageView init: page.index is " + this.page.index());
 
             this.render(); // not all views are self-rendering. This one is.

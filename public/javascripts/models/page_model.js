@@ -5,17 +5,20 @@ define ([
 
     'use strict';
 
-    Backbone.sync = function(method, model, success, error){
+    /* Backbone.sync = function(method, model, success, error){
         success();
-    }
+    }  */
 
     var Page = Backbone.Model.extend({
+
+        urlRoot: '/pages',
+
         defaults: {
-            'index': '1'
+            'id': '1'
         },
 
         index: function() {
-            return this.get("index");
+            return this.get("id");
         },
 
         contents: function() {
@@ -30,6 +33,7 @@ define ([
             // console.log('in Page.initialize: index is '+ this.index())
             // fixes loss of context for 'this' within methods
             _.bindAll(this, 'contents', 'index');
+
         }
     });
 

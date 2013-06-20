@@ -3,6 +3,8 @@ argotifier
 
 Automatic word and phrase substitution for simple codes
 
+http://localhost:3000/pager
+
 What it's for
 -------------
 
@@ -28,6 +30,7 @@ Development Order
 Completed Tasks
 ---------------
 - basic viewer page design
+- view: widget for page view
 - control panel opens and closes
 - Backbone, Require installation
 - restructure project for ruby on rails
@@ -61,7 +64,6 @@ Incomplete Tasks
 - web API for paragraph, range of paragraphs, and document
  - and tests
 - web API for page with word index and tests
-- view: widget for page view
 - view: widget for translation search (word only)
 - view: widget for translation creation/edit/remove (word only)
 

@@ -2,6 +2,8 @@ Argotifier::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+  match '/pager', :to => redirect('/public/pager.html')
+
   # this has to go ABOVE the default!
   match 'words/count' => 'words#count', :via => :get
 
