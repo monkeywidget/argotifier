@@ -9,9 +9,11 @@ https://github.com/monkeywidget/argotifier/
 
 commit TBD
 ----------
-- TBI: translated_word controller and tests
-- TBI: translated_word create REST takes the word not its index, unique translation per word
 
+- TBI: translated_word create API takes the word's text, not its index
+- TBI: translated_word controller and tests
+
+- translated_word - unique translation per word
 
 commit 620101feb708e4bdfbf351225acb395800729ce9
 -----------------------------------------------

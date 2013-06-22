@@ -19,14 +19,11 @@ describe TranslatedWord do
     expect{TranslatedWord.create!(translation: "foo")}.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  #it "associates with an existing word" do
-  #end
-
-  #it "rejects association with nonexistent word" do
-  # end
-
-  #it "is uniquely associated with an existing word" do
-  #end
+  it "is uniquely associated with an existing word" do
+    word = Word.find_or_create_by_text("foo")
+    TranslatedWord.create!(translation: "bar", word: word)
+    expect{TranslatedWord.create!(translation: "garply", word: word)}.to raise_error(ActiveRecord::RecordInvalid)
+  end
 
 
 end
