@@ -38,9 +38,18 @@ define ([
 
         displayPage: function(new_index){
             console.log('trying to display page ' + new_index)
-            this.page = new Page({'id': parseInt(new_index)});
-            this.page.fetch();
-            this.render();
+
+            var self = this; // for callback
+            var new_page = new Page({'id': parseInt(new_index)});
+
+            new_page.fetch( {
+                success: function() {
+                    console.log('DEBUG: async fetch: ' + new_page.contents());
+                    self.page = new_page;
+                    self.render();
+                }
+            });
+            // console.log('DEBUG: outside fetch: ' + new_page.contents());
         },
 
         gotoHandler: function (event) {
@@ -68,7 +77,7 @@ define ([
         },
 
         loadNextPage: function() {
-            console.log('called load Next page')
+            // console.log('called load Next page')
             var newPage = parseInt(this.page.index()) +1;
 
             /* var last_page =
@@ -91,16 +100,14 @@ define ([
             );
 
             // the first time we'll load in page 1
-
-            this.page = new Page({'id': 1});
-            // console.log("PageView init: page.index is " + this.page.index());
-
-            this.render(); // not all views are self-rendering. This one is.
+            this.displayPage(1);                   // includes render
         },
 
         render: function(){
-            $('#page_panel').html("<ul> <li>would show page " + this.page.index() +
-                                  " </li> </ul>");
+            $('#page_panel').html("<h2>Page " + this.page.index() +
+                                  "</h2><div class=\"document_text\">" +
+                                  this.page.contents() +
+                                  "</div>");
         }
 
     });

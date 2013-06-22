@@ -13,8 +13,8 @@ commit TBD
 - TBI: translated_word create REST takes the word not its index, unique translation per word
 
 
-commit TBD
-----------
+commit 620101feb708e4bdfbf351225acb395800729ce9
+-----------------------------------------------
 
 - JavaScript: Backbone sync of Page uses REST API
 - static location for html/jquery pages
