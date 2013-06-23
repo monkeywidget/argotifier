@@ -73,3 +73,15 @@ destroy
 Example output:
 
     (none)
+
+
+
+TranslatedWords
+===============
+
+create
+------
+
+    curl -i -X POST  -H "Content-type: application/json" -d '{"word":"foo","translation":"bar"}' http://localhost:3000/translated_words/
+
+Example output:

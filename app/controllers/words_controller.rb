@@ -91,5 +91,6 @@ class WordsController < ApplicationController
   #  curl -i -H "Accept: application/json" -X DELETE  http://localhost:3000/words/2.json
 
   # TODO: find by name
+  # def search
 
 end
