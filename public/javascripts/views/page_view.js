@@ -1,8 +1,9 @@
 define ([
     'underscore',
     'backbone',
-    'models/page_model'
-], function(_, Backbone, Page){
+    'models/page_model',
+    'models/translated_word_model'
+], function(_, Backbone, Page, TranslatedWord){
 
     // console.log('hola 2!');
 
@@ -29,7 +30,8 @@ define ([
             'click div#panel_toggle': 'toggleControlDrawer',
             'click a#prev_page_arrow': 'loadPrevPage',
             'click a#next_page_arrow': 'loadNextPage',
-            'keypress input#goto_page_number': 'gotoHandler'
+            'keypress input#goto_page_number': 'gotoHandler',
+            'keypress input#code_word': 'translationHandler'
         },
 
         toggleControlDrawer: function() {
@@ -50,6 +52,25 @@ define ([
                 }
             });
             // console.log('DEBUG: outside fetch: ' + new_page.contents());
+        },
+
+        translationHandler: function (event) {
+
+            // console.log ("in translation handler");
+
+            if (event.which != 13) {
+                return;
+            }
+            console.log ("DEBUG: got tw which is " + $('input#code_word').val());
+
+            var translated_word = new TranslatedWord({'id': 2});  // DEBUG: hardcode a query
+            translated_word.fetch( {
+                success: function() {
+                    console.log('DEBUG: async tw fetch: ' + translated_word.contents());
+                    $('input#code_word').html();
+                }
+            });
+
         },
 
         gotoHandler: function (event) {
@@ -98,6 +119,7 @@ define ([
                 'loadPrevPage', 'loadNextPage', 'displayPage'
 
             );
+            // _.bindAll(this);
 
             // the first time we'll load in page 1
             this.displayPage(1);                   // includes render

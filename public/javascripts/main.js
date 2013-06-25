@@ -24,35 +24,14 @@ $(document).ready(function(){
         require([
             'models/page_model',
             'models/pagedocument_model',
+            'models/translated_word_model',
             'views/page_view'
-            ], function(Page, PageDocument, PageView) {
+            ], function(Page, PageDocument, TranslatedWord, PageView) {
 
             var pageView = new PageView();
         });
 
-        /*require([
-            'jquery',
-            'libs/backbone/backbone',
-            'models/Page',
-            'models/PageDocument',
-            'views/PageView'
-        ], function($, Backbone, Page, PageDocument, PageView) {
 
-            var Router = Backbone.Router.extend({
-                routes: {
-                    "": "main"
-                },
-                main: function(){
-                    var tasks = new .Collection();
-                    var view = new MasterView({collection: tasks});
-                    tasks.fetch({
-                        success: function(tasks){
-                            $("#container").html(view.render().el).show();
-                        }
-                    });
-                }
-            });
-        });*/
     }());
 });
 

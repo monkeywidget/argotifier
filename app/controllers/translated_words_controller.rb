@@ -59,7 +59,7 @@ class TranslatedWordsController < ApplicationController
     @translated_word = TranslatedWord.find(params[:id])
 
     respond_to do |format|
-      format.json  { render :json => @translated_word }
+      format.json { render :json => @translated_word.to_json(:include => [:word]) }
     end
   end
   # test manually with:
