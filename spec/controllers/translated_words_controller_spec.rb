@@ -27,6 +27,8 @@ describe TranslatedWordsController do
 
   end
 
+  # TODO: index
+
   describe "TranslatedWordsController#show" do
 
     before do

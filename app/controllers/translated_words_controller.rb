@@ -32,6 +32,26 @@ class TranslatedWordsController < ApplicationController
   #        http://localhost:3000/translated_words/
 
 
+  # GET a list of all
+  def index
+    # respond_with(@translated_words = TranslatedWord.all)
+
+    @translated_words = TranslatedWord.all
+
+    respond_to do |format|
+      format.json { render :json => @translated_words.to_json(:include => [:word]) }
+    end
+  end
+  # test manually with:
+  #  curl -i -X GET -H "Content-Type: application/json" \
+  #          http://localhost:3000/translated_words/
+
+
+  # note: no form interface, so no "new" method
+
+
+
+
   # GET an existing
   # because this is for REST and not for the business logic, it shows the id
   # see also the "lookup" methods
