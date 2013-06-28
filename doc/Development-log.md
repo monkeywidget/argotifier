@@ -6,14 +6,21 @@ https://github.com/monkeywidget/argotifier/
 - Log is in "blog order" - Most recent first!
 - Intended to record the rails- rspec- and other framework steps
 
+commit next
+----------
+
+- create sentence model
+- sentence model tests
+- create sentence controller
+- sentence controller tests
 
 commit TBD
 ----------
-
-- TBI: translated_word create API takes the word's text, not its index
-- TBI: translated_word controller and tests
-
-- translated_word - unique translation per word
+- translated_word search by translation
+- translated_word search by original word
+- translated_word create API takes the original word's text, not its index
+- translated_word controller and tests
+- translated_word model - unique translation per word
 
 commit 620101feb708e4bdfbf351225acb395800729ce9
 -----------------------------------------------

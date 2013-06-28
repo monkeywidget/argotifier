@@ -29,6 +29,57 @@ describe TranslatedWordsController do
 
   # TODO: index
 
+
+  describe "TranslatedWordsController#show_by" do
+
+    before do
+      @word_foo_1 = FactoryGirl.create(:word, text: "foo", id: "1")
+      @translated_word_foo_bar_1 = FactoryGirl.create(:translated_word,
+                                                      translation: "bar", word: @word_foo_1,
+                                                      id: "1")
+
+      get :show, :format => :json, :id => 1
+    end
+
+
+    describe "translation" do
+
+      it "should route properly" do
+        assert_generates "/translated_words/by_translation/bar", {
+            :controller => "translated_words",
+            :action => "show_by_translation",
+            :translation => "bar" }
+      end
+
+      it "should find the translated_word by its translation" do
+        parsed = JSON.parse(response.body)
+        parsed["translation"].should eql("bar")
+        parsed["word"]["text"].should eql("foo")
+      end
+
+    end
+
+
+    describe "original text" do
+
+      it "should route properly" do
+        assert_generates "/translated_words/by_original_word/foo", {
+            :controller => "translated_words",
+            :action => "show_by_original_word",
+            :wordtext => "foo" }
+      end
+
+      it "should find the translated_word by its original word text" do
+        parsed = JSON.parse(response.body)
+        parsed["translation"].should eql("bar")
+        parsed["word"]["text"].should eql("foo")
+      end
+
+    end
+
+
+  end
+
   describe "TranslatedWordsController#show" do
 
     before do
@@ -54,6 +105,12 @@ describe TranslatedWordsController do
       parsed = JSON.parse(response.body)
       parsed.should include('id')
       parsed.should include('translation')
+      parsed.should include('word')
+    end
+
+    it "should show the word data" do
+      parsed = JSON.parse(response.body)
+      parsed["word"]["text"].should eql("foo")
     end
 
   end  # end show

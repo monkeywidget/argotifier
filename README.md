@@ -35,22 +35,25 @@ Completed Tasks
 - Backbone, Require installation
 - restructure project for ruby on rails
 - PostgreSQL setup
+- view page
+- next/prev page
+- view - goto page
 - basic REST with controller and model tests
 - REST with tests for words model and controller
+- REST with tests for translations model and controller
 
 
 Incomplete Tasks
 ----------------
 
-- REST with tests for translations model and controller
 - REST with tests for sentences model and controller
 - REST with tests for paragraphs model and controller
 - REST with tests for documents model and controller
 
 - assertions in jasmine tests for stories
-- view page (with jasmine tests and mock data)
-- next/prev page (with jasmine tests and mock data)
-- goto page (with jasmine tests and mock data)
+- view page jasmine tests and mock data
+- jasmine tests: next/prev page
+- jasmine tests: goto page
 
 - search scenarios (with jasmine tests and mock data)
 - translation scenarios (with jasmine tests and mock data)
@@ -69,3 +72,27 @@ Incomplete Tasks
 
 
 
+How To
+======
+
+Run the unit tests
+------------------
+
+     $ bundle exec rspec
+
+
+Run the server
+--------------
+
+     $ bundle exec rails server
+
+Access the UI
+-------------
+
+     http://localhost:3000/pager
+
+
+Access the REST API
+-------------------
+
+see doc/manual-api-commands.md

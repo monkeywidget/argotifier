@@ -51,6 +51,28 @@ class TranslatedWordsController < ApplicationController
 
 
 
+  def show_by_translation
+    @translated_word = TranslatedWord.find_by_translation(params[:translation])
+    respond_to do |format|
+      format.json do
+        render :json => @translated_word.to_json(:include => :word )
+      end
+    end
+  end
+  # test manually with:
+  # curl -i -X GET -H "Content-Type: application/json" http://localhost:3000/translated_words/by_translation/bar
+
+
+  def show_by_original_word
+    @translated_word = TranslatedWord.find_by_word_id(Word.find_by_text(params[:wordtext]))
+    respond_to do |format|
+      format.json do
+        render :json => @translated_word.to_json(:include => :word )
+      end
+    end
+  end
+  # test manually with:
+  # curl -i -X GET -H "Content-Type: application/json" http://localhost:3000/translated_words/by_original_word/foo
 
   # GET an existing
   # because this is for REST and not for the business logic, it shows the id
@@ -59,7 +81,10 @@ class TranslatedWordsController < ApplicationController
     @translated_word = TranslatedWord.find(params[:id])
 
     respond_to do |format|
-      format.json { render :json => @translated_word.to_json(:include => [:word]) }
+      format.json do
+        # render :json => @translated_word.to_json(:include => { :word => { :only => :text } })
+        render :json => @translated_word.to_json(:include => :word )
+      end
     end
   end
   # test manually with:
@@ -96,10 +121,5 @@ class TranslatedWordsController < ApplicationController
   end
   # test manually with:
   #  curl -i -H "Accept: application/json" -X DELETE  http://localhost:3000/translated_words/2.json
-
-  # TODO: search by translation
-  # TODO: search by original word in translation
-  # def search
-
 
 end
