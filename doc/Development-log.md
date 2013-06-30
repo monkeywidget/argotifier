@@ -6,16 +6,34 @@ https://github.com/monkeywidget/argotifier/
 - Log is in "blog order" - Most recent first!
 - Intended to record the rails- rspec- and other framework steps
 
-commit next
+
+commit TBI
 ----------
 
-- create sentence model
+- create sentence/word many-to-many relationship
+    bundle exec rails generate migration create_restaurants_users_table
+
+rails generate migration students_teachers student_id:integer teacher_id:integer
+create_table :students_teachers, :id => false do |t|
+    bundle exec rake db:migrate
+
+
 - sentence model tests
 - create sentence controller
 - sentence controller tests
+- translated_word index output as csv
+
 
 commit TBD
 ----------
+
+- implement word.in_argot and tests
+- create sentence model
+    bundle exec rails generate model sentence word_template:string
+
+commit a2bd7f1c14851ee7ad7ee5366a578809a48756f5
+-----------------------------------------------
+
 - translated_word search by translation
 - translated_word search by original word
 - translated_word create API takes the original word's text, not its index
