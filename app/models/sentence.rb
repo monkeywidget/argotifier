@@ -1,6 +1,10 @@
 class SentenceWord < ActiveRecord::Base
   belongs_to :sentence
   belongs_to :word
+
+  # this class has to be its own class (vs has_and_belongs_to_many) because of the sentence_index column
+
+  set_table_name "sentences_words"   # this is to avoid the annoying "SentencesWord" class name (half plural)
 end
 
 
@@ -17,27 +21,14 @@ class Sentence < ActiveRecord::Base
   # http://stackoverflow.com/questions/6619333/createing-associated-record-in-before-create-callback
   # after_save convert_text_to_word_template
 
-  # TODO how to refactor this into the Sentence object lifecycle?
-  def tokenize(text)
 
-    words = sentence_text.scan( /[\w-]+/ )     # (English) words
-    notwords = sentence_text.scan( /[^\w-]+/ ) # punctuation and spaces
-
-    # if a non-word begins the sentence, all is well
-    # however if it's a word, we need to add an element to the start
-    if sentence_text =~ /^[\w-]/
-      notwords.unshift ""
-    end
-
+  def create_word_template ( words_list, notwords_list )
 
     # AT THIS POINT we have:
     # words - a list of all the words
     # notwords - a list of the stuff that surrounds the words
     #             such that notwords and words are interleaved,
     #             such that notwords elements are first and last
-
-    # build sentence_pattern :
-    # sentence_pattern = notwords.join("x") # does the simple "x" for all
 
     # KEY:
     #   x: all lower case
@@ -46,18 +37,18 @@ class Sentence < ActiveRecord::Base
 
     sentence_pattern = []
     words_list = Array.new(words)  # copy so we can destroy one
-    # the reason behind this is to build the
-    # Sentence pattern first (destructive)
-    #
-    # ...otherwise we could use the same one
+                                   # the reason behind this is to build the
+                                   # Sentence pattern first (destructive)
+                                   #
+                                   # ...otherwise we could use the same one
 
-    # build something like
-    #   C x, "c x!"
-    #     for
-    #   I said, "Don't walk!"
-    while not (notwords.empty? and words_list.empty?)
-      if not notwords.empty?
-        sentence_pattern << notwords.shift
+                                   # build something like
+                                   #   C x, "c x!"
+                                   #     for
+                                   #   I said, "Don't walk!"
+    while not (notwords_list.empty? and words_list.empty?)
+      if not notwords_list.empty?
+        sentence_pattern << notwords_list.shift
       end
       if not words_list.empty?
         sentence_pattern << Word.to_template(words_list.shift)
@@ -65,21 +56,65 @@ class Sentence < ActiveRecord::Base
     end
 
     word_template = sentence_pattern.join("")
+  end
+
+  def separate_words_from_nonword_characters(sentence_text)
+    words_list = sentence_text.scan( /[\w-]+/ )     # (English) words
+    notwords_list = sentence_text.scan( /[^\w-]+/ ) # punctuation and spaces
+                                               #
+                                               # ... grouped together as they would be in between the words
+                                               #
+                                               # e.g. "Do! not! tell mom about that?" would make
+                                               #      [ "! ",
+                                               #             "! ",
+                                               #                   " ",
+                                               #                       " ",
+                                               #                             " ",
+                                               #                                  "?" ]
+
+
+                                               # TODO: is this still the case?
+                                               # if a non-word begins the sentence, all is well
+                                               # however if it's a word, we need to add an element to the start
+                                               # (because of the way join works)
+    if sentence_text =~ /^[\w-]/
+      notwords_list.unshift ""
+    end
+
+    return words_list, notwords_list
+  end
+
+  def find_or_create_words_in(words_list)
+
     sentence_index = 0
 
-    # puts "DEBUG: w: %s\n" % words.join(" ")
-
-    words.each do |word|
-      # puts "\tDEBUG: >>%s<<\n" % word.downcase
+    words_list.each do |word|
+      puts "\tDEBUG: >>%s<<\n" % word.downcase
 
       this_word = Word.find_or_create_by_text( word.downcase )
 
-      sw = SentenceWord.create( :sentence => sentence,
+      sw = SentenceWord.create( :sentence => self,
                                 :sentence_index => sentence_index,
                                 :word => this_word )
 
       sentence_index = sentence_index.next
     end
+  end
+
+  private :create_word_template, :separate_words_from_nonword_characters, :find_or_create_words_in
+
+  # TODO how to refactor this into the Sentence object lifecycle?
+  def tokenize(sentence_text)
+
+
+    words_list, notwords_list = separate_words_from_nonword_characters(sentence_text)
+
+    # puts "DEBUG: " + notwords.join("x") # does the simple "x" for all
+    # puts "DEBUG: " + words.join("/")
+
+    create_word_template(words_list, notwords_list)
+
+    find_or_create_words_in(words_list)
 
   end
 
@@ -91,7 +126,7 @@ class Sentence < ActiveRecord::Base
     words.each do |word|
       translation_for_this_word = TranslatedWord.find_by_word_id(word.id)
 
-      if ( translation_for_this_word.nil? )
+      if translation_for_this_word.nil?
         translated_words_list << word.text                     # the original word text
       else
         translated_words_list << translation_for_this_word.translation
@@ -101,27 +136,28 @@ class Sentence < ActiveRecord::Base
     translated_words_list
   end
 
-  def apply_template_to_words_in ( translated_word_list )
+  # used for both original words and translation words
+  def apply_template_to_words_in ( word_list )
 
     # reduce the template to just characters
-    translation_pattern = word_template.split(//)
+    sentence_pattern = word_template.split(//)
 
     # the outputted sentence as an array
-    translated_sentence = []
+    output_sentence = []
 
-    translation_pattern.each do |pattern_character|
+    sentence_pattern.each do |pattern_character|
 
       if pattern_character !~ /^[xCc]$/
         # if matching the formatting characters, convert
-        translated_sentence << pattern_character
+        output_sentence << pattern_character
       else
         # otherwise just output directly (because it's punctuation)
-        translated_sentence << translated_word_list.shift.rendered_with(pattern_character)
+        output_sentence << word_list.shift.rendered_with(pattern_character)
       end
 
     end
 
-    translated_sentence.join("")
+    output_sentence .join("")
   end
 
   private :translated_words, :apply_template_to_words_in

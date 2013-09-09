@@ -19,13 +19,37 @@ Set up the database
     $ createdb -O argotifier argotifier_prod
 
 
-
 Configuration
 =============
 
 Verification
 ============
 
-Test (manually) the JSON interface
+Run the unit tests
+------------------
+
+Get the database ready:
+
+    $ RAILS_ENV=test bundle exec rake db:test:prepare
+    $ RAILS_ENV=test bundle exec rake db:migrate
+
+The spec tests were written with rspec:
+    https://www.relishapp.com/rspec/rspec-rails/docs/model-specs
+
+Run all the tests:
+
+    $ bundle exec rspec
+
+To run only a couple tests use one of:
+
+    $ bundle exec rspec spec/models/words_model_spec.rb
+    $ bundle exec rspec spec/models/words_model_spec.rb -e "#as_template"
+    $ bundle exec rspec spec/models/words_model_spec.rb \
+            -e "converts a all-lowercased word to 'x'"
+
+
+Test the JSON interface
+-----------------------
+
 - see: manual-api-commands.md
 

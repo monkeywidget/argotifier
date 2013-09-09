@@ -3,15 +3,17 @@ class CreateSentences < ActiveRecord::Migration
     create_table :sentences do |t|
       t.string :word_template
       t.integer :paragraph_index
-      t.references :paragraphs, :null => false
+      t.belongs_to :paragraph
       t.timestamps
     end
 
     create_table :sentences_words, :id => false do |t|
-      t.references :sentences, :null => false
-      t.references :words, :null => false
+      t.integer :sentence_id, :null => false
+      t.integer :word_id, :null => false
       t.integer :sentence_index
     end
+
+    add_index :sentences_words, [:sentence_id, :word_id]
 
   end
 end

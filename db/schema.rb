@@ -21,16 +21,18 @@ ActiveRecord::Schema.define(:version => 20130909190529) do
   create_table "sentences", :force => true do |t|
     t.string   "word_template"
     t.integer  "paragraph_index"
-    t.integer  "paragraphs_id",   :null => false
+    t.integer  "paragraph_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sentences_words", :id => false, :force => true do |t|
-    t.integer "sentences_id",   :null => false
-    t.integer "words_id",       :null => false
+    t.integer "sentence_id",    :null => false
+    t.integer "word_id",        :null => false
     t.integer "sentence_index"
   end
+
+  add_index "sentences_words", ["sentence_id", "word_id"], :name => "index_sentences_words_on_sentence_id_and_word_id"
 
   create_table "translated_words", :force => true do |t|
     t.string   "translation"

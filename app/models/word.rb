@@ -1,4 +1,5 @@
 class Word < ActiveRecord::Base
+  has_many :sentences, :through => :sentence_words
   validates :text, :presence => true
   validates :text, :length => { :minimum => 1 }
 

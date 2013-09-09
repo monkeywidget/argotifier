@@ -79,10 +79,9 @@ Run the unit tests
 ------------------
 
      $ bundle exec rspec
-     $ bundle exec rspec spec/models/words_model_spec.rb
-     $ bundle exec rspec spec/models/words_model_spec.rb -e "#as_template"
-     $ bundle exec rspec spec/models/words_model_spec.rb \
-            -e "converts a all-lowercased word to 'x'"
+
+For more on the tests see doc/Install-steps.md
+
 
 Run the server
 --------------
@@ -99,3 +98,9 @@ Access the REST API
 -------------------
 
 see doc/manual-api-commands.md
+
+Set up the database
+-------------------
+
+createdb -O argotifier argotifier_test
+RAILS_ENV=test bundle exec rake db:test:prepare

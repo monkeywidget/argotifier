@@ -5,11 +5,15 @@ describe Sentence do
   describe "#create" do
 
     before do
-      @paragraph = FactoryGirl.create(:paragraph, id: "1")
+      @paragraph = FactoryGirl.create(:paragraph)
+    end
+
+    it "creates with a paragraph" do
+      sentence = Sentence.create!(paragraph: @paragraph, paragraph_index: 1)
     end
 
     it "saves a template" do
-      sentence = Sentence.create!(@paragraph, paragraph_index: 1)
+      sentence = Sentence.create!(paragraph: @paragraph, paragraph_index: 1)
       sentence.tokenize("The QUICK brown Fox jumps over the lazy-dogs!")
       expect(sentence.word_template).to eq("c C x c x x x x!")
     end
@@ -18,14 +22,49 @@ describe Sentence do
     it "requires a paragraph order parameter"
     it "requires rejects a paragraph order parameter duplicating another sentence"
 
+  end
 
+  describe "#tokenize" do
     it "rejects invalid text"
-    it "creates Word objects"
-    it "does not create duplicate Words"
-    it "does not create duplicate Words originally with differing capitalization"
-    it "creates Word objects without case"
+
+    it "creates Word objects" do
+      expect(Word.count).to eq(0)
+
+      sentence = Sentence.create!(paragraph: @paragraph, paragraph_index: 1)
+      sentence.tokenize("The QUICK brown Fox jumps over the lazy-dogs!")
+
+      expect(Word.count).to eq(7)   # remember not to count "the" more than once
+    end
+
+    describe "with a previously existing Word" do
+      before do
+        expect(Word.count).to eq(0)
+        @word_the = FactoryGirl.create(:word, text: "the", id: "1")
+        expect(Word.count).to eq(1)
+      end
+
+      it "does not create duplicate Words" do
+
+        sentence = Sentence.create!(paragraph: @paragraph, paragraph_index: 1)
+        sentence.tokenize("The QUICK brown Fox jumps over the lazy-dogs!")
+
+        expect(Word.count).to eq(7)   # remember not to count "the" more than once
+      end
+
+      it "creates Word objects without case" do
+
+        sentence = Sentence.create!(paragraph: @paragraph, paragraph_index: 1)
+        sentence.tokenize("The QUICK brown Fox jumps over the lazy-dogs!")
+
+        expect(Word.find_by_text("the")).to eq(@word_the)
+        expect(sentence.words[0]).to eq(@word_the)
+        expect(sentence.words[6]).to eq(@word_the)
+      end
+    end
+
     it "records Word capitalizations for each case"
 
+    it "adds to the parent paragraph"
 
   end
 

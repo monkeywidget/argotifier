@@ -17,8 +17,8 @@ commit TBI
 - sentence / sentenceword model tests
 - sentence parser tests
 
-commit
-----------
+commit 4d39b0de79bb2f6811484b65954e5e33f4086794
+-----------------------------------------------
 
 - sentence parser
 - sentence renderer
