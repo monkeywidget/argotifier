@@ -12,6 +12,8 @@ Argotifier::Application.routes.draw do
   # default: does the other RESTful routes
   resources :words
   resources :translated_words
+  resources :sentences
+  # resources :paragraphs
 
   resources :pages, :only => [:show]
 

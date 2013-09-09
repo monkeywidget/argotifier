@@ -10,7 +10,6 @@ class TranslatedWordsController < ApplicationController
       raise ActiveRecord::RecordInvalid.new(@translated_word)
     end
 
-
     @translated_word = TranslatedWord.create(:translation => params[:translation],
                                              :word => word)
 

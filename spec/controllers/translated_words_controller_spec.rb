@@ -13,17 +13,19 @@ describe TranslatedWordsController do
     end
 
     it "associates with an existing word" do
-      foo_word = Word.create!(text: "foo")
+      @foo_word = FactoryGirl.create(:word, text: "foo", id: "1")
       post :create, :format => :json, :word => "foo", :translation => "bar"
       translation = TranslatedWord.find_by_translation("bar")
-      expect(translation.word = foo_word)
+      expect(translation.word = @foo_word)
     end
 
+=begin
     # TODO: test is broken; functionality works
-    # it "rejects association with nonexistent word" do
-    #  post :create, :format => :json, :word => "foo", :translation => "bar"
-    #  expect{TranslatedWord.find_by_translation("bar")}.to raise_error(ActiveRecord::RecordInvalid)
-    # end
+    it "rejects association with nonexistent word" do
+      expect{post :create, :format => :json, :word => "foo", :translation => "bar"}.to raise_error(ActiveRecord::RecordInvalid)
+      # expect{TranslatedWord.find_by_translation("bar")}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+=end
 
   end
 

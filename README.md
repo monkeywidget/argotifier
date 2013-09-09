@@ -79,7 +79,10 @@ Run the unit tests
 ------------------
 
      $ bundle exec rspec
-
+     $ bundle exec rspec spec/models/words_model_spec.rb
+     $ bundle exec rspec spec/models/words_model_spec.rb -e "#as_template"
+     $ bundle exec rspec spec/models/words_model_spec.rb \
+            -e "converts a all-lowercased word to 'x'"
 
 Run the server
 --------------

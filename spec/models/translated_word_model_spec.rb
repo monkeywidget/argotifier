@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe TranslatedWord do
   it "saves a basic translation mapping" do
-    word = Word.find_or_create_by_text("foo")
-    simple_trans = TranslatedWord.create!(translation: "bar", word: word)
+    @foo_word = FactoryGirl.create(:word, text: "foo", id: "1")
+    simple_trans = TranslatedWord.create!(translation: "bar", word: @foo_word)
     expect(simple_trans.translation).to eq("bar")
     expect(simple_trans.word.text).to eq("foo")
   end
 
   it "rejects null translation" do
-    word = Word.find_or_create_by_text("foo")
-    expect{TranslatedWord.create!(translation: "", word: word)}.to raise_error(ActiveRecord::RecordInvalid)
-    expect{TranslatedWord.create!(word: word)}.to raise_error(ActiveRecord::RecordInvalid)
+    @foo_word = FactoryGirl.create(:word, text: "foo", id: "1")
+    expect{TranslatedWord.create!(translation: "", word: @foo_word)}.to raise_error(ActiveRecord::RecordInvalid)
+    expect{TranslatedWord.create!(word: @foo_word)}.to raise_error(ActiveRecord::RecordInvalid)
   end
 
   it "rejects null word" do
@@ -20,9 +20,9 @@ describe TranslatedWord do
   end
 
   it "is uniquely associated with an existing word" do
-    word = Word.find_or_create_by_text("foo")
-    TranslatedWord.create!(translation: "bar", word: word)
-    expect{TranslatedWord.create!(translation: "garply", word: word)}.to raise_error(ActiveRecord::RecordInvalid)
+    @foo_word = FactoryGirl.create(:word, text: "foo", id: "1")
+    TranslatedWord.create!(translation: "bar", word: @foo_word)
+    expect{TranslatedWord.create!(translation: "garply", word: @foo_word)}.to raise_error(ActiveRecord::RecordInvalid)
   end
 
 
