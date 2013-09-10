@@ -18,6 +18,8 @@ describe Paragraph do
   describe "#tokenize" do
     it "creates Sentences"
 
+    it "adds created Sentences to self"
+
     it "maintains Sentence order"
   end
 

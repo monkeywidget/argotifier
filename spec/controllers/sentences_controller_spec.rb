@@ -14,6 +14,8 @@ describe SentencesController do
 
     it "associates with an existing paragraph"
 
+    it "both creates and tokenizes the sentence"
+
   end
 
 end

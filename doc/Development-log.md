@@ -11,11 +11,20 @@ commit TBI
 ----------
 
 - paragraph tests
-- sentence controller tests
 - translated_word index output as csv
 - create sentence controller
-- sentence / sentenceword model tests
+- sentence controller tests
+
+
+commit
+------------------------------
+Sentence model completed
 - sentence parser tests
+- sentence renderer tests
+- sentenceword broken out into own model file
+- sentenceword factory fixed
+
+
 
 commit 4d39b0de79bb2f6811484b65954e5e33f4086794
 -----------------------------------------------

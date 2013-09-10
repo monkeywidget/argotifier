@@ -102,5 +102,6 @@ see doc/manual-api-commands.md
 Set up the database
 -------------------
 
-createdb -O argotifier argotifier_test
-RAILS_ENV=test bundle exec rake db:test:prepare
+     $ createdb -O argotifier argotifier_test
+
+     $ RAILS_ENV=test bundle exec rake db:test:prepare
