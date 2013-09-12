@@ -73,6 +73,9 @@ class TranslatedWordsController < ApplicationController
   # test manually with:
   # curl -i -X GET -H "Content-Type: application/json" http://localhost:3000/translated_words/by_original_word/foo
 
+
+
+
   # GET an existing
   # because this is for REST and not for the business logic, it shows the id
   # see also the "lookup" methods

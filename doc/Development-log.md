@@ -7,17 +7,38 @@ https://github.com/monkeywidget/argotifier/
 - Intended to record the rails- rspec- and other framework steps
 
 
-commit TBI
-----------
+CURRENT GOAL: LOAD DB USING EXISTING LIFECYCLE
+==============================================
 
-- paragraph tests
+commit TBI "soon"
+-----------------
+
+- move existing routing spec to non-controller area
 - translated_word index output as csv
-- create sentence controller
+- translated_word search should handle multiple results (include rspec)
+
+- Scenario: create document via POST
+- document controller and tests
+- Scenario: document creates paragraph
+- document model and tests
+
+- paragraph controller
+- paragraph controller tests
+- paragraph model tests
+
 - sentence controller tests
 
+Implemented and committed
+=========================
 
-commit
-------------------------------
+commit ??
+---------
+
+- sentence controller
+- sentence create tests
+
+commit d4c0a8b8192e28d0e689c8d1c5d71a61a13ff7ff
+-----------------------------------------------
 Sentence model completed
 - sentence parser tests
 - sentence renderer tests
@@ -93,8 +114,17 @@ commit 99a670210782165fd4da1d091988474436ee84f5
 - create and run initial test
     bundle exec rspec
 
-commit f97725bdfa8955cbcc53159026debcafb3a4132a
------------------------------------------------
+commit f97725bdfa8955cbcc53159026debcafb3a4132a and previous
+------------------------------------------------------------
 
-javscript/jquery interface working
+javscript/jquery interface working:
+- basic viewer page design
+- view: widget for page view
+- control panel opens and closes
+- Backbone, Require installation
+- PostgreSQL setup
+- view page
+- next/prev page
+- view - goto page
+
 

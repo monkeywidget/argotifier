@@ -125,6 +125,7 @@ define ([
             this.displayPage(1);                   // includes render
         },
 
+        // populate the page contents only
         render: function(){
             $('#page_panel').html("<h2>Page " + this.page.index() +
                                   "</h2><div class=\"document_text\">" +

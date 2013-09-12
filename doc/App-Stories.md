@@ -22,5 +22,4 @@ Translation
 - User can delete the translation of a word they input
 - User sees the current document translation after a translation update
 
-
 - User can see a list of all plaintext mappings for a translation word

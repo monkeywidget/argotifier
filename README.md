@@ -27,24 +27,13 @@ Tech Notes
 Development Order
 =================
 
-Completed Tasks
----------------
-- basic viewer page design
-- view: widget for page view
-- control panel opens and closes
-- Backbone, Require installation
-- restructure project for ruby on rails
-- PostgreSQL setup
-- view page
-- next/prev page
-- view - goto page
-- basic REST with controller and model tests
-- REST with tests for words model and controller
-- REST with tests for translations model and controller
+In Progress
+-----------
 
+See doc/Development-log.md
 
-Incomplete Tasks
-----------------
+Incomplete Tasks as yet unscheduled
+-----------------------------------
 
 - REST with tests for sentences model and controller
 - REST with tests for paragraphs model and controller
@@ -56,7 +45,12 @@ Incomplete Tasks
 - jasmine tests: goto page
 
 - search scenarios (with jasmine tests and mock data)
+- rails: search by name: word and rspec
+- rails: search by name: translated_word and rspec
+
 - translation scenarios (with jasmine tests and mock data)
+- rails: translated_word#update and rspec
+- rails: translated_word#delete and rspec
 
 - basic document creation/destruction (REST) with test
 - CSV input / output with tests
@@ -64,12 +58,22 @@ Incomplete Tasks
 - CLI script for document delete
 - CLI script for document output as CSV
 - CLI script for document input as CSV
+
 - web API for paragraph, range of paragraphs, and document
  - and tests
 - web API for page with word index and tests
 - view: widget for translation search (word only)
 - view: widget for translation creation/edit/remove (word only)
 
+- port/deploy to AWS
+
+- code coverage for rspec (rcov)
+http://old.rspec.info/documentation/tools/rcov.html
+
+- code coverage for jasmine
+JSCover:
+- http://blog.johnryding.com/post/46757192364/javascript-code-coverage-with-phantomjs-jasmine-and
+- http://siliconforks.com/jscoverage/
 
 
 How To

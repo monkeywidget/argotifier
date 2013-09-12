@@ -44,7 +44,8 @@ describe TranslatedWordsController do
     end
 
 
-    describe "translation" do
+    # note that this method has no equivalent in the model
+    describe "#show_by_translation" do
 
       it "should route properly" do
         assert_generates "/translated_words/by_translation/bar", {
@@ -59,10 +60,15 @@ describe TranslatedWordsController do
         parsed["word"]["text"].should eql("foo")
       end
 
+      it "should not find any translated_word by a nonexistent translation"
+
+      it "should return multiple words corresponding to the translation"
+      it "should return a single word if only one corresponds to the translation"
+
     end
 
-
-    describe "original text" do
+    # note that this method has no equivalent in the model
+    describe "#show_by_original_word" do
 
       it "should route properly" do
         assert_generates "/translated_words/by_original_word/foo", {
@@ -77,8 +83,14 @@ describe TranslatedWordsController do
         parsed["word"]["text"].should eql("foo")
       end
 
-    end
+      it "should not find any translated_word by a nonexistent original word"
 
+      it "should return multiple translations corresponding to the word"
+
+      it "should return a single translations if only the one corresponds to the word"
+
+
+    end
 
   end
 

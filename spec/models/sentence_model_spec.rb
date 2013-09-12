@@ -8,7 +8,29 @@ describe Sentence do
   describe "#create" do
 
     it "creates with a paragraph" do
-      sentence = Sentence.create!(paragraph: @paragraph, paragraph_index: 1)
+      Sentence.create!(paragraph: @paragraph, paragraph_index: 1)
+    end
+
+    describe "with a real Paragraph instance in the database" do
+
+      before do
+        @paragraph2 = Paragraph.create!()
+        expect(@paragraph2.sentences.count).to eq(0)
+      end
+
+      it "adds a new Sentence to the Paragraph" do
+        sentence = Sentence.create!(paragraph: @paragraph2, paragraph_index: 1)
+        expect(@paragraph2.sentences.count).to eq(1)
+        expect(@paragraph2.sentences[0]).to eql( sentence )
+      end
+
+      it "adds a new Sentence to the Paragraph at the proper index" do
+        sentence2 = Sentence.create!(paragraph: @paragraph2, paragraph_index: 2)
+        sentence1 = Sentence.create!(paragraph: @paragraph2, paragraph_index: 1)
+        expect(@paragraph2.sentences.count).to eq(2)
+        expect(@paragraph2.sentences[0]).to eql( sentence1 )
+        expect(@paragraph2.sentences[1]).to eql( sentence2 )
+      end
     end
 
     it "saves a template" do
