@@ -1,27 +1,41 @@
 require 'spec_helper'
 
-describe ParagraphController do
+describe ParagraphsController do
   render_views
 
-  describe "ParagraphController#create" do
+  # there's no way to Create/Update/Destroy paragraphs through the API
 
-    it "should route properly"
+  describe "ParagraphController#index" do
 
-    it "associates with an existing document"
-
-  end
-
-  describe "ParagraphController#add_sentence" do
-
-    it "adds sentences in sequence"
+    it "should route properly" do
+      assert_generates "/paragraphs", {
+          :controller => "paragraphs",
+          :action => "index" }
+    end
 
   end
 
-  describe "ParagraphController#sentence_by_index" do
+  describe "ParagraphController#show" do
 
-    it "gets a sentences in this paragraph by index"
+    it "should route properly" do
+      assert_generates "/paragraphs/1", {
+          :controller => "paragraphs",
+          :action => "show",
+          :id => "1" }
+    end
+
+    it "should include original sentences"
+    it "should include translated sentences"
+
+=begin
+        parsed = JSON.parse(response.body)
+        parsed.should include('catalog_size')
+        parsed['catalog_size'].should == 3
+=end
 
   end
+
+
 
 
 end

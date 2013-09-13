@@ -20,19 +20,39 @@ commit TBI "soon"
 - Scenario: create document via POST
 - document controller and tests
 - Scenario: document creates paragraph
-- document model and tests
-
-- paragraph controller
-- paragraph controller tests
-- paragraph model tests
 
 - sentence controller tests
+
+- document model tests
+
+- paragraph create model specs
+- add document to paragraph create
+- document model
+
+
+
+
+- paragraph rendering controller spec
+- paragraph rendering model spec
+- paragraph rendering controller:show
+
+implemented but not yet committed
+---------------------------------
+
 
 Implemented and committed
 =========================
 
-commit ??
+commit  ?
 ---------
+
+- paragraph rendering in model
+- paragraph controller
+- paragraph controller tests
+
+
+commit 3a0ec111ee4dbe29b769f99d495f220a35b2ffb8
+-----------------------------------------------
 
 - sentence controller
 - sentence create tests

@@ -13,6 +13,7 @@ describe SentencesController do
     end
 
     it "associates with an existing paragraph"
+
     it "rejects a nonexistent paragraph"
 
     it "both creates and tokenizes the sentence"

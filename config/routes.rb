@@ -13,7 +13,7 @@ Argotifier::Application.routes.draw do
   resources :words
   resources :translated_words
   resources :sentences
-  # resources :paragraphs
+  resources :paragraphs
 
   resources :pages, :only => [:show]
 
