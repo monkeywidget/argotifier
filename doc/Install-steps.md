@@ -53,3 +53,24 @@ Test the JSON interface
 
 - see: manual-api-commands.md
 
+
+Debugging
+=========
+
+Clear and rebuild based on the current db schema
+------------------------------------------------
+
+    RAILS_ENV=test bundle exec rake db:reset
+
+Clear and rebuild the db completely
+-----------------------------------
+
+Ignoring and regenerating schema.rb:
+
+    $ RAILS_ENV=development bundle exec rake db:drop
+    $ RAILS_ENV=development bundle exec rake db:create
+
+Then
+
+    $ RAILS_ENV=development bundle exec rake db:migrate
+    $ RAILS_ENV=development bundle exec rake db:seed

@@ -29,19 +29,31 @@ commit TBI "later"
 commit TBI "soon"
 -----------------
 
-- paragraph create model specs
-- add document to paragraph create
-- document model
+unimplemented specs:
+- Sentence#create rejects a nonexistent paragraph
+- SentencesController#create both creates and tokenizes the sentence
+- ParagraphsController#show should include original sentences
+- ParagraphsController#show should include translated sentences
+- Document add some examples to (or delete) /Users/brain/Documents/workspace/argotifier/spec/models/document_model_spec.rb
+- Paragraph#create rejects a nonexistent document
 
 
 implemented but not yet committed
 ---------------------------------
 
-
 Implemented and committed
 =========================
 
 commit TBD
+-----------------------------------------------
+
+- add factory document to paragraph factory
+- paragraph create model specs
+- add document to paragraph create
+- document model
+    bundle exec rails generate model document title:string
+
+commit 295422c7e588f78cac3bdedf0258416d1e3cb250
 -----------------------------------------------
 
 - paragraph: tokenize (model) bug fixes

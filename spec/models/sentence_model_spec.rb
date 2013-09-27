@@ -14,7 +14,8 @@ describe Sentence do
     describe "with a real Paragraph instance in the database" do
 
       before do
-        @paragraph2 = Paragraph.create!()
+        @document = FactoryGirl.create(:document, title:"The Very Sad Tree")
+        @paragraph2 = Paragraph.create!(document: @document, document_index: 8)
         expect(@paragraph2.sentences.count).to eq(0)
       end
 
@@ -39,7 +40,7 @@ describe Sentence do
       expect(sentence.word_template).to eq  ("c C x c x x x x!")
     end
 
-    it "requires an existing paragraph" do
+    it "requires a paragraph" do
       expect{Sentence.create!(paragraph_index: 1)}.to raise_error(ActiveRecord::RecordInvalid)
     end
 
@@ -51,6 +52,8 @@ describe Sentence do
       Sentence.create!(paragraph: @paragraph, paragraph_index: 1)
       expect{Sentence.create!(paragraph: @paragraph, paragraph_index: 1)}.to raise_error(ActiveRecord::RecordInvalid)
     end
+
+    it "rejects a nonexistent paragraph"
 
 
   end

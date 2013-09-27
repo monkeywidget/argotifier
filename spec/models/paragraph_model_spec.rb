@@ -11,17 +11,29 @@ describe Paragraph do
 
   describe "#create" do
 
-
-    it "creates ..." do
-      sentence = Paragraph.create!
+    before do
+      @document = FactoryGirl.create(:document, title:"The Very Sad Tree")
     end
 
-    it "creates with a document and a sequence in the document"
+    it "creates with a document and a sequence in the document" do
+      paragraph = Paragraph.create!(document_index: 0, document: @document)
+      expect(Paragraph.exists?(paragraph))
+    end
 
-    it "creates rejects a missing document"
-    it "creates rejects a nonexistent document"
-    it "creates rejects a missing sequence in the document"
-    it "creates rejects a nonexistent in the document"
+    it "requires a document" do
+      expect{Paragraph.create!(document_index: 1)}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "requires a sequence in the document" do
+      expect{Paragraph.create!(document: @document)}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "rejects a document order parameter duplicating another paragraph" do
+      Paragraph.create!(document: @document, document_index: 1)
+      expect{Paragraph.create!(document: @document, document_index: 1)}.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "rejects a nonexistent document"
 
   end
 
@@ -30,7 +42,8 @@ describe Paragraph do
   describe "#tokenize" do
 
     before do
-      @paragraph = Paragraph.create!()
+      @document = FactoryGirl.create(:document, title:"The Very Sad Tree")
+      @paragraph = Paragraph.create!(document: @document, document_index: 3)
       expect(@paragraph.sentences.count).to eq(0)
     end
 
@@ -66,7 +79,8 @@ describe Paragraph do
   describe "renderer" do
 
     before do
-      @paragraph = Paragraph.create!()
+      @document = FactoryGirl.create(:document, title:"The Very Sad Tree")
+      @paragraph = Paragraph.create!(document: @document, document_index: 8)
       @paragraph.tokenize(@sample_paragraph_text)
     end
 
