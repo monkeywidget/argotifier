@@ -16,25 +16,22 @@ commit TBI "soon"
 - move existing routing spec to non-controller area
 - translated_word index output as csv
 - translated_word search should handle multiple results (include rspec)
-
-- Scenario: create document via POST
-- document controller and tests
-- Scenario: document creates paragraph
-
 - sentence controller tests
 
+- document controller and tests
+- Scenario: create document via CLI
+
 - document model tests
+
+- paragraph rendering controller spec
+- paragraph rendering model spec
+- paragraph rendering controller:show
 
 - paragraph create model specs
 - add document to paragraph create
 - document model
 
-
-
-
-- paragraph rendering controller spec
-- paragraph rendering model spec
-- paragraph rendering controller:show
+- paragraph: tokenize (model) and spec
 
 implemented but not yet committed
 ---------------------------------
@@ -43,8 +40,13 @@ implemented but not yet committed
 Implemented and committed
 =========================
 
-commit  ?
----------
+commit
+-----------------------------------------------
+
+
+
+commit f83cd41d10c99de9423ee76cf7ab66043eb55d2b
+-----------------------------------------------
 
 - paragraph rendering in model
 - paragraph controller

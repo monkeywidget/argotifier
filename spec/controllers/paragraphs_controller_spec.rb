@@ -5,7 +5,7 @@ describe ParagraphsController do
 
   # there's no way to Create/Update/Destroy paragraphs through the API
 
-  describe "ParagraphController#index" do
+  describe "#index" do
 
     it "should route properly" do
       assert_generates "/paragraphs", {
@@ -15,7 +15,7 @@ describe ParagraphsController do
 
   end
 
-  describe "ParagraphController#show" do
+  describe "#show" do
 
     it "should route properly" do
       assert_generates "/paragraphs/1", {

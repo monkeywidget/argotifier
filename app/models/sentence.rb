@@ -22,13 +22,11 @@ class Sentence < ActiveRecord::Base
   #    we assume the not-words comes first, and therefore may have an initial empty element
   def create_word_template! ( list_of_words, notwords_list )
 
-    # VALIDATE the lists:
-
-    # neither is nil:
+    # VALIDATE the lists: neither is nil:
     raise ArgumentError.new "list of words provided for Sentence %d is nil" % self.id if list_of_words.nil?
     raise ArgumentError.new "list of not-words provided for Sentence %d is nil" % self.id if notwords_list.nil?
 
-    # not-words (the punctuation) is equal or one larger than words, because they interleave
+    # VALIDATE the lists: not-words (the punctuation) is equal or one larger than words, because they interleave
     size_difference = notwords_list.length - list_of_words.length
     if size_difference > 1 or size_difference < 0
       raise ArgumentError.new "Sentence %d not-words length out of sync with words:" +
@@ -108,8 +106,10 @@ class Sentence < ActiveRecord::Base
   private :create_word_template!, :separate_words_from_nonword_characters, :find_or_create_words_in
 
 
-  # TODO how to refactor this into the Sentence object lifecycle?
+  # TODO refactor this into the Sentence object lifecycle
   def tokenize(sentence_text)
+
+    puts "DEBUG: tokenizing sentence \"%s\", template = >>%s<<" % [sentence_text,self.word_template]
 
     if sentence_text.nil? or sentence_text.length < 1
       raise ArgumentError.new "Tried to tokenize invalid text for Sentence %d" % self.id
@@ -122,6 +122,9 @@ class Sentence < ActiveRecord::Base
       # do this one last because it destroys the arrays (via shift)
     create_word_template!(words_list, notwords_list)
 
+    puts "\tDEBUG: tokenized sentence \"%s\", template = >>%s<<" % [sentence_text,self.word_template]
+
+    raise AssertionError "Sentence didn't create word template!" unless defined?(self.word_template) && (self.word_template != '')
   end
 
 ############################################## rendering translation or original
@@ -146,12 +149,13 @@ class Sentence < ActiveRecord::Base
   # used for both original words and translation words
   def apply_template_to_words_in ( word_list )
 
-    sentence_pattern = word_template.split(//)    # reduce the template to just characters
+    puts "\t\tDEBUG: rendering sentence with template = >>%s<<" % self.word_template
+
+    sentence_pattern = self.word_template.split(//)    # reduce the template to just characters
 
     output_sentence = []      # the outputted sentence as an array (join before return)
 
     sentence_pattern.each do |pattern_character|
-
 
       if pattern_character !~ /^[xCc]$/     # if matching the formatting characters, convert
         output_sentence << pattern_character
@@ -169,6 +173,7 @@ class Sentence < ActiveRecord::Base
   private :translated_words, :apply_template_to_words_in
 
   def original
+    puts "DEBUG: Sentence.original: word template class = %s" % self.word_template.class.name
     apply_template_to_words_in(words)
   end
 

@@ -22,6 +22,9 @@ Tech Notes
    - jQuery
    - backbone.js / underscore.js
    - require.js
+- development tools
+   - ruby: gem, bundler, rspec, rcov
+      - on OSX: rbenv
 
 
 Development Order

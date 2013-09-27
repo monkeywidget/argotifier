@@ -6,7 +6,7 @@ class TranslatedWordsController < ApplicationController
   def create
     word = Word.find_by_text(params[:word])
     if word.nil?
-      puts "word was nil"
+      # puts "word was nil"
       raise ActiveRecord::RecordInvalid.new(@translated_word)
     end
 

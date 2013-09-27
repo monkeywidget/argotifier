@@ -2,6 +2,7 @@ class ParagraphsController < ApplicationController
 
   respond_to :json
 
+  # NEW / CREATE: used in command line only, so no controller methods
 
   # GET a list of all
   def index

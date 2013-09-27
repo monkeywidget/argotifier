@@ -3,7 +3,7 @@ require 'spec_helper'
 describe TranslatedWordsController do
   render_views
 
-  describe "TranslatedWordsController#create" do
+  describe "#create" do
 
     it "should route properly" do
       assert_routing( { :path => "translated_words",
@@ -32,7 +32,7 @@ describe TranslatedWordsController do
   # TODO: index
 
 
-  describe "TranslatedWordsController#show_by" do
+  describe "#show_by" do
 
     before do
       @word_foo_1 = FactoryGirl.create(:word, text: "foo", id: "1")
@@ -94,7 +94,7 @@ describe TranslatedWordsController do
 
   end
 
-  describe "TranslatedWordsController#show" do
+  describe "#show" do
 
     before do
       @word_foo_1 = FactoryGirl.create(:word, text: "foo", id: "1")

@@ -3,7 +3,14 @@ require 'spec_helper'
 describe SentencesController do
   render_views
 
-  describe "SentencesController#create" do
+  before do
+    @paragraph_text = "\"Beware the Jabberwock, my son!
+    The jaws that bite, the claws that catch!
+    Beware the Jubjub bird, and shun
+    The frumious Bandersnatch!\""
+  end
+
+  describe "#create" do
 
     it "should route properly" do
       assert_routing( { :path => "sentences",
@@ -12,11 +19,22 @@ describe SentencesController do
                         :action => "create" })
     end
 
-    it "associates with an existing paragraph"
+    # paragraph validation in the model specs
 
-    it "rejects a nonexistent paragraph"
+    it "both creates and tokenizes the sentence" do
 
-    it "both creates and tokenizes the sentence"
+      pending
+      # @paragraph = Paragraph.create!()
+      # @paragraph = FactoryGirl.create(:paragraph)
+
+      # post :create, :paragraph => "1", :paragraph_index => "0"
+      # Sentence.should_receive(:tokenize).with(@paragraph_text)
+
+      # post :create, sentence: {:paragraph => @paragraph }
+      # post :create, :post {:paragraph => @paragraph,
+      #                        :paragraph_index => '0' # , :text => @paragraph_text
+      #                        }
+    end
 
   end
 

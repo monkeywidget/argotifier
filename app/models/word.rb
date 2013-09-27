@@ -27,14 +27,14 @@ class Word < ActiveRecord::Base
     Word.to_template(text)
   end
 
-  def self.render_word_with_template ( sample_text, template )
+  def self.render_word_with_template ( sample_word, template )
     case template
       when 'x'
-        sample_text.downcase
+        sample_word.text.downcase
       when 'c'
-        sample_text.capitalize
+        sample_word.text.capitalize
       when 'C'
-        sample_text.upcase
+        sample_word.text.upcase
       else
         raise(ArgumentError, ":template must be one of [xcC]")
     end

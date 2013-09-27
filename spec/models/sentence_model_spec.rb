@@ -105,7 +105,7 @@ describe Sentence do
 
   end
 
-  describe "#translation" do
+  describe "Sentence translation rendering" do
 
     before do
 
@@ -118,46 +118,74 @@ describe Sentence do
       @word_lazydogs = FactoryGirl.create(:word, text: "lazy-dogs", id: "7")
 
       @sentence = FactoryGirl.create(:sentence, id: "1",
-                word_template: "c C x c x x x x!",
-                paragraph: @paragraph, paragraph_index: 1)
+          word_template: "c C x c x x x x!",
+          paragraph: @paragraph, paragraph_index: 1)
 
       @sentence_word_the1 = FactoryGirl.create(:sentenceword, word: @word_the, id: "1",
-                                              sentence: @sentence, sentence_index: 1)
+          sentence: @sentence, sentence_index: 1)
       @sentence_word_quick = FactoryGirl.create(:sentenceword, word: @word_quick, id: "2",
-                                               sentence: @sentence, sentence_index: 2)
+          sentence: @sentence, sentence_index: 2)
       @sentence_word_brown = FactoryGirl.create(:sentenceword, word: @word_brown, id: "3",
-                                               sentence: @sentence, sentence_index: 3)
+          sentence: @sentence, sentence_index: 3)
       @sentence_word_fox = FactoryGirl.create(:sentenceword, word: @word_fox, id: "5",
-                                               sentence: @sentence, sentence_index: 4)
+          sentence: @sentence, sentence_index: 4)
       @sentence_word_jumps = FactoryGirl.create(:sentenceword, word: @word_jumps, id: "4",
-                                               sentence: @sentence, sentence_index: 5)
+          sentence: @sentence, sentence_index: 5)
       @sentence_word_over = FactoryGirl.create(:sentenceword, word: @word_over, id: "6",
-                                               sentence: @sentence, sentence_index: 6)
+          sentence: @sentence, sentence_index: 6)
       @sentence_word_the2 = FactoryGirl.create(:sentenceword, word: @word_the, id: "7",
-                                               sentence: @sentence, sentence_index: 7)
+          sentence: @sentence, sentence_index: 7)
       @sentence_word_lazydogs = FactoryGirl.create(:sentenceword, word: @word_lazydogs, id: "8",
-                                               sentence: @sentence, sentence_index: 8)
+          sentence: @sentence, sentence_index: 8)
     end
 
-    describe "untranslated Words" do
+    describe "#original" do
+      describe "untranslated Words" do
 
-      it "returns text of component Words, in order, capitalized, with punctuation" do
-        expect(@sentence.translation).to eq("The QUICK brown Fox jumps over the lazy-dogs!")
+        it "returns text of original Words" do
+          expect(@sentence.original).to eq("The QUICK brown Fox jumps over the lazy-dogs!")
+        end
+
       end
 
-    end
+      describe "translated Words" do
 
-    describe "translated Words" do
+        before do
+          @translation_the = FactoryGirl.create(:translated_word, word: @word_the, translation: "foo")
+          @translation_the = FactoryGirl.create(:translated_word, word: @word_quick, translation: "bar")
+        end
 
-      before do
-        @translation_the = FactoryGirl.create(:translated_word, word: @word_the, translation: "foo")
-        @translation_the = FactoryGirl.create(:translated_word, word: @word_quick, translation: "bar")
+        it "returns text of original Words" do
+          expect(@sentence.original).to eq("The QUICK brown Fox jumps over the lazy-dogs!")
+        end
+
       end
 
-      it "returns text of component Words, in order, capitalized, with punctuation" do
-        expect(@sentence.translation).to eq("Foo BAR brown Fox jumps over foo lazy-dogs!")
+    end # #original
+
+    describe "#translation" do
+
+      describe "untranslated Words" do
+
+        it "returns text of component Words, in order, capitalized, with punctuation" do
+          expect(@sentence.translation).to eq("The QUICK brown Fox jumps over the lazy-dogs!")
+        end
+
       end
-    end
+
+      describe "translated Words" do
+
+        before do
+          @translation_the = FactoryGirl.create(:translated_word, word: @word_the, translation: "foo")
+          @translation_the = FactoryGirl.create(:translated_word, word: @word_quick, translation: "bar")
+        end
+
+        it "returns text of component Words, in order, capitalized, with punctuation" do
+          expect(@sentence.translation).to eq("Foo BAR brown Fox jumps over foo lazy-dogs!")
+        end
+
+      end
+    end  #   #translation
   end
 
 
