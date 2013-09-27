@@ -10,8 +10,8 @@ https://github.com/monkeywidget/argotifier/
 CURRENT GOAL: LOAD DB USING EXISTING LIFECYCLE
 ==============================================
 
-commit TBI "soon"
------------------
+commit TBI "later"
+------------------
 
 - move existing routing spec to non-controller area
 - translated_word index output as csv
@@ -24,14 +24,15 @@ commit TBI "soon"
 - document model tests
 
 - paragraph rendering controller spec
-- paragraph rendering model spec
 - paragraph rendering controller:show
+
+commit TBI "soon"
+-----------------
 
 - paragraph create model specs
 - add document to paragraph create
 - document model
 
-- paragraph: tokenize (model) and spec
 
 implemented but not yet committed
 ---------------------------------
@@ -40,10 +41,17 @@ implemented but not yet committed
 Implemented and committed
 =========================
 
-commit
+commit TBD
 -----------------------------------------------
 
+- paragraph: tokenize (model) bug fixes
+- paragraph rendering model spec
 
+
+commit 61218607e07efd0e22721a575977cf9b837e109e
+-----------------------------------------------
+
+- paragraph: tokenize (model) and spec
 
 commit f83cd41d10c99de9423ee76cf7ab66043eb55d2b
 -----------------------------------------------

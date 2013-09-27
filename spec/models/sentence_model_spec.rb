@@ -105,7 +105,7 @@ describe Sentence do
 
   end
 
-  describe "Sentence translation rendering" do
+  describe "translation rendering" do
 
     before do
 

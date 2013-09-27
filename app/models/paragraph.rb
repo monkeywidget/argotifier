@@ -59,7 +59,7 @@ class Paragraph < ActiveRecord::Base
       paragraph_index = paragraph_index.next
     end
 
-
+    self.save
   end
 
 
@@ -72,7 +72,7 @@ class Paragraph < ActiveRecord::Base
       original_sentences << sentence.original
     end
 
-    original_sentences.join(" ")
+    original_sentences.join("")
   end
 
 
@@ -83,7 +83,7 @@ class Paragraph < ActiveRecord::Base
       translated_sentences << sentence.translation
     end
 
-    translated_sentences.join(" ")
+    translated_sentences.join("")
   end
 
 end
