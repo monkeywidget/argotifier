@@ -112,3 +112,9 @@ Set up the database
      $ createdb -O argotifier argotifier_test
 
      $ RAILS_ENV=test bundle exec rake db:test:prepare
+
+Troubleshoot the database
+-------------------------
+
+     $ /Applications/Postgres.app/Contents/MacOS/bin/psql -U argotifier argotifier_test
+

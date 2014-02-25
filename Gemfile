@@ -1,12 +1,53 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
 # gem 'sqlite3'
 gem 'pg', '0.15.1'
+
+
+# To Bundle edge Rails instead:
+# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+
+gem 'rake', '10.0.4'
+gem 'rails', '3.1.3'
+
+
+gem 'multi_json', '1.7.6'
+# gem 'activesupport', '3.1.3'
+
+gem 'builder', '3.0.4'
+
+gem 'i18n', '0.6.4'
+gem 'activemodel', '3.1.3'
+gem 'erubis', '2.7.0'
+gem 'rack', '1.3.10'
+gem 'rack-cache', '1.2'
+gem 'rack-mount', '0.8.3'
+gem 'rack-test', '0.6.2'
+gem 'hike', '1.2.3'
+gem 'tilt', '1.3.7'
+gem 'sprockets', '2.0.4'
+gem 'actionpack', '3.1.3'
+gem 'mime-types', '1.23'
+gem 'polyglot', '0.3.3'
+gem 'treetop', '1.4.14'
+gem 'mail', '2.3.3'
+gem 'actionmailer', '3.1.3'
+gem 'arel', '2.2.3'
+gem 'tzinfo', '0.3.37'
+gem 'activerecord', '3.1.3'
+gem 'activeresource', '3.1.3'
+gem 'ansi', '1.4.3'
+gem 'bundler', '1.3.0.pre'
+gem 'coffee-script-source', '1.6.2'
+gem 'execjs', '1.4.0'
+gem 'coffee-script', '2.2.0'
+gem 'rack-ssl', '1.3.3'
+gem 'json', '1.6.3'
+gem 'rdoc', '3.12'
+gem 'thor', '0.14.6'
+gem 'railties', '3.1.3'
+
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -16,7 +57,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '1.0.19'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -41,9 +82,14 @@ group :test, :development do
   gem "factory_girl_rails", "4.2.1"
 end
 
+# 2014-02 possible workaround:
+# http://stackoverflow.com/questions/9518976/authlogic-doesnt-work-with-my-rails-3-2-app
+# http://stackoverflow.com/questions/11074320/rails-migration-error-relation-users-does-not-exist-usersregclass
+# gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 
+# verified working config:
 """
-Using rake (10.0.4)
+gem 'rake (10.0.4)
 Using multi_json (1.7.6)
   Using activesupport (3.1.3)     -> upgraded to 3.2.13
 Using builder (3.0.4)

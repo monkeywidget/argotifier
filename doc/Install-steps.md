@@ -13,14 +13,26 @@ https://github.com/PostgresApp/PostgresApp/issues/109
 Set up the database
 -------------------
 
-    $ createuser argotifier
+Note that with "-s" this user can create/delete tables - not for production!
+
+    $ createuser -s argotifier
     $ createdb -O argotifier argotifier_dev
     $ createdb -O argotifier argotifier_test
     $ createdb -O argotifier argotifier_prod
 
 
-Configuration
-=============
+Make sure the user's password is set to what is in config:
+
+    ALTER USER argotifier WITH PASSWORD 'start123';
+
+Compile and install
+-------------------
+
+    $ bundle install
+
+
+Continue on to Verification
+
 
 Verification
 ============

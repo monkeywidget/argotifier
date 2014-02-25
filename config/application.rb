@@ -25,6 +25,13 @@ module Argotifier
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
+    #http://stackoverflow.com/questions/20361428/rails-i18n-validation-deprecation-warning
+    # config.i18n.enforce_available_locales = false
+
+    # e.g. DB name "documents" vs "document"
+    # changed in rails 3.1.? and broke everything!  (2014-02)
+    config.active_record.pluralize_table_names = true
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
