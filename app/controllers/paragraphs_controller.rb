@@ -2,7 +2,26 @@ class ParagraphsController < ApplicationController
 
   respond_to :json
 
-  # NEW / CREATE: used in command line only, so no controller methods
+  # POST a new paragraph
+  def create
+    @paragraph = Paragraph.create!(Document.find(params[:document]), params[:document_index])
+    @paragraph.tokenize(params[:text])
+
+    respond_to do |format|
+      if @paragraph.save
+        format.json { render json: @paragraph, status: :created,
+                             location: @paragraph}
+      else
+        format.json { render json: @paragraph.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+  # test manually with:
+  #   curl -i -X POST  -H "Content-type: application/json" \
+  #        -d '{"text":"Beware the Jabberwock, my son!\\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\\nand shun The frumious Bandersnatch!","document":"1","document_index":"1"}' \
+  #        http://localhost:3000/paragraphs/
+
 
   # GET a list of all
   def index

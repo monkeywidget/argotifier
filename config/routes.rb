@@ -14,6 +14,7 @@ Argotifier::Application.routes.draw do
   resources :translated_words
   resources :sentences
   resources :paragraphs
+  resources :documents
 
   resources :pages, :only => [:show]
 

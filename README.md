@@ -30,6 +30,16 @@ Tech Notes
 Development Order
 =================
 
+Current state:
+- REST interface for
+   - Word
+   - TranslatedWord
+   - Sentence
+   - Paragraph: show only
+   - Document: create (in progress)
+- models for all
+- pager is unfinished
+
 In Progress
 -----------
 

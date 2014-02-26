@@ -30,12 +30,26 @@ commit TBI "soon"
 -----------------
 
 unimplemented specs:
+- Sentence#create works (controller)
+
 - Sentence#create rejects a nonexistent paragraph
 - SentencesController#create both creates and tokenizes the sentence
 - ParagraphsController#show should include original sentences
 - ParagraphsController#show should include translated sentences
 - Document add some examples to (or delete) /Users/brain/Documents/workspace/argotifier/spec/models/document_model_spec.rb
 - Paragraph#create rejects a nonexistent document
+
+- REST create a Sentence
+- REST create a Paragraph
+    - needs: REST: create an empty Document
+
+
+     curl -i -X POST  -H "Content-type: application/json" -d '{"title":"Star Smashers of the Galaxy Rangers"}' http://localhost:3000/documents/
+     curl -i -X POST  -H "Content-type: application/json" -d '{"text":"Beware the Jabberwock, my son!\\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\\nand shun The frumious Bandersnatch!","document":"1","document_index":"1"}' http://localhost:3000/paragraphs/
+
+
+- command line util: create a Document from a loaded file
+
 
 
 implemented but not yet committed
@@ -44,7 +58,7 @@ implemented but not yet committed
 Implemented and committed
 =========================
 
-commit TBD
+commit 8196aa5840796735d6a7c8a17f9eede1fd9aba47
 -----------------------------------------------
 
 - add factory document to paragraph factory

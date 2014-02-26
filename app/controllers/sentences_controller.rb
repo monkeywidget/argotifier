@@ -14,8 +14,11 @@ class SentencesController < ApplicationController
 
   # POST a new
   def create
-    @sentence = Sentence.create!(params[:paragraph], params[:paragraph_index])
-    @sentence.tokenize(@params[:text])
+    @sentence = Sentence.create!(Paragraph.find(params[:paragraph]), params[:paragraph_index])
+                                #  ^ the paragraph this Sentence belongs to
+                                #                    ^ the place in the paragraph this Sentence lies at
+
+    @sentence.tokenize(params[:text])
 
     respond_to do |format|
       if @sentence.save
