@@ -26,9 +26,6 @@ commit TBI "later"
 - paragraph rendering controller spec
 - paragraph rendering controller:show
 
-commit TBI "soon"
------------------
-
 unimplemented specs:
 - Sentence#create works (controller)
 
@@ -38,6 +35,10 @@ unimplemented specs:
 - ParagraphsController#show should include translated sentences
 - Document add some examples to (or delete) /Users/brain/Documents/workspace/argotifier/spec/models/document_model_spec.rb
 - Paragraph#create rejects a nonexistent document
+
+
+commit TBI "soon"
+-----------------
 
 - REST create a Sentence
 - REST create a Paragraph
@@ -57,6 +58,13 @@ implemented but not yet committed
 
 Implemented and committed
 =========================
+
+commit dc1f6fc33ecb04d07eb5d5c1dedc16af6cac503c
+-----------------------------------------------
+
+- Paragraph#create controller
+- Document#create controller (in progress)
+- upcoming: post a Paragraph text and have it parse and add to named Document
 
 commit 8196aa5840796735d6a7c8a17f9eede1fd9aba47
 -----------------------------------------------
