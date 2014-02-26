@@ -105,6 +105,8 @@ describe Sentence do
       expect(sentence.word_template).to eq  ("c C x c x x x x!")
     end
 
+    it "handles escaped weirdness gracefully"
+    # "Beware the Jabberwock, my son!\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\nand shun The frumious Bandersnatch!"
 
   end
 

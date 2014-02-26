@@ -14,7 +14,13 @@ class SentencesController < ApplicationController
 
   # POST a new
   def create
-    @sentence = Sentence.create!(Paragraph.find(params[:paragraph]), params[:paragraph_index])
+
+    paragraph = Paragraph.find(params[:paragraph])
+    if paragraph.nil?
+      raise ActiveRecord::RecordInvalid.new(@sentence)
+    end
+
+    @sentence = Sentence.create!(:paragraph => paragraph, :paragraph_index => params[:paragraph_index])
                                 #  ^ the paragraph this Sentence belongs to
                                 #                    ^ the place in the paragraph this Sentence lies at
 

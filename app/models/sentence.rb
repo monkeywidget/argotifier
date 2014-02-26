@@ -146,12 +146,14 @@ class Sentence < ActiveRecord::Base
 
   # used for TranslatedWords
   def apply_template_to_texts_in ( word_list )
-    apply_template_to_words_or_texts_in(word_list) { |pattern_character, word_list| Word.render_text_with_template(word_list.shift, pattern_character) }
+    apply_template_to_words_or_texts_in(word_list) { |pattern_character, word_list|
+      Word.render_text_with_template(word_list.shift, pattern_character) }
   end
 
   # used for Words
   def apply_template_to_words_in ( word_list )
-    apply_template_to_words_or_texts_in(word_list) { |pattern_character, word_list| word_list.shift.rendered_with(pattern_character) }
+    apply_template_to_words_or_texts_in(word_list) { |pattern_character, word_list|
+      word_list.shift.rendered_with(pattern_character) }
   end
 
   # helper function used for rendering both Words and TranslatedWords

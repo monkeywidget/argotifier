@@ -15,8 +15,6 @@ class ParagraphsController < ApplicationController
                                    :document_index => params[:document_index])
     @paragraph.tokenize(params[:text])
 
-    puts "blah!"
-
     respond_to do |format|
       if @paragraph.save
         format.json { render json: @paragraph, status: :created,
@@ -29,7 +27,7 @@ class ParagraphsController < ApplicationController
   end
   # test manually with:
   #   curl -i -X POST  -H "Content-type: application/json" \
-  #        -d '{"text":"Beware the Jabberwock, my son!\\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\\nand shun The frumious Bandersnatch!","document":"1","document_index":"1"}' \
+  #        -d '{"text":"Beware the Jabberwock, my son!\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\nand shun The frumious Bandersnatch!","document":"1","document_index":"1"}' \
   #        http://localhost:3000/paragraphs/
 
 
