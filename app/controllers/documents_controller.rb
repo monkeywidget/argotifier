@@ -27,7 +27,9 @@ class DocumentsController < ApplicationController
   end
   # test manually with:
   #   curl -i -X POST  -H "Content-type: application/json" \
+  #        -d '{"title":"Star Smashers of the Galaxy Rangers"}'   \
   #        http://localhost:3000/documents/
+
 
   # GET an existing
   def show

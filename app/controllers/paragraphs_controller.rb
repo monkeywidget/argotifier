@@ -4,8 +4,18 @@ class ParagraphsController < ApplicationController
 
   # POST a new paragraph
   def create
-    @paragraph = Paragraph.create!(Document.find(params[:document]), params[:document_index])
+
+    document = Document.find(params[:document])
+    # TODO: doesn't actually prevent this!
+    if document.nil?
+      raise ActiveRecord::RecordInvalid.new(@paragraph)
+    end
+
+    @paragraph = Paragraph.create!(:document => document,
+                                   :document_index => params[:document_index])
     @paragraph.tokenize(params[:text])
+
+    puts "blah!"
 
     respond_to do |format|
       if @paragraph.save

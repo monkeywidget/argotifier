@@ -35,7 +35,10 @@ describe ParagraphsController do
 
   end
 
-
+  describe "#create" do
+    it "should reject a nonexistent document"
+    it "should reject attempts to overwrite an existing paragraph (same document and index)"
+  end
 
 
 end
