@@ -35,10 +35,14 @@ Current state:
    - Word
    - TranslatedWord
    - Sentence
-   - Paragraph: show only
-   - Document: create (in progress)
+   - Paragraph
+   - Document: create
 - models for all
-- pager is unfinished
+
+Unfinished but prioritzed:
+- CLI create Document from input file
+- CLI insert/edit translation utility
+- pager
 
 In Progress
 -----------

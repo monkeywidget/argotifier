@@ -40,15 +40,6 @@ unimplemented specs:
 commit TBI "soon"
 -----------------
 
-- REST create a Sentence
-- REST create a Paragraph
-    - needs: REST: create an empty Document
-
-
-     curl -i -X POST  -H "Content-type: application/json" -d '{"title":"Star Smashers of the Galaxy Rangers"}' http://localhost:3000/documents/
-     curl -i -X POST  -H "Content-type: application/json" -d '{"text":"Beware the Jabberwock, my son!\\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\\nand shun The frumious Bandersnatch!","document":"1","document_index":"1"}' http://localhost:3000/paragraphs/
-
-
 - command line util: create a Document from a loaded file
 
 
@@ -58,6 +49,21 @@ implemented but not yet committed
 
 Implemented and committed
 =========================
+
+commit TBD
+-----------------------------------------------
+
+- Paragraph#show now shows translation
+- REST create a Sentence, adds to named Paragraph
+- REST create a Paragraph, adds to named Document
+- REST: create an empty Document
+
+
+      curl -i -X POST  -H "Content-type: application/json" -d '{"title":"Star Smashers of the Galaxy Rangers"}' http://localhost:3000/documents/
+      curl -i -X POST  -H "Content-type: application/json" -d '{"text":"Beware the Jabberwock, my son!\\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\\nand shun The frumious Bandersnatch!","document":"1","document_index":"1"}' http://localhost:3000/paragraphs/
+
+
+
 
 commit dc1f6fc33ecb04d07eb5d5c1dedc16af6cac503c
 -----------------------------------------------
