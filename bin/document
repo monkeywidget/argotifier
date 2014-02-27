@@ -1,0 +1,63 @@
+#!/usr/bin/ruby
+# 1.9 adds realpath to resolve symlinks; 1.8 doesn't
+# have this method, so we add it so we get resolved symlinks
+# and compatibility
+
+
+def connect_to_db
+  require 'active_record'
+
+# TODO: refactor into a local mini-library, or read in from ../config/database.yml
+# Change the following to reflect your database settings
+  ActiveRecord::Base.establish_connection(
+      adapter:  'postgresql',
+      host:     'localhost',
+      database: 'argotifier_prod',
+      username: 'argotifier',
+      password: 'start123'
+  )
+end
+
+# TODO:
+# load_document_from_file (title, filename)
+# save_document_to_file (title, filename)
+
+unless File.respond_to? :realpath
+  class File
+    def self.realpath path
+      return realpath(File.readlink(path)) if symlink?(path)
+      path
+    end
+  end
+end
+
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
+# require 'rubygems'
+require 'usage'
+
+if ARGV[0].nil? or ARGV[1].nil? or ARGV[2].nil?
+  abort("USAGE: #{usage_document}")
+else
+  command = ARGV[0]
+  title = ARGV[1]
+  filename = ARGV[2]
+end
+
+if command.eql? "load"
+  # load_document_from_file (title, filename)
+elsif command.eql? "save"
+  # save_document_to_file (title, filename)
+else
+  abort "USAGE: #{usage_document}"
+end
+
+connect_to_db
+
+# EXAMPLE of how to use ActiveRecord here:
+require 'word'
+word = Word.find_or_create_by_text(:text => "blah")
+word.save
+puts "DEBUG: the word is #{word.text}\n\n"
+
+puts "first arg is #{ARGV[0]}"

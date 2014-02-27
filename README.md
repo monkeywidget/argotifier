@@ -42,7 +42,10 @@ Current state:
 Unfinished but prioritzed:
 - CLI create Document from input file
 - CLI insert/edit translation utility
-- pager
+- CLI load/save translations table
+- CLI output translated Document
+
+- AJAX pager
 
 In Progress
 -----------
@@ -131,4 +134,16 @@ Troubleshoot the database
 -------------------------
 
      $ /Applications/Postgres.app/Contents/MacOS/bin/psql -U argotifier argotifier_test
+
+
+Load a new document to be translated from a file
+------------------------------------------------
+
+     $ bin/document load "New Title" <plaintext_filename.txt>
+
+
+Save a rendered translation to a file
+-------------------------------------
+
+     $ bin/document save "Existing Title" <translation_filename.txt>
 
