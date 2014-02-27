@@ -4,11 +4,12 @@
 # and compatibility
 
 
+# TODO: refactor into a local mini-library
 def connect_to_db
   require 'active_record'
 
-# TODO: refactor into a local mini-library, or read in from ../config/database.yml
-# Change the following to reflect your database settings
+  # TODO read in from ../config/database.yml
+  # Change the following to reflect your database settings
   ActiveRecord::Base.establish_connection(
       adapter:  'postgresql',
       host:     'localhost',
@@ -18,9 +19,20 @@ def connect_to_db
   )
 end
 
-# TODO:
-# load_document_from_file (title, filename)
-# save_document_to_file (title, filename)
+# TODO refactor into a library class
+def load_document_from_file (title, filename)
+  # EXAMPLE of how to use ActiveRecord here:
+  require 'document'
+  document = Document.find_or_create_by_title(:title => title)
+  document.save    # will only do something if we did a "create" vs "find"
+
+  puts "DEBUG: the document title is #{document.title}\n\n"
+
+
+
+end
+
+# TODO: save_document_to_file (title, filename)
 
 unless File.respond_to? :realpath
   class File
@@ -44,20 +56,12 @@ else
   filename = ARGV[2]
 end
 
+connect_to_db
+
 if command.eql? "load"
-  # load_document_from_file (title, filename)
+  load_document_from_file(title, filename)
 elsif command.eql? "save"
   # save_document_to_file (title, filename)
 else
   abort "USAGE: #{usage_document}"
 end
-
-connect_to_db
-
-# EXAMPLE of how to use ActiveRecord here:
-require 'word'
-word = Word.find_or_create_by_text(:text => "blah")
-word.save
-puts "DEBUG: the word is #{word.text}\n\n"
-
-puts "first arg is #{ARGV[0]}"
