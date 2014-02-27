@@ -18,6 +18,7 @@ Tech Notes
 - Server side:
    - Ruby on rails
    - RESTful interface
+   - CLI utilities
 - JavaScript
    - jQuery
    - backbone.js / underscore.js
@@ -39,61 +40,22 @@ Current state:
    - Document: create
 - models for all
 
-Unfinished but prioritzed:
-- CLI create Document from input file
-- CLI insert/edit translation utility
-- CLI load/save translations table
-- CLI output translated Document
-
-- AJAX pager
 
 In Progress
 -----------
 
 See doc/Development-log.md
 
-Incomplete Tasks as yet unscheduled
------------------------------------
+Unfinished but prioritized:
+- CLI create Document from input file
+- CLI output translated Document to file
+- CLI "mapping save filename.csv" "mapping load filename.csv" - save/restores translations
+- CLI "paragraph 1" "paragraph 12-14" - renders translated paragraphs (col 80 wrap)
+- CLI "translation foo" - shows all the words that are translated to "foo"
+- CLI "translation foo bar" - sets translation "foo" -> "bar"
+- CLI "word foo" - shows all words like "foo", with their translations
+- CLI "word -u foo" - shows all words like "foo" that are without translations
 
-- REST with tests for sentences model and controller
-- REST with tests for paragraphs model and controller
-- REST with tests for documents model and controller
-
-- assertions in jasmine tests for stories
-- view page jasmine tests and mock data
-- jasmine tests: next/prev page
-- jasmine tests: goto page
-
-- search scenarios (with jasmine tests and mock data)
-- rails: search by name: word and rspec
-- rails: search by name: translated_word and rspec
-
-- translation scenarios (with jasmine tests and mock data)
-- rails: translated_word#update and rspec
-- rails: translated_word#delete and rspec
-
-- basic document creation/destruction (REST) with test
-- CSV input / output with tests
-- CLI script for document creation
-- CLI script for document delete
-- CLI script for document output as CSV
-- CLI script for document input as CSV
-
-- web API for paragraph, range of paragraphs, and document
- - and tests
-- web API for page with word index and tests
-- view: widget for translation search (word only)
-- view: widget for translation creation/edit/remove (word only)
-
-- port/deploy to AWS
-
-- code coverage for rspec (rcov)
-http://old.rspec.info/documentation/tools/rcov.html
-
-- code coverage for jasmine
-JSCover:
-- http://blog.johnryding.com/post/46757192364/javascript-code-coverage-with-phantomjs-jasmine-and
-- http://siliconforks.com/jscoverage/
 
 
 How To
