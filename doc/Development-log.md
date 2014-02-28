@@ -14,12 +14,10 @@ CURRENT GOAL
 
 CLI commands:
 
-- CLI create Document from input file
+- CLI "translation foo" - shows all the words that are translated to "foo"
+
 - CLI output translated Document to file
 - CLI "mapping save filename.csv" "mapping load filename.csv" - save/restores translations
-- CLI "paragraph 1" "paragraph 12-14" - renders translated paragraphs (col 80 wrap)
-- CLI "translation foo" - shows all the words that are translated to "foo"
-- CLI "translation foo bar" - sets translation "foo" -> "bar"
 - CLI "word foo" - shows all words like "foo", with their translations
 - CLI "word -u foo" - shows all words like "foo" that are without translations
 
@@ -84,19 +82,25 @@ unimplemented specs:
 commit TBI "soon"
 -----------------
 
-- command line util: create a Document from a loaded file
+- CLI "translation foo" - shows all the words that are translated to "foo"
 
 
 implemented but not yet committed
 ---------------------------------
-
-- CLI "paragraph 1" "paragraph 12 14" - renders translated paragraphs (col 80 wrap)
 
 
 Implemented and committed
 =========================
 
 commit TBD
+-----------------------------------------------
+
+- CLI "translation foo bar" - sets translation "foo" -> "bar"
+- CLI "document load "New Title" <plaintext_filename.txt>"
+- CLI "paragraph 1" "paragraph 12 14" - renders translated paragraphs (col 80 wrap)
+
+
+commit
 -----------------------------------------------
 
 - Paragraph#show now shows translation

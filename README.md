@@ -48,8 +48,10 @@ See doc/Development-log.md
 
 Unfinished but prioritized:
 - CLI create Document from input file
+
 - CLI "translation foo bar" - sets translation "foo" -> "bar"
 - CLI "untranslate foo" - removes translation for "foo"
+
 - CLI output translated Document to file
 
 - CLI "dictionary save filename.csv" - saves translations
@@ -120,4 +122,14 @@ Print the translation of a paragraph (or range)
      $ paragraph 12 14
 
 Wraps to 80 columns
+
+
+Set a new translation of a word
+-------------------------------
+
+translates every instance of "foo" to "bar"
+
+     $ bin/translation foo bar
+
+
 

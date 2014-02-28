@@ -32,6 +32,12 @@ end
 
 def show_paragraph_range(paragraph_start, paragraph_end)
   require 'document'
+  require 'paragraph'
+  require 'sentence'
+  require 'word'
+  require 'sentenceword'
+  require 'translated_word'
+
 
   # for now we'll hardcode the document (only support one)
   document = Document.find(1)

@@ -1,0 +1,64 @@
+#!/usr/bin/ruby
+# 1.9 adds realpath to resolve symlinks; 1.8 doesn't
+# have this method, so we add it so we get resolved symlinks
+# and compatibility
+
+# TODO: refactor into a local mini-library
+def connect_to_db
+  require 'active_record'
+
+  # TODO read in from ../config/database.yml
+  # Change the following to reflect your database settings
+  ActiveRecord::Base.establish_connection(
+      adapter:  'postgresql',
+      host:     'localhost',
+      database: 'argotifier_prod',
+      username: 'argotifier',
+      password: 'start123'
+  )
+end
+
+
+def show_translations_to (translated_text)
+end
+
+def set_translation(plaintext, translation_text)
+  require 'translated_word'
+  require 'word'
+
+  plaintext = plaintext.downcase
+  translation_text = translation_text.downcase
+
+  word = Word.find_by_text(plaintext)
+
+  if word.nil?
+    abort("ERROR: could not find word #{plaintext} in this document")
+  end
+
+  translated_word = TranslatedWord.find_or_create_by_word_id( :word => word,
+                                           :translation => translation_text)
+
+  puts "New translation:  #{translated_word.word.text} -> #{translated_word.translation}"
+end
+
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
+# require 'rubygems'
+require 'usage'
+
+if ARGV[0].nil?
+  abort("USAGE: #{usage_translation}")
+end
+
+connect_to_db
+
+unless ARGV[1].nil?
+    plaintext_word = ARGV[0]
+    translated_word = ARGV[1]
+
+    set_translation(plaintext_word, translated_word)
+else
+    translated_word_to_find = ARGV[0]
+
+    show_translations_to translated_word_to_find
+end

@@ -1,5 +1,3 @@
-require 'translated_word'
-
 class Paragraph < ActiveRecord::Base
   belongs_to :document
   validates_presence_of :document, :document_index
