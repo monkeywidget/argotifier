@@ -89,12 +89,13 @@ commit TBI "soon"
 implemented but not yet committed
 ---------------------------------
 
+- CLI "translation foo"
+
 
 Implemented and committed
 =========================
 
 - fixed TranslatedWord rewriting case, added stub for test
-
 
 commit 92253dfd9d07d2cdbe6bcc45db4d7f746df4a044
 -----------------------------------------------

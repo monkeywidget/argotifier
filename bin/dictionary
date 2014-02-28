@@ -1,0 +1,11 @@
+#!/usr/bin/ruby
+# 1.9 adds realpath to resolve symlinks; 1.8 doesn't
+# have this method, so we add it so we get resolved symlinks
+# and compatibility
+
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
+# require 'rubygems'
+require 'usage'
+require 'database_connection'
+

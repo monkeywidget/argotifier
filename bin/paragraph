@@ -3,20 +3,11 @@
 # have this method, so we add it so we get resolved symlinks
 # and compatibility
 
-# TODO: refactor into a local mini-library
-def connect_to_db
-  require 'active_record'
-
-  # TODO read in from ../config/database.yml
-  # Change the following to reflect your database settings
-  ActiveRecord::Base.establish_connection(
-      adapter:  'postgresql',
-      host:     'localhost',
-      database: 'argotifier_prod',
-      username: 'argotifier',
-      password: 'start123'
-  )
-end
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
+# require 'rubygems'
+require 'usage'
+require 'database_connection'
 
 # wraps text, default 80 columns
 def wrap_text(txt, col = 80)
@@ -57,11 +48,6 @@ def show_paragraph_range(paragraph_start, paragraph_end)
   end
 
 end
-
-$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
-$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
-# require 'rubygems'
-require 'usage'
 
 if ARGV[0].nil? or ARGV.length > 2
   abort("USAGE: #{usage_paragraph}")

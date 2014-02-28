@@ -3,23 +3,31 @@
 # have this method, so we add it so we get resolved symlinks
 # and compatibility
 
-# TODO: refactor into a local mini-library
-def connect_to_db
-  require 'active_record'
-
-  # TODO read in from ../config/database.yml
-  # Change the following to reflect your database settings
-  ActiveRecord::Base.establish_connection(
-      adapter:  'postgresql',
-      host:     'localhost',
-      database: 'argotifier_prod',
-      username: 'argotifier',
-      password: 'start123'
-  )
-end
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
+require 'usage'
+require 'database_connection'
 
 
 def show_translations_to (translated_text)
+  require 'translated_word'
+  require 'word'
+
+  puts "Words translated to \"#{translated_text}\" :\n\n"
+
+  translations = TranslatedWord.find_all_by_translation(translated_text)
+
+  if translations.nil?
+    puts "\t(none)\n\n"
+    return
+  end
+
+  translations.each do |translation|
+    puts "\t#{translation.word.text}"
+  end
+
+  puts "\n\n"
+
 end
 
 def set_translation(plaintext, translation_text)
@@ -29,11 +37,7 @@ def set_translation(plaintext, translation_text)
   plaintext = plaintext.downcase
   translation_text = translation_text.downcase
 
-  puts "DEBUG: requested word is #{plaintext}"
-
   word = Word.find_by_text(plaintext)
-
-  puts "DEBUG: word text retrieved is #{word.text}"
 
   if word.nil?
     abort("ERROR: could not find word #{plaintext} in this document")
@@ -42,20 +46,18 @@ def set_translation(plaintext, translation_text)
   translated_word = TranslatedWord.find_by_word_id( word )
 
   if translated_word.nil?
+    print "New translation: "
     translated_word = TranslatedWord.create!( :word => word,
                                               :translation => translation_text)
+  else
+    print "Edited translation: "
   end
 
   translated_word.translation = translation_text
   translated_word.save
 
-  puts "New translation:  #{translated_word.word.text} -> #{translated_word.translation}"
+  print "#{translated_word.word.text} -> #{translated_word.translation}\n\n"
 end
-
-$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
-$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
-# require 'rubygems'
-require 'usage'
 
 if ARGV[0].nil? or ARGV.length > 2
   abort("USAGE: #{usage_translation}")
