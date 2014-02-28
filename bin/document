@@ -28,7 +28,48 @@ def load_document_from_file (title, filename)
 
   puts "DEBUG: the document title is #{document.title}\n\n"
 
+  # open the file named by the arg
+  file = File.open(filename).read
+  file.gsub!(/\r\n?/, "\n")
 
+  # buffer for the Paragraph we're building
+  paragraph_text = ""
+
+  file.each_line do |line|
+    # for every line
+
+    line = line.chop.strip
+    puts "DEBUG: line is >>#{line}<<"
+
+    # if entirely empty
+    if line.nil? or line.length == 0
+
+      # if the buffer is not empty, write as a new Paragraph
+      if paragraph_text.length > 0
+
+        document.add_new_paragraph(paragraph_text)
+
+        paragraph_text = ""  # reset buffer
+      end
+
+      next  # skip the empty line
+    end
+
+    # append the non-empty line to the buffer
+    paragraph_text << line + " "
+
+  end # end of file
+  # we're at EOF:
+
+  # if the buffer is not empty, write as a new Paragraph
+  if paragraph_text.length > 0
+
+    document.add_new_paragraph(paragraph_text)
+
+  end
+
+  # close the file
+  # file.close
 
 end
 
