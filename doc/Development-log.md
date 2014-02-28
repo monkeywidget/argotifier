@@ -14,10 +14,11 @@ CURRENT GOAL
 
 CLI commands:
 
-- CLI "translation foo" - shows all the words that are translated to "foo"
+- CLI "dictionary save filename.csv" - saves translations
+- CLI "dictionary load filename.csv" - restores translations
 
+- CLI "translation foo" - shows all the words that are translated to "foo"
 - CLI output translated Document to file
-- CLI "mapping save filename.csv" "mapping load filename.csv" - save/restores translations
 - CLI "word foo" - shows all words like "foo", with their translations
 - CLI "word -u foo" - shows all words like "foo" that are without translations
 
@@ -82,7 +83,7 @@ unimplemented specs:
 commit TBI "soon"
 -----------------
 
-- CLI "translation foo" - shows all the words that are translated to "foo"
+- CLI "mapping save filename.csv" - saves translations
 
 
 implemented but not yet committed
@@ -92,16 +93,17 @@ implemented but not yet committed
 Implemented and committed
 =========================
 
-commit TBD
+- fixed TranslatedWord rewriting case, added stub for test
+
+
+commit 92253dfd9d07d2cdbe6bcc45db4d7f746df4a044
 -----------------------------------------------
 
-- CLI "translation foo bar" - sets translation "foo" -> "bar"
+- CLI "translation foo bar"
+    - sets translation "foo" -> "bar"
 - CLI "document load "New Title" <plaintext_filename.txt>"
-- CLI "paragraph 1" "paragraph 12 14" - renders translated paragraphs (col 80 wrap)
-
-
-commit
------------------------------------------------
+- CLI "paragraph 1" "paragraph 12 14"
+    - renders translated paragraphs (col 80 wrap)
 
 - Paragraph#show now shows translation
 - REST create a Sentence, adds to named Paragraph

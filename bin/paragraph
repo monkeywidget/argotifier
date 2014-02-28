@@ -63,7 +63,7 @@ $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
 # require 'rubygems'
 require 'usage'
 
-if ARGV[0].nil?
+if ARGV[0].nil? or ARGV.length > 2
   abort("USAGE: #{usage_paragraph}")
 else
   paragraph_start = ARGV[0]

@@ -132,4 +132,4 @@ translates every instance of "foo" to "bar"
      $ bin/translation foo bar
 
 
-
+Save the translation dictionary

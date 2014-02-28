@@ -145,7 +145,8 @@ describe TranslatedWordsController do
                         :id => "1"})
     end
 
-    # TODO: verify translation field is updated properly
+    it "should update the translation of the same word"
+    it "should not create multiple translations of the same word"
 
   end
 

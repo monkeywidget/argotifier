@@ -98,7 +98,7 @@ $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
 # require 'rubygems'
 require 'usage'
 
-if ARGV[0].nil? or ARGV[1].nil? or ARGV[2].nil?
+if ARGV[0].nil? or ARGV[1].nil? or ARGV[2].nil? or ARGV.length > 3
   abort("USAGE: #{usage_document}")
 else
   command = ARGV[0]

@@ -29,14 +29,25 @@ def set_translation(plaintext, translation_text)
   plaintext = plaintext.downcase
   translation_text = translation_text.downcase
 
+  puts "DEBUG: requested word is #{plaintext}"
+
   word = Word.find_by_text(plaintext)
+
+  puts "DEBUG: word text retrieved is #{word.text}"
 
   if word.nil?
     abort("ERROR: could not find word #{plaintext} in this document")
   end
 
-  translated_word = TranslatedWord.find_or_create_by_word_id( :word => word,
-                                           :translation => translation_text)
+  translated_word = TranslatedWord.find_by_word_id( word )
+
+  if translated_word.nil?
+    translated_word = TranslatedWord.create!( :word => word,
+                                              :translation => translation_text)
+  end
+
+  translated_word.translation = translation_text
+  translated_word.save
 
   puts "New translation:  #{translated_word.word.text} -> #{translated_word.translation}"
 end
@@ -46,7 +57,7 @@ $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
 # require 'rubygems'
 require 'usage'
 
-if ARGV[0].nil?
+if ARGV[0].nil? or ARGV.length > 2
   abort("USAGE: #{usage_translation}")
 end
 
