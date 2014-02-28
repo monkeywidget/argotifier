@@ -1,0 +1,77 @@
+#!/usr/bin/ruby
+# 1.9 adds realpath to resolve symlinks; 1.8 doesn't
+# have this method, so we add it so we get resolved symlinks
+# and compatibility
+
+# TODO: refactor into a local mini-library
+def connect_to_db
+  require 'active_record'
+
+  # TODO read in from ../config/database.yml
+  # Change the following to reflect your database settings
+  ActiveRecord::Base.establish_connection(
+      adapter:  'postgresql',
+      host:     'localhost',
+      database: 'argotifier_prod',
+      username: 'argotifier',
+      password: 'start123'
+  )
+end
+
+# wraps text, default 80 columns
+def wrap_text(txt, col = 80)
+  txt.gsub(/(.{1,#{col}})( +|$\n?)|(.{1,#{col}})/,
+           "\\1\\3\n")
+end
+# from Allan Odgaard
+# http://blog.macromates.com/2006/wrapping-text-with-regular-expressions/
+
+def show_one_paragraph(paragraph_start)
+  show_paragraph_range(paragraph_start, paragraph_start)
+end
+
+def show_paragraph_range(paragraph_start, paragraph_end)
+  require 'document'
+
+  # for now we'll hardcode the document (only support one)
+  document = Document.find(1)
+
+  puts "\nIn the document titled \"#{document.title}\":\n\n"
+
+  (paragraph_start.to_i .. paragraph_end.to_i).each do |paragraph_index|
+    paragraph_index = paragraph_index -1   # CLI is 1-indexed
+    paragraph = Paragraph.find_by_document_id_and_document_index( document, paragraph_index)
+
+    if paragraph.nil?
+      puts "ERROR: could not find a paragraph \##{paragraph_index+1} (document_index=#{paragraph_index}) in this document"
+    else
+      puts wrap_text(paragraph.translation)
+    end
+    puts "\n"
+  end
+
+end
+
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
+# require 'rubygems'
+require 'usage'
+
+if ARGV[0].nil?
+  abort("USAGE: #{usage_paragraph}")
+else
+  paragraph_start = ARGV[0]
+  unless ARGV[1].nil?
+    paragraph_end = ARGV[1]
+  else
+    paragraph_end = ""
+  end
+end
+
+connect_to_db
+
+if paragraph_end.nil? or paragraph_end.eql? ""
+  show_one_paragraph(paragraph_start)
+else
+  show_paragraph_range(paragraph_start, paragraph_end)
+end

@@ -27,6 +27,8 @@ CLI commands:
 commit TBI "later"
 ------------------
 
+- refactor CLI routines to share code
+
 - fix PG error / rspec tests
 - REST tests for sentences model and controller
 - REST tests for paragraphs model and controller
@@ -87,6 +89,9 @@ commit TBI "soon"
 
 implemented but not yet committed
 ---------------------------------
+
+- CLI "paragraph 1" "paragraph 12 14" - renders translated paragraphs (col 80 wrap)
+
 
 Implemented and committed
 =========================

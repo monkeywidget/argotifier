@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+# /usr/bin/ruby
 # 1.9 adds realpath to resolve symlinks; 1.8 doesn't
 # have this method, so we add it so we get resolved symlinks
 # and compatibility
@@ -75,14 +75,14 @@ end
 
 # TODO: save_document_to_file (title, filename)
 
-unless File.respond_to? :realpath
+'''unless File.respond_to? :realpath
   class File
     def self.realpath path
       return realpath(File.readlink(path)) if symlink?(path)
       path
     end
   end
-end
+end'''
 
 $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
 $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')

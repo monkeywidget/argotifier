@@ -48,11 +48,14 @@ See doc/Development-log.md
 
 Unfinished but prioritized:
 - CLI create Document from input file
-- CLI output translated Document to file
-- CLI "mapping save filename.csv" "mapping load filename.csv" - save/restores translations
-- CLI "paragraph 1" "paragraph 12-14" - renders translated paragraphs (col 80 wrap)
-- CLI "translation foo" - shows all the words that are translated to "foo"
 - CLI "translation foo bar" - sets translation "foo" -> "bar"
+- CLI "untranslate foo" - removes translation for "foo"
+- CLI output translated Document to file
+
+- CLI "dictionary save filename.csv" - saves translations
+- CLI "dictionary load filename.csv" - restores translations
+
+- CLI "translation foo" - shows all the words that are translated to "foo"
 - CLI "word foo" - shows all words like "foo", with their translations
 - CLI "word -u foo" - shows all words like "foo" that are without translations
 
@@ -108,4 +111,13 @@ Save a rendered translation to a file
 -------------------------------------
 
      $ bin/document save "Existing Title" <translation_filename.txt>
+
+
+Print the translation of a paragraph (or range)
+-----------------------------------------------
+
+     $ bin/paragraph 1
+     $ paragraph 12 14
+
+Wraps to 80 columns
 
