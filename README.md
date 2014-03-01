@@ -131,5 +131,20 @@ translates every instance of "foo" to "bar"
 
      $ bin/translation foo bar
 
+Show all the words translated to
+--------------------------------
 
-Save the translation dictionary
+Shows every word translated to "foo"
+
+     $ bin/translation foo
+
+Save the translation dictionary to file
+---------------------------------------
+
+     $ bin/dictionary save <filename.csv>
+
+Load the translation dictionary form file
+-----------------------------------------
+
+     $ bin/dictionary load <filename.csv>
+

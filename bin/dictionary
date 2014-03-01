@@ -9,3 +9,43 @@ $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
 require 'usage'
 require 'database_connection'
 
+
+
+def save_dictionary_to_file( filename )
+  require "translated_word"
+  require "word"
+
+  file = File.open(filename, "w")
+
+  translations = TranslatedWord.all
+
+  if translations.nil?
+    abort("no translations found")
+  end
+
+  translations.each do |translation|
+    file.puts "#{translation.word.text},#{translation.translation}"
+  end
+
+  file.close
+
+  puts "dictionary written to file \"#{filename}\""
+end
+
+
+if ARGV[0].nil? or ARGV[1].nil? or ARGV.length > 2
+  abort("USAGE: #{usage_dictionary}")
+else
+  command = ARGV[0]
+  filename = ARGV[1]
+end
+
+connect_to_db
+
+if command.eql? "load"
+  # load_dictionary_from_file(filename)
+elsif command.eql? "save"
+  save_dictionary_to_file (filename)
+else
+  abort "USAGE: #{usage_dictionary}"
+end

@@ -10,9 +10,7 @@ require 'usage'
 require 'database_connection'
 
 
-# TODO refactor into a library class
-def load_document_from_file (title, filename)
-  # EXAMPLE of how to use ActiveRecord here:
+def load_document_from_file(title, filename)
   require 'document'
   # these requires are entirely for add_new_paragraph
   require 'paragraph'
@@ -74,20 +72,6 @@ def load_document_from_file (title, filename)
 end
 
 # TODO: save_document_to_file (title, filename)
-
-'''unless File.respond_to? :realpath
-  class File
-    def self.realpath path
-      return realpath(File.readlink(path)) if symlink?(path)
-      path
-    end
-  end
-end'''
-
-$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
-$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
-# require 'rubygems'
-require 'usage'
 
 if ARGV[0].nil? or ARGV[1].nil? or ARGV[2].nil? or ARGV.length > 3
   abort("USAGE: #{usage_document}")

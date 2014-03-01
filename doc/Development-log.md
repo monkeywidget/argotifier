@@ -14,10 +14,8 @@ CURRENT GOAL
 
 CLI commands:
 
-- CLI "dictionary save filename.csv" - saves translations
 - CLI "dictionary load filename.csv" - restores translations
 
-- CLI "translation foo" - shows all the words that are translated to "foo"
 - CLI output translated Document to file
 - CLI "word foo" - shows all words like "foo", with their translations
 - CLI "word -u foo" - shows all words like "foo" that are without translations
@@ -25,8 +23,6 @@ CLI commands:
 
 commit TBI "later"
 ------------------
-
-- refactor CLI routines to share code
 
 - fix PG error / rspec tests
 - REST tests for sentences model and controller
@@ -65,8 +61,7 @@ JSCover:
 - http://siliconforks.com/jscoverage/
 
 - move existing routing spec to non-controller area
-- translated_word index output as csv
-- translated_word search should handle multiple results (include rspec)
+- UI: translated_word search should handle multiple results (include rspec)
 - sentence controller tests
 
 unimplemented specs:
@@ -83,18 +78,21 @@ unimplemented specs:
 commit TBI "soon"
 -----------------
 
-- CLI "mapping save filename.csv" - saves translations
-
+- CLI "dictionary load filename.csv" - restores translations
 
 implemented but not yet committed
 ---------------------------------
 
-- CLI "translation foo"
 
 
 Implemented and committed
 =========================
 
+commit
+-----------------------------------------------
+
+- CLI "dictionary save filename.csv" - saves translations
+- CLI "translation foo"
 - fixed TranslatedWord rewriting case, added stub for test
 
 commit 92253dfd9d07d2cdbe6bcc45db4d7f746df4a044
