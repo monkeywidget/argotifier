@@ -14,11 +14,7 @@ CURRENT GOAL
 
 CLI commands:
 
-- CLI "dictionary load filename.csv" - restores translations
-
 - CLI output translated Document to file
-- CLI "word foo" - shows all words like "foo", with their translations
-- CLI "word -u foo" - shows all words like "foo" that are without translations
 
 
 commit TBI "later"
@@ -40,9 +36,6 @@ commit TBI "later"
 - translation scenarios (with jasmine tests and mock data)
 - rails: translated_word#update and rspec
 - rails: translated_word#delete and rspec
-
-- CLI script for document output as CSV
-- CLI script for document input as CSV
 
 - web API for paragraph, range of paragraphs, and document
  - and tests
@@ -78,7 +71,9 @@ unimplemented specs:
 commit TBI "soon"
 -----------------
 
-- CLI "dictionary load filename.csv" - restores translations
+- CLI "word foo" - shows all words like "foo", with their translations
+- CLI "word -u foo" - shows all words like "foo" that are without translations
+
 
 implemented but not yet committed
 ---------------------------------
@@ -89,6 +84,11 @@ Implemented and committed
 =========================
 
 commit
+-----------------------------------------------
+
+- CLI "dictionary load filename.csv" - restores translations
+
+commit 660d07a949be7665615c62b65246d0c2d5385c06
 -----------------------------------------------
 
 - CLI "dictionary save filename.csv" - saves translations
