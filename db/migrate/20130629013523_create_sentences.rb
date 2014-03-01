@@ -1,7 +1,7 @@
 class CreateSentences < ActiveRecord::Migration
   def change
     create_table :sentences do |t|
-      t.string :word_template
+      t.text :word_template
       t.integer :paragraph_index
       t.belongs_to :paragraph
       t.timestamps

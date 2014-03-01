@@ -74,7 +74,15 @@ implemented but not yet committed
 Implemented and committed
 =========================
 
+
 commit
+-----------------------------------------------
+
+
+- changed column type of sentence template to "text" to fix bug
+
+
+commit 934b2434d236a20f1f51675bfd0cfe3a434fa528
 -----------------------------------------------
 
 - CLI "dictionary load filename.csv" - restores translations

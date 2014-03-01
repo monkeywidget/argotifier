@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20130927210058) do
   end
 
   create_table "sentences", :force => true do |t|
-    t.string   "word_template"
+    t.text     "word_template"
     t.integer  "paragraph_index"
     t.integer  "paragraph_id"
     t.datetime "created_at"
