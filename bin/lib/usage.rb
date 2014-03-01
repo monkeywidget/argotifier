@@ -13,3 +13,7 @@ end
 def usage_dictionary
   "\n\tdictionary save <translation_filename.csv>\n\tdictionary load <translation_filename.csv>\n\n"
 end
+
+def usage_word
+  "\n\tword <matching substring>\n\tword -u <matching substring>\n\n"
+end

@@ -12,11 +12,6 @@ CURRENT GOAL
 
 (see below under "soon")
 
-CLI commands:
-
-- CLI output translated Document to file
-
-
 commit TBI "later"
 ------------------
 
@@ -71,13 +66,9 @@ unimplemented specs:
 commit TBI "soon"
 -----------------
 
-- CLI "word foo" - shows all words like "foo", with their translations
-- CLI "word -u foo" - shows all words like "foo" that are without translations
-
 
 implemented but not yet committed
 ---------------------------------
-
 
 
 Implemented and committed
@@ -87,6 +78,8 @@ commit
 -----------------------------------------------
 
 - CLI "dictionary load filename.csv" - restores translations
+- CLI "word foo" - shows all words like "foo", with their translations
+- CLI "word -u foo" - shows all words like "foo" that are without translations
 
 commit 660d07a949be7665615c62b65246d0c2d5385c06
 -----------------------------------------------

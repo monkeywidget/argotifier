@@ -123,7 +123,6 @@ Print the translation of a paragraph (or range)
 
 Wraps to 80 columns
 
-
 Set a new translation of a word
 -------------------------------
 
@@ -147,4 +146,14 @@ Load the translation dictionary form file
 -----------------------------------------
 
      $ bin/dictionary load <filename.csv>
+
+List words matching a substring
+-------------------------------
+
+     $ word <matching substring>
+
+List words matching a subsctring which have no translation
+----------------------------------------------------------
+
+     $ word -u <matching substring>
 

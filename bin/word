@@ -1,0 +1,75 @@
+#!/usr/bin/ruby
+# 1.9 adds realpath to resolve symlinks; 1.8 doesn't
+# have this method, so we add it so we get resolved symlinks
+# and compatibility
+
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
+require 'usage'
+require 'database_connection'
+
+
+def show_untranslated_words_like(substring)
+  require 'word'
+
+  puts "Showing the untranslated words in the document like \"#{substring}\"\n\n"
+
+  # untranslated_words = Word.untranslated.order("text")
+  untranslated_words = Word.where("text LIKE ?", "%#{substring}%").untranslated.order("text")
+
+  if untranslated_words.nil? or untranslated_words.length == 0
+    abort("\t\t(none found)\n\n")
+  end
+
+  untranslated_words.each do |word|
+    puts "\t#{word.text}"
+  end
+
+  puts "\n\n"
+
+end
+
+def show_words_like(substring)
+  require 'word'
+
+  words = Word.where("text LIKE ?", "%#{substring}%")
+
+  puts "Showing the words in the document like \"#{substring}\"\n\n"
+
+  if words.nil? or words.length == 0
+    abort("\t\t(none found)\n\n")
+  end
+
+
+  words.each do |word|
+    puts "\t#{word.text}"
+  end
+
+  puts "\n\n"
+end
+
+
+if ARGV[0].nil? or ARGV.length > 2
+  abort("USAGE: #{usage_word}")
+end
+
+connect_to_db
+
+if ARGV[0].eql? "-u"
+
+  if ARGV[1].nil?
+    abort("USAGE: #{usage_word}")
+  end
+
+  substring = ARGV[1]
+
+  show_untranslated_words_like(substring)
+
+else
+
+  substring = ARGV[0]
+
+  show_words_like(substring)
+
+end
+

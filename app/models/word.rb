@@ -3,6 +3,13 @@ class Word < ActiveRecord::Base
   validates :text, :presence => true
   validates :text, :length => { :minimum => 1 }
 
+  scope :untranslated, {
+      :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
+      :conditions => "tw.word_id IS NULL",
+      :select     => "DISTINCT words.*"
+  }
+
+
   def in_argot
     translation = TranslatedWord.find_by_word_id(self)
 
