@@ -9,8 +9,38 @@ $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
 require 'usage'
 require 'database_connection'
 
-def stats
-  puts "TODO: unimplemented"
+def print_stats
+
+  require 'word'
+  require 'translated_word'
+
+  puts "\nDictionary statistics:\n\n"
+
+  original_word_count = Word.all.length
+  puts "\tTotal number of words in original document: #{original_word_count}"
+
+  puts "\n"
+
+  untranslated_word_count = Word.untranslated.length
+  translated_word_count = Word.translated.length
+
+  puts "\tTotal number of words with translations: #{translated_word_count} " \
+          "(#{(translated_word_count.to_f / original_word_count.to_f * 100.00).round(2)}%)"
+  puts "\tTotal number of words without translations: #{untranslated_word_count} " \
+          "(#{(untranslated_word_count.to_f / original_word_count.to_f * 100.00).round(2)}%)"
+
+  puts "\n"
+
+  distinct_translated_words_count = TranslatedWord.select("DISTINCT(translation)").length
+  puts "\tTotal number of distinct translation words: #{distinct_translated_words_count}"
+  puts "\tTotal number of untranslated original, plus translation words: " \
+        "#{untranslated_word_count + distinct_translated_words_count}"
+
+  puts "\tChange in number of words in vocabulary: " \
+        "#{(untranslated_word_count + distinct_translated_words_count) - original_word_count}"
+
+
+  puts "\n\n"
 end
 
 def save_dictionary_to_file( filename )
