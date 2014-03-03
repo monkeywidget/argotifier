@@ -8,27 +8,8 @@ $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
 require 'usage'
 require 'database_connection'
 
+require 'translated_word_finders'
 
-def show_translations_to (translated_text)
-  require 'translated_word'
-  require 'word'
-
-  puts "Words translated to \"#{translated_text}\" :\n\n"
-
-  translations = TranslatedWord.find_all_by_translation(translated_text)
-
-  if translations.nil?
-    puts "\t(none)\n\n"
-    return
-  end
-
-  translations.each do |translation|
-    puts "\t#{translation.word.text}"
-  end
-
-  puts "\n\n"
-
-end
 
 def set_translation(plaintext, translation_text)
   require 'translated_word'
@@ -73,5 +54,5 @@ unless ARGV[1].nil?
 else
     translated_word_to_find = ARGV[0]
 
-    show_translations_to translated_word_to_find
+    show_translations_like translated_word_to_find
 end
