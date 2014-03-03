@@ -12,15 +12,26 @@ def show_sentences_using_translations_like(substring)
 
   puts "Showing sentences including translations like \"#{substring}\":\n\n"
 
-  # TODO:
-  # words_for_matching_translations = TranslatedWord.where("translation LIKE ?", "%#{substring}%").order("translation")
+  # is there a way to make this one Word - based find?:
 
-  # show_sentences_using_words_in words_for_matching_translations
+  translations_matching_substring = TranslatedWord.where("translation LIKE ?", "%#{substring}%").order("translation")
+
+  words_for_matching_translations = []
+
+  if translations_matching_substring.nil? or translations_matching_substring.length == 0
+    puts "\t(none)\n\n"
+    return
+  end
+
+  translations_matching_substring.each do |translation|
+    words_for_matching_translations << translation.word
+  end
+
+  show_sentences_using_words_in words_for_matching_translations
 
 end
 
 def show_sentences_using_words_in(words)
-
 
   if words.nil? or words.length == 0
     puts "\t(none)\n\n"
