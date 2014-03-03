@@ -32,7 +32,7 @@ end
 def show_words_like(substring)
   require 'word'
 
-  words = Word.where("text LIKE ?", "%#{substring}%")
+  words = Word.where("text LIKE ?", "%#{substring}%").order("text")
 
   puts "Showing the words in the document like \"#{substring}\"\n\n"
 
