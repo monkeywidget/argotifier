@@ -8,13 +8,32 @@ $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
 require 'usage'
 require 'database_connection'
 
+def show_untranslated_sentences_using_words_like(substring)
+
+  words = Word.where("text LIKE ?", "%#{substring}%").order("text")
+
+  words.each do |word|
+    puts "\tIncluding \"#{word.text}\":"
+
+    # TODO:
+    # sentences_with_this_word = Sentence.all.includes(:word)
+    sentences_with_this_word.each do |sentence|
+      # TODO:
+      puts "\t\t#{sentence.original}"
+    end
+  end
+
+end
 
 def show_sentences_containing_words_like(substring)
   require 'word'
+  require 'sentence'
 
   puts "Showing the untranslated sentences using words like \"#{substring}\"\n\n"
+  show_untranslated_sentences_using_words_like substring
 
-  puts "Showing the translated sentences using words like \"#{substring}\"\n\n"
+  # puts "Showing the translated sentences using words like \"#{substring}\"\n\n"
+  # show_translated_sentences_using_words_like substring
 
 end
 

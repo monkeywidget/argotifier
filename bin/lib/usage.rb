@@ -17,3 +17,7 @@ end
 def usage_word
   "\n\tword <matching substring>\n\tword -u <matching substring>\n\n"
 end
+
+def usage_sentence
+  "\n\tsentence <word to show sentences containing>\n\n"
+end

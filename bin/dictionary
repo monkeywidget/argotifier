@@ -9,7 +9,9 @@ $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
 require 'usage'
 require 'database_connection'
 
-
+def stats
+  puts "TODO: unimplemented"
+end
 
 def save_dictionary_to_file( filename )
   require "translated_word"
@@ -69,19 +71,24 @@ def load_dictionary_from_file( filename )
 end
 
 
-if ARGV[0].nil? or ARGV[1].nil? or ARGV.length > 2
+if ARGV[0].nil? or ARGV.length > 1
   abort("USAGE: #{usage_dictionary}")
 else
   command = ARGV[0]
-  filename = ARGV[1]
 end
 
 connect_to_db
 
 if command.eql? "load"
+  abort "USAGE: #{usage_dictionary}" if ARGV[1].nil?
+  filename = ARGV[1]
   load_dictionary_from_file(filename)
 elsif command.eql? "save"
+  abort "USAGE: #{usage_dictionary}" if ARGV[1].nil?
+  filename = ARGV[1]
   save_dictionary_to_file (filename)
+elsif command.eql? "stats"
+  print_stats
 else
   abort "USAGE: #{usage_dictionary}"
 end
