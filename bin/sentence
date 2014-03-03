@@ -1,0 +1,30 @@
+#!/usr/bin/ruby
+# 1.9 adds realpath to resolve symlinks; 1.8 doesn't
+# have this method, so we add it so we get resolved symlinks
+# and compatibility
+
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../app/models')
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
+require 'usage'
+require 'database_connection'
+
+
+def show_sentences_containing_words_like(substring)
+  require 'word'
+
+  puts "Showing the untranslated sentences using words like \"#{substring}\"\n\n"
+
+  puts "Showing the translated sentences using words like \"#{substring}\"\n\n"
+
+end
+
+
+if ARGV[0].nil? or ARGV.length > 1
+  abort("USAGE: #{usage_sentence}")
+end
+
+connect_to_db
+
+substring = ARGV[0]
+show_sentences_containing_words_like substring
+
