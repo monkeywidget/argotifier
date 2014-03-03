@@ -8,42 +8,32 @@ $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/lib')
 require 'usage'
 require 'database_connection'
 
-def show_untranslated_sentences_using_words_like(substring)
 
-  words = Word.where("text LIKE ?", "%#{substring}%").order("text")
-
-  words.each do |word|
-    puts "\tIncluding \"#{word.text}\":"
-
-    # TODO:
-    # sentences_with_this_word = Sentence.all.includes(:word)
-    sentences_with_this_word.each do |sentence|
-      # TODO:
-      puts "\t\t#{sentence.original}"
-    end
-  end
-
-end
-
-def show_sentences_containing_words_like(substring)
-  require 'word'
-  require 'sentence'
-
-  puts "Showing the untranslated sentences using words like \"#{substring}\"\n\n"
-  show_untranslated_sentences_using_words_like substring
-
-  # puts "Showing the translated sentences using words like \"#{substring}\"\n\n"
-  # show_translated_sentences_using_words_like substring
-
-end
+require 'sentences_from_word_searches'
 
 
-if ARGV[0].nil? or ARGV.length > 1
+if ARGV[0].nil? or ARGV.length > 2
   abort("USAGE: #{usage_sentence}")
 end
 
 connect_to_db
 
-substring = ARGV[0]
-show_sentences_containing_words_like substring
+if ARGV[0].eql? "-t"
+
+  if ARGV[1].nil?
+    abort("USAGE: #{usage_sentence}")
+  end
+
+  substring = ARGV[1]
+  show_sentences_using_translations_like(substring)
+
+else
+
+  substring = ARGV[0]
+  show_sentences_using_words_like substring
+
+end
+
+
+
 

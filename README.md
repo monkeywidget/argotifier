@@ -152,8 +152,19 @@ List words matching a substring
 
      $ word <matching substring>
 
-List words matching a subsctring which have no translation
-----------------------------------------------------------
+List words matching a substring which have no translation
+---------------------------------------------------------
 
      $ word -u <matching substring>
 
+
+Show original and translated Sentences using words matching a substring
+-----------------------------------------------------------------------
+
+     $ sentence <matching substring>
+
+
+Show translated Sentences using translated words matching a substring
+---------------------------------------------------------------------
+
+     $ sentence -t <matching substring>
