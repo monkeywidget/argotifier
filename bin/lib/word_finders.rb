@@ -8,7 +8,8 @@ def show_untranslated_words_like(substring)
   untranslated_words = Word.where("text LIKE ?", "%#{substring}%").untranslated.order("text")
 
   if untranslated_words.nil? or untranslated_words.length == 0
-    abort("\t\t(none found)\n\n")
+    puts "\t\t(none found)\n\n"
+    return
   end
 
   untranslated_words.each do |word|
