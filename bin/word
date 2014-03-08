@@ -9,6 +9,13 @@ require 'usage'
 require 'database_connection'
 
 require 'word_finders'
+require 'sentences_from_word_searches'
+
+def check_argv1
+  if ARGV[1].nil?
+    abort("USAGE: #{usage_word}")
+  end
+end
 
 if ARGV[0].nil? or ARGV.length > 2
   abort("USAGE: #{usage_word}")
@@ -18,19 +25,25 @@ connect_to_db
 
 if ARGV[0].eql? "-u"
 
-  if ARGV[1].nil?
-    abort("USAGE: #{usage_word}")
-  end
+  check_argv1
 
   substring = ARGV[1]
 
-  show_untranslated_words_like(substring)
+  show_untranslated_words_like substring
+
+elsif ARGV[0].eql? "-c"
+
+  check_argv1
+
+  substring = ARGV[1]
+
+  show_count_of_words_like substring
 
 else
 
   substring = ARGV[0]
 
-  show_words_like(substring)
+  show_words_like substring
 
 end
 

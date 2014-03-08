@@ -74,3 +74,25 @@ def show_sentences_using_words_like(substring)
   show_sentences_using_words_in words
 
 end
+
+def show_count_of_words_like(substring)
+  sentence_utils_includes
+
+  words = Word.where("text LIKE ?", "%#{substring}%").order("text")
+
+  puts "Showing counts for the words in the document like \"#{substring}\"\n\n"
+
+  if words.nil? or words.length == 0
+    abort("\t\t(none found)\n\n")
+  end
+
+
+  words.each do |word|
+
+    sentence_count = Sentence.joins(:words).where("sentences_words.word_id = ?", word).length
+
+    puts "\t#{word.text}: #{sentence_count}"
+  end
+
+  puts "\n\n"
+end

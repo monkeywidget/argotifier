@@ -152,6 +152,12 @@ List words matching a substring
 
      $ word <matching substring>
 
+List counts of sentences using words matching a substring
+---------------------------------------------------------
+
+     $ word -c <matching substring>
+
+
 List words matching a substring which have no translation
 ---------------------------------------------------------
 

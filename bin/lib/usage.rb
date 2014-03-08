@@ -15,7 +15,7 @@ def usage_dictionary
 end
 
 def usage_word
-  "\n\tword <matching substring>\n\tword -u <matching substring>\n\n"
+  "\n\tword <matching substring>\n\tword -c <matching substring to count>\n\tword -u <untranslated matching substring>\n\n"
 end
 
 def usage_sentence
