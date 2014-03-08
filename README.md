@@ -15,7 +15,7 @@ Tech Notes
 ----------
 
 - PostgreSQL
-   - Note: show_counts_of_translations_like, one of the CLI translated_word_finders has hardcoded SQL:
+   - Note: show_counts_of_translations_like, one of the CLI translated_word_finders has hardcoded SQL
 - Server side:
    - Ruby on rails
    - RESTful interface
@@ -40,6 +40,7 @@ Current state:
    - Paragraph
    - Document: create
 - models for all
+- CLI utilities in bin
 
 
 In Progress
@@ -48,21 +49,7 @@ In Progress
 See doc/Development-log.md
 
 Unfinished but prioritized:
-- CLI create Document from input file
-
-- CLI "translation foo bar" - sets translation "foo" -> "bar"
-- CLI "untranslate foo" - removes translation for "foo"
-
 - CLI output translated Document to file
-
-- CLI "dictionary save filename.csv" - saves translations
-- CLI "dictionary load filename.csv" - restores translations
-
-- CLI "translation foo" - shows all the words that are translated to "foo"
-- CLI "word foo" - shows all words like "foo", with their translations
-- CLI "word -u foo" - shows all words like "foo" that are without translations
-
-
 
 How To
 ======
