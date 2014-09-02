@@ -66,6 +66,8 @@ unimplemented specs:
 commit TBI "soon"
 -----------------
 
+- pick a random untranslated Word
+
 
 implemented but not yet committed
 ---------------------------------
@@ -78,7 +80,7 @@ Implemented and committed
 commit
 -----------------------------------------------
 
-
+- synch
 - changed column type of sentence template to "text" to fix bug
 
 
