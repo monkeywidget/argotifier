@@ -66,7 +66,8 @@ unimplemented specs:
 commit TBI "soon"
 -----------------
 
-- pick a random untranslated Word
+- fix rspec tests
+- feature: output a random untranslated Word
 
 
 implemented but not yet committed
