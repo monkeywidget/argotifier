@@ -66,6 +66,8 @@ unimplemented specs:
 commit TBI "soon"
 -----------------
 
+- fix rspec tests
+
 
 implemented but not yet committed
 ---------------------------------
@@ -78,7 +80,12 @@ Implemented and committed
 commit
 -----------------------------------------------
 
+- added random untranslated word CLI util
 
+commit
+-----------------------------------------------
+
+- synch
 - changed column type of sentence template to "text" to fix bug
 
 

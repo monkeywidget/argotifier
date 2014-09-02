@@ -1,9 +1,16 @@
 argotifier
 ==========
 
-Automatic word and phrase substitution for simple codes
+Automatic word and phrase substitution for simple codes!
 
-http://localhost:3000/pager
+- The rails app need only be running for API calls for the AJAX UI at  http://localhost:3000/pager
+- for basic load/save, editing contents, see "Use the CLI" below
+
+NOTE: For now, make sure to specify environment on every command.  Example:
+
+        $ RAILS_ENV=production bundle exec rails server
+        $ RAILS_ENV=test bundle exec rspec
+
 
 What it's for
 -------------
@@ -51,8 +58,8 @@ See doc/Development-log.md
 Unfinished but prioritized:
 - CLI output translated Document to file
 
-How To
-======
+How To: Develop & Install
+=========================
 
 Run the unit tests
 ------------------
@@ -89,6 +96,10 @@ Troubleshoot the database
 -------------------------
 
      $ /Applications/Postgres.app/Contents/MacOS/bin/psql -U argotifier argotifier_test
+
+
+How To: Use the CLI
+===================
 
 
 Load a new document to be translated from a file
@@ -151,6 +162,12 @@ List words matching a substring which have no translation
 ---------------------------------------------------------
 
      $ word -u <matching substring>
+
+
+List a random word which has no translation
+---------------------------------------------------------
+
+     $ word -r
 
 
 Show original and translated Sentences using words matching a substring

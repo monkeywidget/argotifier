@@ -1,4 +1,5 @@
-#!/usr/bin/ruby
+#!/Users/brain/.rvm/rubies/ruby-1.9.3-p448/bin/ruby
+# /usr/bin/ruby
 # 1.9 adds realpath to resolve symlinks; 1.8 doesn't
 # have this method, so we add it so we get resolved symlinks
 # and compatibility
@@ -30,6 +31,10 @@ if ARGV[0].eql? "-u"
   substring = ARGV[1]
 
   show_untranslated_words_like substring
+
+elsif ARGV[0].eql? "-r"
+
+  show_random_untranslated_word
 
 elsif ARGV[0].eql? "-c"
 

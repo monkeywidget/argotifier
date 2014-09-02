@@ -1,4 +1,17 @@
 
+def show_random_untranslated_word
+  require 'word'
+
+  puts "Showing a random untranslated word\n\n"
+
+  # TODO: there has got to be a faster way for this!
+  offset = rand(Word.count)
+  word = Word.untranslated.first(:offset => offset)
+
+  puts "\t#{word.text}\n\n"
+
+end
+
 def show_untranslated_words_like(substring)
   require 'word'
 
