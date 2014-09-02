@@ -164,6 +164,12 @@ List words matching a substring which have no translation
      $ word -u <matching substring>
 
 
+List a random word which has no translation
+---------------------------------------------------------
+
+     $ word -r
+
+
 Show original and translated Sentences using words matching a substring
 -----------------------------------------------------------------------
 

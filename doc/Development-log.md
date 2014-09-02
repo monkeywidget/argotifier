@@ -67,7 +67,6 @@ commit TBI "soon"
 -----------------
 
 - fix rspec tests
-- feature: output a random untranslated Word
 
 
 implemented but not yet committed
@@ -77,6 +76,11 @@ implemented but not yet committed
 Implemented and committed
 =========================
 
+
+commit
+-----------------------------------------------
+
+- added random untranslated word CLI util
 
 commit
 -----------------------------------------------

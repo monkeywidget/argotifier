@@ -32,6 +32,10 @@ if ARGV[0].eql? "-u"
 
   show_untranslated_words_like substring
 
+elsif ARGV[0].eql? "-r"
+
+  show_random_untranslated_word
+
 elsif ARGV[0].eql? "-c"
 
   check_argv1
