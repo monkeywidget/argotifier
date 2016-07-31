@@ -8,55 +8,46 @@ Automatic word and phrase substitution for simple codes!
 
 NOTE: For now, make sure to specify environment on every command.  Example:
 
-        $ RAILS_ENV=production bundle exec rails server
-        $ RAILS_ENV=test bundle exec rspec
+    $ RAILS_ENV=production bundle exec rails server
+    $ RAILS_ENV=test bundle exec rspec
 
 
 What it's for
 -------------
 
-A simple DB-based app, entirely RESTful (HTTP), which stores 
+A simple DB-based app, entirely RESTful (HTTP), which stores
 code word / plaintext word mappings.
 
 Tech Notes
 ----------
 
-- PostgreSQL
-   - Note: show_counts_of_translations_like, one of the CLI translated_word_finders has hardcoded SQL
-- Server side:
-   - Ruby on rails
-   - RESTful interface
-   - CLI utilities
-- JavaScript
-   - jQuery
-   - backbone.js / underscore.js
-   - require.js
-- development tools
-   - ruby: gem, bundler, rspec, rcov
-      - on OSX: rbenv
+Note: show_counts_of_translations_like, one of the CLI translated_word_finders has hardcoded SQL
 
+- PostgreSQL
+- Server side: Ruby on rails, REST.
+- CLI utilities
+- JavaScript: jQuery (soon: AngularJS), backbone.js, underscore.js, require.js
+- development tools: gem, bundler, rspec, rcov, rubocop, reek, rubycritic
 
 Development Order
 =================
 
 Current state:
-- REST interface for
-   - Word
-   - TranslatedWord
-   - Sentence
-   - Paragraph
-   - Document: create
-- models for all
-- CLI utilities in bin
 
+- REST interface for
+     - Word
+     - TranslatedWord
+     - Sentence
+     - Paragraph
+     - Document: create
+- models for all
+- CLI utilities in `bin/`
 
 In Progress
 -----------
 
-See doc/Development-log.md
+See [Development Log](man/Development-log.md)
 
-Unfinished but prioritized:
-- CLI output translated Document to file
 
 How To: Develop & Install
 =========================
@@ -64,119 +55,119 @@ How To: Develop & Install
 Run the unit tests
 ------------------
 
-     $ bundle exec rspec
+    $ bundle exec rspec
 
-For more on the tests see doc/Install-steps.md
-
+For more on the tests see [Install-steps](man/Install-steps.md)
 
 Run the server
 --------------
 
-     $ bundle exec rails server
+    $ bundle exec rails server
 
 Access the UI
 -------------
 
      http://localhost:3000/pager
 
-
 Access the REST API
 -------------------
 
-see doc/manual-api-commands.md
+see  [Manual API Commands](man/manual-api-commands.md)
 
 Set up the database
 -------------------
 
-     $ createdb -O argotifier argotifier_test
+    $ createdb -O argotifier argotifier_test
+    $ RAILS_ENV=test bundle exec rake db:test:prepare
 
-     $ RAILS_ENV=test bundle exec rake db:test:prepare
 
 Troubleshoot the database
 -------------------------
 
-     $ /Applications/Postgres.app/Contents/MacOS/bin/psql -U argotifier argotifier_test
+    $ /Applications/Postgres.app/Contents/MacOS/bin/psql -U argotifier argotifier_test
 
 
 How To: Use the CLI
 ===================
 
+![Argotifier Models diagram here](https://raw.githubusercontent.com/monkeywidget/argotifier/201608-refactor/man/Argotifier_Models.png "Argotifier Models")
+
 
 Load a new document to be translated from a file
 ------------------------------------------------
 
-     $ document load "New Title" <plaintext_filename.txt>
+    $ document load "New Title" <plaintext_filename.txt>
 
 
 Save a rendered translation to a file
 -------------------------------------
 
-     $ document save "Existing Title" <translation_filename.txt>
+    $ document save "Existing Title" <translation_filename.txt>
 
 
 Print the translation of a paragraph (or range)
 -----------------------------------------------
 
-     $ paragraph 1
-     $ paragraph 12 14
+    $ paragraph 1
+    $ paragraph 12 14
 
-Wraps to 80 columns
+Wraps to 80 columns!
 
 Set a new translation of a word
 -------------------------------
 
 translates every instance of "foo" to "bar"
 
-     $ translation foo bar
+    $ translation foo bar
 
 Show all the words translated to
 --------------------------------
 
 Shows every word translated to "foo," with counts
 
-     $ translation foo
+    $ translation foo
 
 
 Save the translation dictionary to file
 ---------------------------------------
 
-     $ dictionary save <filename.csv>
+    $ dictionary save <filename.csv>
 
-Load the translation dictionary form file
+Load the translation dictionary from file
 -----------------------------------------
 
-     $ dictionary load <filename.csv>
+    $ dictionary load <filename.csv>
 
 List words matching a substring
 -------------------------------
 
-     $ word <matching substring>
+    $ word <matching substring>
 
 List counts of sentences using words matching a substring
 ---------------------------------------------------------
 
-     $ word -c <matching substring>
+    $ word -c <matching substring>
 
 
 List words matching a substring which have no translation
 ---------------------------------------------------------
 
-     $ word -u <matching substring>
+    $ word -u <matching substring>
 
 
 List a random word which has no translation
 ---------------------------------------------------------
 
-     $ word -r
+    $ word -r
 
 
 Show original and translated Sentences using words matching a substring
------------------------------------------------------------------------
+----------------------------------------------------------------------
 
-     $ sentence <matching substring>
+    $ sentence <matching substring>
 
 
 Show translated Sentences using translated words matching a substring
 ---------------------------------------------------------------------
 
-     $ sentence -t <matching substring>
+    $ sentence -t <matching substring>

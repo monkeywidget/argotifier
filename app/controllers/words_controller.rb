@@ -29,7 +29,7 @@ class WordsController < ApplicationController
 
   # POST a new
   def create
-    @word = Word.find_or_create_by_text(params[:text])
+    @word = Word.find_or_create_by(text: params[:text])
 
     respond_to do |format|
       if @word.save

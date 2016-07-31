@@ -10,15 +10,24 @@ https://github.com/monkeywidget/argotifier/
 CURRENT GOAL
 ============
 
-(see below under "soon")
+Goals for this feature branch
+-----------------------------
+
+- rehabilitate for new rails and all other gems
+- new Thor CLI, refactor
+- gem refactor
+  - make gem for models
+  - CLI: make a second gem
+- document models -- https://github.com/voormedia/rails-erd ?
+
+Next feature:
+- deploy to AWS or PWS
+- new AngularJS client for reading
 
 commit TBI "later"
 ------------------
 
-- fix PG error / rspec tests
-- REST tests for sentences model and controller
-- REST tests for paragraphs model and controller
-- REST tests for documents model and controller
+- port/deploy to AWS
 
 - assertions in jasmine tests for stories
 - view page jasmine tests and mock data
@@ -38,11 +47,6 @@ commit TBI "later"
 - view: widget for translation search (word only)
 - view: widget for translation creation/edit/remove (word only)
 
-- port/deploy to AWS
-
-- code coverage for rspec (rcov)
-http://old.rspec.info/documentation/tools/rcov.html
-
 - code coverage for jasmine
 JSCover:
 - http://blog.johnryding.com/post/46757192364/javascript-code-coverage-with-phantomjs-jasmine-and
@@ -50,34 +54,44 @@ JSCover:
 
 - move existing routing spec to non-controller area
 - UI: translated_word search should handle multiple results (include rspec)
-- sentence controller tests
-
-unimplemented specs:
-- Sentence#create works (controller)
-
-- Sentence#create rejects a nonexistent paragraph
-- SentencesController#create both creates and tokenizes the sentence
-- ParagraphsController#show should include original sentences
-- ParagraphsController#show should include translated sentences
-- Document add some examples to (or delete) /Users/brain/Documents/workspace/argotifier/spec/models/document_model_spec.rb
-- Paragraph#create rejects a nonexistent document
-
-
-commit TBI "soon"
------------------
-
-- fix rspec tests
-
 
 implemented but not yet committed
 ---------------------------------
 
 
-Implemented and committed
+v2.x Implemented and committed
+=========================
+
+Generate again for comparison
+-----------------------------
+
+preceded with `bundle exec`:
+- `rails generate rspec:install`
+- `rails generate model word text:string`
+- `rails generate model translated_word translation:string word:belongs_to`
+- `rails generate model sentence word_template:string`
+- ?? paragraph  `rails generate model paragraph document_index:integer document:belongs_to sentence:has_many`
+- `rails generate model document title:string`
+
+PostGreSQL on OSX
+-----------------
+
+Generate the app for `pg`
+
+    rails new myapp --database=postgresql
+
+
+Install the `pg` gem:
+
+    gem install pg -v '0.18.4' \
+      --  --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
+
+
+v1.x Implemented and committed
 =========================
 
 
-commit
+commit ??
 -----------------------------------------------
 
 - added random untranslated word CLI util
@@ -255,5 +269,3 @@ javscript/jquery interface working:
 - view page
 - next/prev page
 - view - goto page
-
-

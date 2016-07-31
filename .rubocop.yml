@@ -1,0 +1,19 @@
+# do not check for utf stamp
+Encoding:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+CaseIndentation:
+  Enabled: false
+
+LineLength:
+  Enabled: true
+  Max: 128
+
+CyclomaticComplexity:
+  Max: 10
+
+MethodLength:
+  Max: 25

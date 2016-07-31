@@ -3,13 +3,15 @@ class Word < ActiveRecord::Base
   validates :text, :presence => true
   validates :text, :length => { :minimum => 1 }
 
-  scope :untranslated, {
+  scope :untranslated, -> {
+      where active: true,
       :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
       :conditions => "tw.word_id IS NULL",
       :select     => "DISTINCT words.*"
   }
 
-  scope :translated, {
+  scope :translated, -> {
+      where active: true,
       :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
       :conditions => "tw.word_id IS NOT NULL",
       :select     => "DISTINCT words.*"
