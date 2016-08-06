@@ -1,24 +1,10 @@
-# README
+argotifier
+==========
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Automatic word and phrase substitution for simple codes!
 
-Things you may want to cover:
+Running notes
+-------------
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- The rails app need only be running for API calls for the AJAX UI at  http://localhost:3000/pager
+- for basic load/save, editing contents, see "Use the CLI" below
