@@ -1,5 +1,0 @@
-
-// PageDocument
-// lastSentenceIndexInDocument
-// lastPageIndexInDocument
-// sentencesPerPage

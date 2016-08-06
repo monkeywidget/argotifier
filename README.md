@@ -1,173 +1,24 @@
-argotifier
-==========
+# README
 
-Automatic word and phrase substitution for simple codes!
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-- The rails app need only be running for API calls for the AJAX UI at  http://localhost:3000/pager
-- for basic load/save, editing contents, see "Use the CLI" below
+Things you may want to cover:
 
-NOTE: For now, make sure to specify environment on every command.  Example:
+* Ruby version
 
-    $ RAILS_ENV=production bundle exec rails server
-    $ RAILS_ENV=test bundle exec rspec
+* System dependencies
 
+* Configuration
 
-What it's for
--------------
+* Database creation
 
-A simple DB-based app, entirely RESTful (HTTP), which stores
-code word / plaintext word mappings.
+* Database initialization
 
-Tech Notes
-----------
+* How to run the test suite
 
-Note: show_counts_of_translations_like, one of the CLI translated_word_finders has hardcoded SQL
+* Services (job queues, cache servers, search engines, etc.)
 
-- PostgreSQL
-- Server side: Ruby on rails, REST.
-- CLI utilities
-- JavaScript: jQuery (soon: AngularJS), backbone.js, underscore.js, require.js
-- development tools: gem, bundler, rspec, rcov, rubocop, reek, rubycritic
+* Deployment instructions
 
-Development Order
-=================
-
-Current state:
-
-- REST interface for
-     - Word
-     - TranslatedWord
-     - Sentence
-     - Paragraph
-     - Document: create
-- models for all
-- CLI utilities in `bin/`
-
-In Progress
------------
-
-See [Development Log](man/Development-log.md)
-
-
-How To: Develop & Install
-=========================
-
-Run the unit tests
-------------------
-
-    $ bundle exec rspec
-
-For more on the tests see [Install-steps](man/Install-steps.md)
-
-Run the server
---------------
-
-    $ bundle exec rails server
-
-Access the UI
--------------
-
-     http://localhost:3000/pager
-
-Access the REST API
--------------------
-
-see  [Manual API Commands](man/manual-api-commands.md)
-
-Set up the database
--------------------
-
-    $ createdb -O argotifier argotifier_test
-    $ RAILS_ENV=test bundle exec rake db:test:prepare
-
-
-Troubleshoot the database
--------------------------
-
-    $ /Applications/Postgres.app/Contents/MacOS/bin/psql -U argotifier argotifier_test
-
-
-How To: Use the CLI
-===================
-
-![Argotifier Models diagram here](https://raw.githubusercontent.com/monkeywidget/argotifier/201608-refactor/man/Argotifier_Models.png "Argotifier Models")
-
-
-Load a new document to be translated from a file
-------------------------------------------------
-
-    $ document load "New Title" <plaintext_filename.txt>
-
-
-Save a rendered translation to a file
--------------------------------------
-
-    $ document save "Existing Title" <translation_filename.txt>
-
-
-Print the translation of a paragraph (or range)
------------------------------------------------
-
-    $ paragraph 1
-    $ paragraph 12 14
-
-Wraps to 80 columns!
-
-Set a new translation of a word
--------------------------------
-
-translates every instance of "foo" to "bar"
-
-    $ translation foo bar
-
-Show all the words translated to
---------------------------------
-
-Shows every word translated to "foo," with counts
-
-    $ translation foo
-
-
-Save the translation dictionary to file
----------------------------------------
-
-    $ dictionary save <filename.csv>
-
-Load the translation dictionary from file
------------------------------------------
-
-    $ dictionary load <filename.csv>
-
-List words matching a substring
--------------------------------
-
-    $ word <matching substring>
-
-List counts of sentences using words matching a substring
----------------------------------------------------------
-
-    $ word -c <matching substring>
-
-
-List words matching a substring which have no translation
----------------------------------------------------------
-
-    $ word -u <matching substring>
-
-
-List a random word which has no translation
----------------------------------------------------------
-
-    $ word -r
-
-
-Show original and translated Sentences using words matching a substring
-----------------------------------------------------------------------
-
-    $ sentence <matching substring>
-
-
-Show translated Sentences using translated words matching a substring
----------------------------------------------------------------------
-
-    $ sentence -t <matching substring>
+* ...
