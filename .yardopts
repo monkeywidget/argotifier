@@ -1,2 +1,2 @@
 --no-private
---files ./man/App-Stories.md,./man/Development-log.md
+--files ./man/App-Stories.md,./man/Development-log.md,./man/Developer_reference.md,./man/Install-steps.md,./man/Command_reference.md
