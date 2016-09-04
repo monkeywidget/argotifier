@@ -46,12 +46,17 @@ class Word < ActiveRecord::Base
     end
   end
 
+  # convert to a template
+  # @param word [String] a word to categorize
+  # @return [String] a template in [xcC]
   def as_template
     Word.to_template(text)
   end
 
+  # Render with the template
+  # @param template [String] a template in [xcC]
+  # @return [String] the rendered word
   def rendered_with (template)
     Word.render_text_with_template(text, template)
   end
-
 end
