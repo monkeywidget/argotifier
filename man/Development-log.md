@@ -13,6 +13,7 @@ CURRENT GOAL
 Immediate Goal
 --------------
 
+- tag master with earlier version 
 - get working rspec for Word model
 
 Goals for this feature branch
