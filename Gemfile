@@ -53,6 +53,8 @@ group :development do
 
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  
   gem 'rails-controller-testing'
   gem 'rubocop'
   gem 'reek'

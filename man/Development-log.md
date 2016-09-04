@@ -10,11 +10,17 @@ https://github.com/monkeywidget/argotifier/
 CURRENT GOAL
 ============
 
+Immediate Goal
+--------------
+
+- get working rspec for Word model
+
 Goals for this feature branch
 -----------------------------
 
 - rehabilitate for new rails and all other gems
-  - consolidate migrations and clean up models - http://guides.rubyonrails.org/v4.2/association_basics.html
+  - consolidate migrations and clean up models
+  - http://guides.rubyonrails.org/v4.2/association_basics.html
 - new Thor CLI, refactor
 - gem refactor
   - make gem for models
