@@ -20,22 +20,20 @@ Goals for this feature branch
 -----------------------------
 
 - rehabilitate for new rails and all other gems
-- consolidate migrations a la http://guides.rubyonrails.org/v4.2/association_basics.html
-- new Thor CLI, refactor
 - routing specs
+- consolidate migrations a la http://guides.rubyonrails.org/v4.2/association_basics.html
+- remaining CLI subcommands in Thor, refactor
 - gem refactor
   - make gem for models
   - CLI: make a second gem
 - document models -- https://github.com/voormedia/rails-erd ?
 
-Next feature:
-- deploy to AWS or PWS
-- new AngularJS client for reading
-
 To Do "later" = Not now
 ------------------
 
-- UI features
+- deploy to AWS or PWS
+- new AngularJS client for reading
+- UI features from previous iteration
     - javascript rewrite, with jasmine tests
     - web API for paragraph, range of paragraphs, document, page with word index and tests
     - view: widget for translation search (word only)
@@ -48,6 +46,7 @@ To Do "later" = Not now
 v2.x Implemented and committed
 =========================
 
+- Thor CLI framework
 - rubocop running and code is in compliance
 - migrations consolidated and tested
 
