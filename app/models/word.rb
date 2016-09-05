@@ -2,13 +2,13 @@ class Word < ActiveRecord::Base
   has_many :sentences, :through => :sentence_words
   validates :text, :presence => true
   validates :text, :length => { :minimum => 1 }
-  # 
+
   # scope :untranslated, -> {
   #     :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
   #     :conditions => "tw.word_id IS NULL",
   #     :select     => "DISTINCT words.*"
   # }
-  #
+
   # scope :translated, -> {
   #     :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
   #     :conditions => "tw.word_id IS NOT NULL",

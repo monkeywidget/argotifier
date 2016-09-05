@@ -1,37 +1,46 @@
-require 'spec_helper'
-
-describe Word do
-
-  describe "#create" do
-    it "saves basic text" do
-      simple_word = Word.create!(text: "foo")
-      expect(simple_word.text).to eq("foo")
-    end
-
-    it "rejects null text" do
-      expect{Word.create!(text: "")}.to raise_error(ActiveRecord::RecordInvalid)
-    end
-
-    it "rejects no create args" do
+describe Word, :type => :model do
+  describe :create do
+    it 'rejects no create args' do
       expect{Word.create!()}.to raise_error(ActiveRecord::RecordInvalid)
     end
 
-    it "does not create words with duplicate text" do
-      first_word = Word.create!(text: "foo")
-      expect(Word.count()).to eq(1)
-      expect(Word.find_or_create_by_text("foo")).to eq(first_word)
-      expect(Word.count()).to eq(1)
-      # expect(Word.find_or_create_by_text("bar")).to_not eq(first_word)
+    it 'rejects null text' do
+      expect { Word.create!(text: '') }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
-    it "creates words with nonmatching find/create" do
-      first_word = Word.create!(text: "foo")
+    it 'saves basic text' do
+      word_text = 'foo1'
+      simple_word = Word.create!(text: word_text)
+      expect(simple_word.text).to eq(word_text)
+    end
+
+    it 'rejects duplicate text' do
+      word_text = 'foo2'
+      first_word = Word.create!(text: word_text)
+      expect { Word.create!(text: word_text) }.to raise_error(ActiveRecord::RecordNotUnique)
+    end
+  end
+
+  describe :find_or_create_by do
+    it 'does not create words with duplicate text' do
+      word_text = 'foo3'
+      first_word = Word.create!(text: word_text)
       expect(Word.count()).to eq(1)
-      expect(Word.find_or_create_by_text("bar")).to_not eq(first_word)
+      expect(Word.find_or_create_by!(text: word_text)).to eq(first_word)
+      expect(Word.count()).to eq(1)
+      expect(Word.find_or_create_by!(text: word_text)).to eq(first_word)
+    end
+
+    it 'creates words with nonmatching find/create' do
+      word_text = 'foo4'
+      word_text_different = 'foo5'
+      first_word = Word.create!(text: word_text)
+      expect(Word.count()).to eq(1)
+      expect(Word.find_or_create_by!(text: word_text_different)).to_not eq(first_word)
       expect(Word.count()).to eq(2)
     end
   end
-  # 
+
   # describe "#in_argot" do
   #   before do
   #     @word_foo_1 = FactoryGirl.create(:word, text: "foo", id: "1")
