@@ -68,7 +68,8 @@
 #       it "maintains Sentence order" do
 #         expect(@paragraph.sentences.first.original).to eq("\"Beware the Jabberwock, my son!")
 #         expect(@paragraph.sentences[1].original).to eq("\n      The jaws that bite, the claws that catch!")
-#         expect(@paragraph.sentences[2].original).to eq("\n      Beware the Jubjub bird, and shun\n      The frumious Bandersnatch!\"")
+#         expect(@paragraph.sentences[2].original).to eq("\n      Beware the Jubjub bird, and shun\n" \
+#                                                        "      The frumious Bandersnatch!\"")
 #       end
 #
 #     end

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-describe Word, :type => :model do
+describe Word, type: :model do
   describe :create do
     it 'rejects no create args' do
       expect { Word.create! }.to raise_error(ActiveRecord::RecordInvalid)

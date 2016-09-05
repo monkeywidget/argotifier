@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Routes, in order:
 Rails.application.routes.draw do
   # this has to go ABOVE the default!

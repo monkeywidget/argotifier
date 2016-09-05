@@ -105,7 +105,8 @@
 #     end
 #
 #     it "handles escaped weirdness gracefully"
-#     # "Beware the Jabberwock, my son!\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\nand shun The frumious Bandersnatch!"
+#     # "Beware the Jabberwock, my son!\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\n" \
+#        "and shun The frumious Bandersnatch!"
 #
 #   end
 #

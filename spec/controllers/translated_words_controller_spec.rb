@@ -21,7 +21,8 @@
 # =begin
 #     # TODO: test is broken; functionality works
 #     it "rejects association with nonexistent word" do
-#       expect{post :create, :format => :json, :word => "foo", :translation => "bar"}.to raise_error(ActiveRecord::RecordInvalid)
+#       expect{post :create, :format => :json, :word => "foo", :translation => "bar"}.to
+#                                                               raise_error(ActiveRecord::RecordInvalid)
 #       # expect{TranslatedWord.find_by_translation("bar")}.to raise_error(ActiveRecord::RecordInvalid)
 #     end
 # =end

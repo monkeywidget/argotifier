@@ -19,7 +19,8 @@
 #     end
 #
 #     # didn't work, so add a test for this:
-#     # curl -i -X POST  -H "Content-type: application/json" -d '{"text":"The QUICK brown fox jumped over the lazy-dogs!","paragraph":"1","paragraph_index":"1"}' http://localhost:3000/sentences/
+#     # curl -i -X POST  -H "Content-type: application/json" -d '{"text":"The QUICK brown fox jumped over the lazy-dogs!",
+#                                                     "paragraph":"1","paragraph_index":"1"}' http://localhost:3000/sentences/
 #
 #     # paragraph validation in the model specs
 #
