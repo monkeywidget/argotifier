@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class WordController < ApplicationController
   def count
   end

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 describe Word, :type => :model do
   describe :create do
     it 'rejects no create args' do
-      expect{Word.create!()}.to raise_error(ActiveRecord::RecordInvalid)
+      expect { Word.create! }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it 'rejects null text' do
@@ -10,13 +11,12 @@ describe Word, :type => :model do
 
     it 'saves basic text' do
       word_text = 'foo1'
-      simple_word = Word.create!(text: word_text)
-      expect(simple_word.text).to eq(word_text)
+      expect(Word.create!(text: word_text).text).to eq(word_text)
     end
 
     it 'rejects duplicate text' do
       word_text = 'foo2'
-      first_word = Word.create!(text: word_text)
+      Word.create!(text: word_text)
       expect { Word.create!(text: word_text) }.to raise_error(ActiveRecord::RecordNotUnique)
     end
   end
@@ -25,9 +25,9 @@ describe Word, :type => :model do
     it 'does not create words with duplicate text' do
       word_text = 'foo3'
       first_word = Word.create!(text: word_text)
-      expect(Word.count()).to eq(1)
+      expect(Word.count).to eq(1)
       expect(Word.find_or_create_by!(text: word_text)).to eq(first_word)
-      expect(Word.count()).to eq(1)
+      expect(Word.count).to eq(1)
       expect(Word.find_or_create_by!(text: word_text)).to eq(first_word)
     end
 
@@ -35,9 +35,9 @@ describe Word, :type => :model do
       word_text = 'foo4'
       word_text_different = 'foo5'
       first_word = Word.create!(text: word_text)
-      expect(Word.count()).to eq(1)
+      expect(Word.count).to eq(1)
       expect(Word.find_or_create_by!(text: word_text_different)).to_not eq(first_word)
-      expect(Word.count()).to eq(2)
+      expect(Word.count).to eq(2)
     end
   end
 
@@ -116,6 +116,4 @@ describe Word, :type => :model do
   #     expect(@word_foo_1.rendered_with('C')).to eq("FOO")
   #   end
   # end
-
-
 end

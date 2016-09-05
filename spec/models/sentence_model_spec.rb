@@ -1,5 +1,4 @@
-# require 'spec_helper'
-#
+# frozen_string_literal: true
 # describe Sentence do
 #   before do
 #     @paragraph = FactoryGirl.create(:paragraph)

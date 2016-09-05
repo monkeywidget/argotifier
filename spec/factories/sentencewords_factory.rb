@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # # require 'sentenceword.rb'
 #
 # # the SentenceWord class is a little nonstandard, so we have to explicitly define it

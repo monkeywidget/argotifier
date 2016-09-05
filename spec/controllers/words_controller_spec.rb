@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # # http://everydayrails.com/2012/04/07/testing-series-rspec-controllers.html
 # # Devise: https://github.com/plataformatec/devise/wiki/How-To:-Controllers-tests-with-Rails-3-(and-rspec)
 # # FactoryGirl http://stackoverflow.com/questions/13620919/testing-rails-controller-with-rspec-value-is-same-but-object-id-is-different

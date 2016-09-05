@@ -17,3 +17,7 @@ CyclomaticComplexity:
 
 MethodLength:
   Max: 25
+
+AllCops:
+  Excludes:
+    - 'db/schema.rb'

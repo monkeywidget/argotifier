@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 class Word < ActiveRecord::Base
-  has_many :sentences, :through => :sentence_words
-  validates :text, :presence => true
-  validates :text, :length => { :minimum => 1 }
+  has_many :sentences, through: :sentence_words
+  validates :text, presence: true
+  validates :text, length: { minimum: 1 }
 
   # scope :untranslated, -> {
   #     :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
@@ -15,24 +16,24 @@ class Word < ActiveRecord::Base
   #     :select     => "DISTINCT words.*"
   # }
 
-  #def in_argot
+  # def in_argot
   #  TranslatedWord.find_by_word_id(self).translation || @text
-  #end
+  # end
 
-  # TODO move to concern?
+  # @TODO move to concern?
   class << self
     # @param word [String] a word to categorize
     # @return [String] a template in [xcC]
     def to_template(word)
       return 'x' if word[0] !~ /[A-Z]/
       return 'C' if word =~ /^[A-Z][A-Z]+$/
-      return 'c'
+      'c'
     end
 
     # @param word [String] the word to render
     # @param template [String] a template in [xcC]
     # @return [String] the rendered word
-    def render_text_with_template ( word, template )
+    def render_text_with_template(word, template)
       case template
         when 'x'
           word.downcase
@@ -56,7 +57,7 @@ class Word < ActiveRecord::Base
   # Render with the template
   # @param template [String] a template in [xcC]
   # @return [String] the rendered word
-  def rendered_with (template)
+  def rendered_with(template)
     Word.render_text_with_template(text, template)
   end
 end

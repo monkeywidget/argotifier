@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateV1Schema < ActiveRecord::Migration
   def change
     create_table :words do |t|
@@ -5,7 +6,7 @@ class CreateV1Schema < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :words, :text, :unique => true
+    add_index :words, :text, unique: true
 
     create_table :translated_words do |t|
       t.string :translation
@@ -22,9 +23,9 @@ class CreateV1Schema < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :sentences_words, :id => false do |t|
-      t.integer :sentence_id, :null => false
-      t.integer :word_id, :null => false
+    create_table :sentences_words, id: false do |t|
+      t.integer :sentence_id, null: false
+      t.integer :word_id, null: false
       t.integer :sentence_index
     end
     add_index :sentences_words, [:sentence_id, :word_id]

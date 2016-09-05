@@ -1,5 +1,4 @@
-# require 'rails_helper'
-#
+# frozen_string_literal: true
 # RSpec.describe WordController, type: :controller do
 #
 #   describe "GET #count" do
