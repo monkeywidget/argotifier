@@ -6,23 +6,23 @@ https://github.com/monkeywidget/argotifier/
 - Log is in "blog order" - Most recent first!
 - Intended to record the rails- rspec- and other framework steps
 
-
 CURRENT GOAL
 ============
 
 Immediate Goal
 --------------
 
-- tag master with earlier version 
-- get working rspec for Word model
+- break out migrations into smaller pieces to appease rubocop
+- tag master branch with earlier version
+- revive other models and tests
 
 Goals for this feature branch
 -----------------------------
 
 - rehabilitate for new rails and all other gems
-  - consolidate migrations and clean up models
-  - http://guides.rubyonrails.org/v4.2/association_basics.html
+- consolidate migrations a la http://guides.rubyonrails.org/v4.2/association_basics.html
 - new Thor CLI, refactor
+- routing specs
 - gem refactor
   - make gem for models
   - CLI: make a second gem
@@ -32,43 +32,24 @@ Next feature:
 - deploy to AWS or PWS
 - new AngularJS client for reading
 
-commit TBI "later"
+To Do "later" = Not now
 ------------------
 
-- port/deploy to AWS
-
-- assertions in jasmine tests for stories
-- view page jasmine tests and mock data
-- jasmine tests: next/prev page
-- jasmine tests: goto page
-
-- search scenarios (with jasmine tests and mock data)
-- rails: search by name: word and rspec
-- rails: search by name: translated_word and rspec
-- translation scenarios (with jasmine tests and mock data)
-- rails: translated_word#update and rspec
-- rails: translated_word#delete and rspec
-
-- web API for paragraph, range of paragraphs, and document
- - and tests
-- web API for page with word index and tests
-- view: widget for translation search (word only)
-- view: widget for translation creation/edit/remove (word only)
-
-- code coverage for jasmine
-JSCover:
-- http://blog.johnryding.com/post/46757192364/javascript-code-coverage-with-phantomjs-jasmine-and
-- http://siliconforks.com/jscoverage/
-
-- move existing routing spec to non-controller area
-- UI: translated_word search should handle multiple results (include rspec)
-
-implemented but not yet committed
----------------------------------
-
+- UI features
+    - javascript rewrite, with jasmine tests
+    - web API for paragraph, range of paragraphs, document, page with word index and tests
+    - view: widget for translation search (word only)
+    - view: widget for translation creation/edit/remove (word only)
+    - code coverage for jasmine
+        - http://blog.johnryding.com/post/46757192364/javascript-code-coverage-with-phantomjs-jasmine-and
+        - http://siliconforks.com/jscoverage/
+    - translated_word search should handle multiple results
 
 v2.x Implemented and committed
 =========================
+
+- rubocop running and code is in compliance
+- migrations consolidated and tested
 
 Generate again for comparison
 -----------------------------
