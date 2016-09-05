@@ -20,44 +20,10 @@ class Word < ActiveRecord::Base
   #  TranslatedWord.find_by_word_id(self).translation || @text
   # end
 
-  # @TODO move to concern?
-  class << self
-    # @param word [String] a word to categorize
-    # @return [String] a template in [xcC]
-    def to_template(word)
-      return 'x' if word[0] !~ /[A-Z]/
-      return 'C' if word =~ /^[A-Z][A-Z]+$/
-      'c'
-    end
-
-    # @param word [String] the word to render
-    # @param template [String] a template in [xcC]
-    # @return [String] the rendered word
-    def render_text_with_template(word, template)
-      case template
-        when 'x'
-          word.downcase
-        when 'c'
-          word.capitalize
-        when 'C'
-          word.upcase
-        else
-          raise(ArgumentError, "template \'#{template}\' must be in [xcC] for \'#{word}\'")
-      end
-    end
-  end
-
-  # convert to a template
-  # @param word [String] a word to categorize
-  # @return [String] a template in [xcC]
-  def as_template
-    Word.to_template(text)
-  end
-
-  # Render with the template
+  # Render with a capitalization template
   # @param template [String] a template in [xcC]
   # @return [String] the rendered word
-  def rendered_with(template)
-    Word.render_text_with_template(text, template)
+  def render(template)
+    WordTemplate.new(template).render(@text)
   end
 end
