@@ -60,6 +60,7 @@ group :development do
   gem 'rubocop'
   gem 'reek'
   gem 'rubycritic'
+  gem 'simplecov', '~> 0.7'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
