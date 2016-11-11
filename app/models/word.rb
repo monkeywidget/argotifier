@@ -16,12 +16,14 @@ class Word < ActiveRecord::Base
   #     :select     => "DISTINCT words.*"
   # }
 
-  # def in_argot
-  #  TranslatedWord.find_by_word_id(self).translation || @text
-  # end
+  # @return [String] the translation, or the original text if there is none
+  def in_argot
+    argot_word = TranslatedWord.find_by(word: self)
+    argot_word.nil? ? text : argot_word.translation
+  end
 
   # Render with a capitalization template
-  # @param template [String] a template in [xcC]
+  # @param template [String] a template in (xcC)
   # @return [String] the rendered word
   def render(template)
     WordTemplate.new(template).render(@text)

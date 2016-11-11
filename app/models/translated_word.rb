@@ -5,5 +5,4 @@ class TranslatedWord < ActiveRecord::Base
 
   validates :translation, :presence => true
   validates :translation, :length => { :minimum => 1 }
-
 end
