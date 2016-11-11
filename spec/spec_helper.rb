@@ -56,7 +56,8 @@ minimum_acceptable_coverage = 66 # set this % to your desired level of coverage
 SimpleCov.at_exit do
   SimpleCov.result.format!
   if SimpleCov.result.covered_percent < minimum_acceptable_coverage
-    LOG.fatal('not enough code coverage!')
+    puts 'not enough code coverage!'
+    # LOG.fatal('not enough code coverage!')
     exit(1)
   end
 end

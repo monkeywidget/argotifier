@@ -30,6 +30,8 @@ class WordTemplate
   # @param text [String] the word to render
   # @return [String] the rendered word
   def render(text)
+    raise(ArgumentError, "tried to render empty text \'#{text}\'") if text.nil? || text.empty?
+
     case @template
     when 'x'
       text.downcase

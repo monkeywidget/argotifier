@@ -3,7 +3,7 @@
 
 FactoryGirl.define do
   factory :translated_word do
-    translation "MyString"
+    translation 'testtranslation'
     word nil
   end
 end
