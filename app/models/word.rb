@@ -23,9 +23,9 @@ class Word < ActiveRecord::Base
   end
 
   # Render with a capitalization template
-  # @param template [String] a template in (xcC)
+  # @param template [String] a template like one of {x,c,C}
   # @return [String] the rendered word
   def render(template)
-    WordTemplate.new(template).render(@text)
+    WordTemplate.new(template).render(text)
   end
 end

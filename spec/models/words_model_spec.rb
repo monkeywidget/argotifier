@@ -55,66 +55,88 @@ describe Word, type: :model do
     end
 
     it 'prints itself if there is no matching TranslatedWord' do
-      puts "debug text: #{@word_foo_2.text}"
-      puts "debug trans: #{@word_foo_2.in_argot}"
       expect(@word_foo_2.in_argot).to eq('baz')
     end
   end
 
-  # describe '#as_template' do
-  #
-  #   it 'converts a all-lowercased word to 'x'' do
-  #     @word_foo_1 = FactoryGirl.create(:word, text: 'fOo', id: '1')
-  #     expect(@word_foo_1.as_template).to eq('x')
-  #   end
-  #
-  #   it 'converts an initially-uppercased word to 'c'' do
-  #     @word_foo_1 = FactoryGirl.create(:word, text: 'Foo', id: '1')
-  #     expect(@word_foo_1.as_template).to eq('c')
-  #   end
-  #
-  #   it 'converts a all-uppercased word to 'C'' do
-  #     @word_foo_1 = FactoryGirl.create(:word, text: 'FOO', id: '1')
-  #     expect(@word_foo_1.as_template).to eq('C')
-  #   end
-  #
-  #   it 'converts a mixed-cased, non-initially capitalized word to 'x'' do
-  #     @word_foo_1 = FactoryGirl.create(:word, text: 'foo', id: '1')
-  #     expect(@word_foo_1.as_template).to eq('x')
-  #   end
-  #
-  #   it 'converts any hyphenated word, regardless of case, to 'x'' do
-  #     @word_foo_1 = FactoryGirl.create(:word, text: 'foo-bar', id: '1')
-  #     @word_foo_2 = FactoryGirl.create(:word, text: 'Foo-bar', id: '2')
-  #     @word_foo_3 = FactoryGirl.create(:word, text: 'Foo-Bar', id: '3')
-  #
-  #     expect(@word_foo_1.as_template).to eq('x')
-  #     expect(@word_foo_2.as_template).to eq('x')
-  #     expect(@word_foo_3.as_template).to eq('x')
-  #   end
-  #
-  #
-  # end
-  #
-  # describe '#rendered_with' do
-  #   before do
-  #     @word_foo_1 = FactoryGirl.create(:word, text: 'fOo', id: '1')
-  #   end
-  #
-  #   it 'rejects a call with an invalid template option' do
-  #     expect{@word_foo_1.rendered_with('A')}.to raise_error(ArgumentError)
-  #   end
-  #
-  #   it 'renders word with 'x' as all-lowercase' do
-  #     expect(@word_foo_1.rendered_with('x')).to eq('foo')
-  #   end
-  #
-  #   it 'renders word with 'c' as initially-uppercased' do
-  #     expect(@word_foo_1.rendered_with('c')).to eq('Foo')
-  #   end
-  #
-  #   it 'renders word with 'C' as all-uppercased' do
-  #     expect(@word_foo_1.rendered_with('C')).to eq('FOO')
-  #   end
-  # end
+  describe '#render' do
+    # describe '#render' do
+    #   before do
+    #     @word_foo_1 = FactoryGirl.create(:word, text: 'fOo', id: '1')
+    #   end
+    #
+    #   it 'rejects a call with an invalid template option' do
+    #     expect{@word_foo_1.rendered_with('A')}.to raise_error(ArgumentError)
+    #   end
+    #
+    #   it 'renders word with 'x' as all-lowercase' do
+    #     expect(@word_foo_1.rendered_with('x')).to eq('foo')
+    #   end
+    #
+    #   it 'renders word with 'c' as initially-uppercased' do
+    #     expect(@word_foo_1.rendered_with('c')).to eq('Foo')
+    #   end
+    #
+    #   it 'renders word with 'C' as all-uppercased' do
+    #     expect(@word_foo_1.rendered_with('C')).to eq('FOO')
+    #   end
+    # end
+
+  end
+end
+
+describe WordTemplate, type: :model do
+  let(:lower_case_word) { FactoryGirl.create(:word, text: 'fOo', id: '1') }
+  let(:capitalized_word) { FactoryGirl.create(:word, text: 'Bar', id: '2') }
+  let(:all_caps_word) { FactoryGirl.create(:word, text: 'BAZ', id: '3') }
+  let(:camel_case_word) { FactoryGirl.create(:word, text: 'variableName', id: '4') }
+  let(:hyphenated_capitalized_word) { FactoryGirl.create(:word, text: 'Rimsky-Korsakov', id: '5') }
+  let(:hyphenated_uc_word) { FactoryGirl.create(:word, text: 'BATZ-MARU', id: '6') }
+  let(:hyphenated_lc_word) { FactoryGirl.create(:word, text: 'jiggly-puff', id: '7') }
+  let(:hyphenated_mixed_word) { FactoryGirl.create(:word, text: 'Sar-U-man', id: '8') }
+
+  # 'GARPL4Y'
+
+  describe '#initialize' do
+    it 'returns a WordTemplate' do
+      expect(WordTemplate.new('x')).to be_a WordTemplate
+    end
+
+    it 'raises on a invalid template' do
+      expect { WordTemplate.new('xc') }.to raise_error ArgumentError
+    end
+  end
+
+  describe '#for' do
+    it 'converts a all-lowercased word to template x' do
+       expect(WordTemplate.for(lower_case_word.text).template).to eq('x')
+    end
+
+    it 'converts an initially-uppercased word to template c' do
+      expect(WordTemplate.for(capitalized_word.text).template).to eq('c')
+    end
+
+    it 'converts a all-uppercased word to template C' do
+      expect(WordTemplate.for(all_caps_word.text).template).to eq('C')
+    end
+
+    it 'converts a mixed-cased, non-initially capitalized word to template x' do
+      expect(WordTemplate.for(camel_case_word.text).template).to eq('x')
+    end
+
+    it 'converts any hyphenated word, regardless of case, to template x' do
+      [ hyphenated_capitalized_word,
+        hyphenated_uc_word,
+        hyphenated_lc_word,
+        hyphenated_mixed_word].each do |test_word|
+          expect(WordTemplate.for(test_word.text).template).to eq('x')
+      end
+    end
+  end
+
+  # remaining tests in Word
+  describe '#render' do
+    it 'raises on an empty parameter'
+    it 'raises on a bad template'
+  end
 end
