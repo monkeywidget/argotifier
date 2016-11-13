@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-# describe Paragraph do
+describe Paragraph do
 #
 #   before do
 #     @sample_paragraph_text = "\"Beware the Jabberwock, my son!
@@ -129,4 +129,4 @@
 #
 #   end # renderer
 #
-# end
+end
