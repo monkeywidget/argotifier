@@ -48,7 +48,6 @@ describe Sentence do
       Sentence.create!(paragraph: paragraph, paragraph_index: 1)
       expect{Sentence.create!(paragraph: paragraph, paragraph_index: 1)}.to raise_error(ActiveRecord::RecordInvalid)
     end
-    #     it 'rejects a nonexistent paragraph'
   end
 
   #   describe '#tokenize' do

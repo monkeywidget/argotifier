@@ -12,6 +12,8 @@ class Sentence < ActiveRecord::Base
   # http://stackoverflow.com/questions/6619333/createing-associated-record-in-before-create-callback
   # after_save convert_text_to_word_template
 
+  # intended usage: in Paragraph
+  # Sentence.parse_and_create(text_here, this)
   class << self
     # - create a new Sentence record from the given original text
     # - add it to the paragraph provided
