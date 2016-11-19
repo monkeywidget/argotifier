@@ -28,7 +28,6 @@ class Sentence < ActiveRecord::Base
   # @param [String] sentence_text the text, with punctuation, of the original sentence
   def set_text(sentence_text)
     raise ArgumentError.new("Tried to tokenize invalid text for Sentence #{id}") if sentence_text.nil? || sentence_text.empty?
-
     tokenize(sentence_text)
     save
   end
