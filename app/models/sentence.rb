@@ -24,16 +24,12 @@ class Sentence < ActiveRecord::Base
   end
 
   # - tokenizes the sentence, saving the punctuation
-  # - creates or linking any Words present
+  # - creates or links any Words present
   # @param [String] sentence_text the text, with punctuation, of the original sentence
-  def set_text(sentence_text)
+  def text=(sentence_text)
     raise ArgumentError.new("Tried to tokenize invalid text for Sentence #{id}") if sentence_text.nil? || sentence_text.empty?
-    tokenize(sentence_text)
+    # tokenize(sentence_text)
     save
-  end
-
-  def tokenize(text)
-    puts 'bleh'
   end
 
   #:SentenceTokenizer.new(sentence_text).tokenize:

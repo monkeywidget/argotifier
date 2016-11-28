@@ -50,11 +50,11 @@ describe Sentence do
     end
   end
 
-  #   describe '#tokenize' do
-  #     it 'rejects invalid text' do
-  #       sentence = Sentence.create!(paragraph: @paragraph, paragraph_index: 1)
-  #       expect {sentence.tokenize('')}.to raise_error(ArgumentError)
-  #     end
+  describe '#text=' do
+    it 'rejects invalid text' do
+      sentence = Sentence.create!(paragraph: paragraph, paragraph_index: 1)
+      expect {sentence.text=('')}.to raise_error(ArgumentError)
+    end
   #
   #     it 'creates Word objects' do
   #       expect(Word.count).to eq(0)
@@ -101,7 +101,7 @@ describe Sentence do
   #     # 'Beware the Jabberwock, my son!\nThe jaws that bite, the claws that catch! Beware the Jubjub bird,\n' \
   #        'and shun The frumious Bandersnatch!'
   #
-  #   end
+  end
   #
   #   describe 'translation rendering' do
   #
