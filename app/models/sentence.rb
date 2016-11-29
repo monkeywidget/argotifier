@@ -23,25 +23,40 @@ class Sentence < ActiveRecord::Base
     end
   end
 
-  # - tokenizes the sentence, saving the punctuation
+  # - tokenizes the sentence, saving the punctuation in word_template
   # - creates or links any Words present
   # @param [String] sentence_text the text, with punctuation, of the original sentence
   def text=(sentence_text)
     raise ArgumentError.new("Tried to tokenize invalid text for Sentence #{id}") if sentence_text.nil? || sentence_text.empty?
-    # tokenize(sentence_text)
+
+    @word_template = tokenize(sentence_text)
     save
   end
 
-  #:SentenceTokenizer.new(sentence_text).tokenize:
-    # words_list, notwords_list = separate_words_from_nonword_characters(sentence_text)
-    # find_or_create_words_in(words_list)
-    #
-    # # do this one last because it destroys the arrays (via shift)
-    # create_word_template!(words_list, notwords_list)
-    #
-    # raise AssertionError.new('Sentence didn\'t create word template!') if word_template.nil? || word_template.empty?
-    #
-    #
+  # - creates or links any Words present
+  # @param [String] sentence_text the text, with punctuation, of the original sentence
+  # @return [String] the sentence template
+  def tokenize(sentence_text)
+    template = ''
+    string_scanner = StringScanner.new(sentence_text)
+
+    while ! string_scanner.eos? do
+      template << templatize(string_scanner[:word_text]) if string_scanner.scan(/(?<word_text>[\w\']+)/)
+      template << string_scanner[:nonword_text] if string_scanner.scan(/(?<nonword_text>\W+)/)
+    end
+
+    template
+  end
+
+  # - creates or links any Words present
+  # - adds the SentenceWord
+  # @return [String] the template for this word
+  def templatize(test_word)
+    # new_word = Word.find_or_create_by_text( test_word.downcase )
+    # SentenceWord.create(sentence: self, sentence_index: @words.size, word: new_word)
+    WordTemplate.for(test_word)
+  end
+
 
   # ############################################## creating data / populating fields
   #
