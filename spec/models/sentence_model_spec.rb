@@ -50,9 +50,10 @@ describe Sentence do
     end
   end
 
+  let(:sentence) { Sentence.create!(paragraph: paragraph, paragraph_index: 1) }
+
   describe '#text=' do
     it 'rejects invalid text' do
-      sentence = Sentence.create!(paragraph: paragraph, paragraph_index: 1)
       expect {sentence.text=('')}.to raise_error(ArgumentError)
     end
   #
@@ -102,6 +103,30 @@ describe Sentence do
   #        'and shun The frumious Bandersnatch!'
   #
   end
+
+  describe '#tokenize' do
+    # it 'outputs a template' do
+    #   expect(sentence.tokenize('Hello, World!')).to eql('b')
+    # end
+
+    # it 'handles apostrophes'
+  end
+
+  describe '#templatize' do
+    before(:each) do
+      expect(Word).to receive(:find_or_create_by_text)
+    end
+
+    it 'converts using WordTemplate' do
+      sentence_test = 'foo'
+      expect(WordTemplate).to receive(:for).with(sentence_test)
+      sentence.templatize(sentence_test)
+    end
+
+    # it 'makes a SentenceWord'
+    # it 'finds or creates a Word'
+  end
+
   #
   #   describe 'translation rendering' do
   #

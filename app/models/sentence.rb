@@ -52,9 +52,9 @@ class Sentence < ActiveRecord::Base
   # - adds the SentenceWord
   # @return [String] the template for this word
   def templatize(test_word)
-    # new_word = Word.find_or_create_by_text( test_word.downcase )
-    # SentenceWord.create(sentence: self, sentence_index: @words.size, word: new_word)
-    WordTemplate.for(test_word)
+    new_word = Word.find_or_create_by_text( test_word.downcase )
+    SentenceWord.create(sentence: self, sentence_index: @words.size, word: new_word)
+    WordTemplate.for(test_word).template
   end
 
 
