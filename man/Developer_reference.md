@@ -38,6 +38,12 @@ Troubleshoot the database
 
     $ /Applications/Postgres.app/Contents/MacOS/bin/psql -U argotifier argotifier_test
 
+
+    # \l
+    # \c argotifier_prod
+    # \dt    
+
+
 Reset the database
 ------------------
 

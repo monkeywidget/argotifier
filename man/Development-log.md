@@ -12,6 +12,9 @@ CURRENT GOAL
 Immediate Goal
 --------------
 
+- reviving models (TDD with tests)
+- create CLI (all subcommands)
+
 - break out migrations into smaller pieces to appease rubocop
 - tag master branch with earlier version
 - revive other models and tests
@@ -31,16 +34,10 @@ Goals for this feature branch
 To Do "later" = Not now
 ------------------
 
-- deploy to AWS or PWS
-- new AngularJS client for reading
-- UI features from previous iteration
-    - javascript rewrite, with jasmine tests
-    - web API for paragraph, range of paragraphs, document, page with word index and tests
+- deploy to AWS
+- node/other project: UI features from previous iteration
     - view: widget for translation search (word only)
     - view: widget for translation creation/edit/remove (word only)
-    - code coverage for jasmine
-        - http://blog.johnryding.com/post/46757192364/javascript-code-coverage-with-phantomjs-jasmine-and
-        - http://siliconforks.com/jscoverage/
     - translated_word search should handle multiple results
 
 v2.x Implemented and committed

@@ -7,20 +7,20 @@ How To Use the CLI
 Load a new document to be translated from a file
 ------------------------------------------------
 
-    $ document load "New Title" <plaintext_filename.txt>
+    $ argotifier document load "New Title" <plaintext_filename.txt>
 
 
 Save a rendered translation to a file
 -------------------------------------
 
-    $ document save "Existing Title" <translation_filename.txt>
+    $ argotifier document save "Existing Title" <translation_filename.txt>
 
 
 Print the translation of a paragraph (or range)
 -----------------------------------------------
 
-    $ paragraph 1
-    $ paragraph 12 14
+    $ argotifier paragraph 1
+    $ argotifier paragraph 12 14
 
 Wraps to 80 columns!
 
@@ -29,14 +29,14 @@ Set a new translation of a word
 
 translates every instance of "foo" to "bar"
 
-    $ translation foo bar
+    $ argotifier translation foo bar
 
 Show all the words translated to
 --------------------------------
 
 Shows every word translated to "foo," with counts
 
-    $ translation foo
+    $ argotifier translation foo
 
 
 Save the translation dictionary to file
