@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'thor'
+require_relative '../lib/argotifier'
+
+# Prevent starting if running in rspec
+Argotifier::ArgotifierCLI.start unless $PROGRAM_NAME =~ /rspec/

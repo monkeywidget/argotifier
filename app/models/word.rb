@@ -1,59 +1,31 @@
+# frozen_string_literal: true
 class Word < ActiveRecord::Base
-  has_many :sentences, :through => :sentence_words
-  validates :text, :presence => true
-  validates :text, :length => { :minimum => 1 }
+  has_many :sentences, through: :sentence_words
+  validates :text, presence: true
+  validates :text, length: { minimum: 1 }
 
-  scope :untranslated, {
-      :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
-      :conditions => "tw.word_id IS NULL",
-      :select     => "DISTINCT words.*"
-  }
+  # scope :untranslated, -> {
+  #     :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
+  #     :conditions => "tw.word_id IS NULL",
+  #     :select     => "DISTINCT words.*"
+  # }
 
-  scope :translated, {
-      :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
-      :conditions => "tw.word_id IS NOT NULL",
-      :select     => "DISTINCT words.*"
-  }
+  # scope :translated, -> {
+  #     :joins      => "LEFT JOIN translated_words tw ON words.id = tw.word_id",
+  #     :conditions => "tw.word_id IS NOT NULL",
+  #     :select     => "DISTINCT words.*"
+  # }
 
+  # @return [String] the translation, or the original text if there is none
   def in_argot
-    translation = TranslatedWord.find_by_word_id(self)
-
-    if translation.nil?
-      self.text
-    else
-      translation.translation
-    end
+    argot_word = TranslatedWord.find_by(word: self)
+    argot_word.nil? ? text : argot_word.translation
   end
 
-  def self.to_template(original_text)
-    if original_text =~ /^[A-Z][A-Z]+$/
-      "C"
-    elsif original_text =~ /^[A-Z][a-z]+$/
-      "c"
-    else
-      "x"
-    end
+  # Render with a capitalization template
+  # @param template [String] a template like one of {x,c,C}
+  # @return [String] the rendered word
+  def render(template)
+    WordTemplate.new(template).render(text)
   end
-
-  def as_template
-    Word.to_template(text)
-  end
-
-  def self.render_text_with_template ( sample_word, template )
-    case template
-      when 'x'
-        sample_word.downcase
-      when 'c'
-        sample_word.capitalize
-      when 'C'
-        sample_word.upcase
-      else
-        raise(ArgumentError, ":template must be one of [xcC]")
-    end
-  end
-
-  def rendered_with (template)
-    Word.render_text_with_template(text, template)
-  end
-
 end
